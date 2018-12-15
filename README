@@ -1,0 +1,5 @@
+This repository is a mirror of the p25-wireline SVN repository (as of RC10 2010-03-03).
+
+The project was originally hosted at https://p25-wireline.dev.java.net/ which has now since shut down.
+
+The only change I have made is including '.keep' files in all empty directories to preserve the original structure.
