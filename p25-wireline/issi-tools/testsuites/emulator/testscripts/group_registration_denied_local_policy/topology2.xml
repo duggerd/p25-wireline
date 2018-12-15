@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config
+>
+
+<sgconfig
+	groupName="group_2"
+
+>
+<subscriber
+	suName="su_11"
+/>
+
+<!-- This group home may not get registrations from RFSS 1 (local policy)-->
+<forbidden
+	rfssName="Xrfss_1"
+/>
+</sgconfig>
+
+</conformance-test-config>

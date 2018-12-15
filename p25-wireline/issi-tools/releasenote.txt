@@ -1,0 +1,109 @@
+================================================================================
+ISSI Test Tools Release Note
+Last Update 03/03/2010
+================================================================================
+
+This release note highlights the features of the current and past ITT releases. 
+
+The ISSI Test Tools software can be downloaded from:
+https://p25-wireline.dev.java.net/
+
+There are two favors of download: 
+  - the source code is provided in zip format 
+  - the binary code is installable (need to rename .zip to .jar after download)
+
+After renaming binary download from .zip to .jar, the installation can be
+initiated by double clicking the jar file.
+
+
+In the Future Release, the projected new features will also be forcasted.
+
+Future Release
+--------------
+  o Release ITT-V1.0-RC11 on June 2010.
+  o ISSI Performance tests verification. 
+  o RC10 bug fixes
+  o ITT bug fixes status: ITTBugList.txt
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Release ITT-V1.0-RC10
+--------------------
+  o ISSI Compliance tests verification. 
+  o Separate the source to create p25stack.jar 
+  o ITT will use p25stack.jar
+  o Re-activation of test Pass/Fail evaluation
+  o RC9 bug fixes
+  o ITT bug fixes status: ITTBugList.txt
+
+
+Release ITT-V1.0-RC9
+--------------------
+  o Include ITT-V1.0-RC8
+  o Bug fixes of PTT traces.
+  o Bug fixes reported by users.
+
+
+Release ITT-V1.0-RC8
+--------------------
+  o Modify emulator to support conformance testing
+  o Auto Save of test output
+  o Look and Feel GUI configuration
+  o RC7 bug fixes
+
+
+Release ITT-V1.0-RC7
+--------------------
+  o Su-to-SU testcases bug fixes
+  o Testcase 12.17.x to 12.20.x implementation
+
+
+Release ITT-V1.0-RC6
+--------------------
+  o CSSI Performance Analysis
+  o Update of all Java documentions 
+  o Update of all DTD documentions 
+  o ITT System Functional Specifications
+  o ITT Software Design Specifications.
+
+
+Release ITT-V1.0-RC5
+--------------------
+  o Major bug fixes release (about 80% of all reported 500+ bugs).
+  o Test Registry sunchronization to ISSI-Spec (TIA-102.CACC).
+  o Support of full Conformance and CAP Tests.
+
+
+Release ITT-V1.0-RC4
+--------------------
+  o January 2009
+  o Performance Analysis of PCAP data files
+  o ITT Standalone Emulator console.
+  o Bug fixes and code refactoring.
+  o Bug fixes of installation scripts.
+
+
+Release ITT-V1.0-RC3
+--------------------
+  o October 2008
+  o SIP and PTT trace formatter per ISSI Spec
+  o Base code refactoring.
+  o User Interface Enhancement.
+  o Test Setup module development.
+  o Test Execution controller bug fixes.
+
+
+Release ITT-V1.0-RC2
+--------------------
+  o August 2008
+  o SIP and PTT Trace Analyzer development
+  o Subversion source control on java.net
+
+
+Release ISSI-V1.0RC1
+--------------------
+  o December 2007 
+  o Baseline ISSI-TOOLS release.
+
+
+================================================================================

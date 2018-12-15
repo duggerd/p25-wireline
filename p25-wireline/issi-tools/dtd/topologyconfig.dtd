@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+This document allows you to specialize the configuration of 
+the emulated RFSSs involved in a test. 
+The ISSI emulation consists of multiple RFSSs, SU's and groups that are defined in the associated
+systemtopology.xml file for a test suite and inherited by the globaltopology.xml file for that test suite.
+The globaltopolgy.xml file is where you set SU and group associations. Here is where you define
+things like Group membership and other test specific behabiors. In this file you will specify user and group profiles as well as timers, registration
+and other such information. This is a specialization of the attributes of these emulated entities that are defined
+in the corresponding global-topology.xml file. The contents of the xml document are interpreted in the context of an
+associated globaltopology.xml. The rfss names and group names here are tied to the rfss and group names that
+are defined in globlatopology.xml. 
+
+
+@title Topology Configuration Specification
+@root conformance-test-config
+ -->
+<!ELEMENT conformance-test-config (rfssconfig*,suconfig*,sgconfig*)>
+<!-- 
+
+@attr THEARTBEAT Timer values that you can set up ( override defaults) for this test.
+@attr traceOrder Comma separated list of rfss names for ordering the vertical lines of the sequence diagram
+	to make it more readable. If this attribute is left out, then the trace is ordered in the order
+	of sent messages (i.e. if RFSS_A sends a message before RFSS_B then it appears before RFSS_B
+	in the sequence diagram ).
+
+
+ -->
+<!ATTLIST conformance-test-config
+	THEARTBEAT  CDATA "10000" 
+	traceOrder  CDATA #IMPLIED
+>
+
+<!-- This defines the configuration of an RFSS.  -->
+<!ELEMENT rfssconfig (unknown-unit*) >
+
+<!-- 
+
+An unknown unit is a unit that the RFSS does not know about. 
+No nested tags for this  one. An RFSS that sees PTT request from
+an unknown Unit will reject the PTT Request. 
+     
+-->
+
+<!ELEMENT unknown-unit EMPTY >
+
+<!-- 
+
+Defines an SU. An SU has an associated User Profile which the Home RFSS keeps. The nested forbidden tag is a list of RFSSs that the Home RFSS 
+will not allow to register an SU from for the given SUID. 
+
+-->
+<!ELEMENT suconfig (userprofile?,forbidden*) >
+
+
+<!-- 
+
+A group configuration tag. A group is statically configured 
+with one or more subscribers. Each subscriber is an SU. A group has a group 
+profile that is stored at the group home. 
+
+-->
+<!ELEMENT sgconfig (subscriber+,groupprofile?,forbidden*)>
+<!-- 
+
+Defines a Subscriber. A subscriber to a group is an SU. 
+
+-->
+<!ELEMENT subscriber EMPTY >
+
+<!-- 
+
+@attr suName The unknown SU symbolic name. Must be specified in the associated globaltopology.xml 
+
+ -->
+<!ATTLIST unknown-unit 
+	suName CDATA #REQUIRED
+>
+
+<!-- The tag that defines an RFSS that a given RFSS will not accept registrations from. -->
+<!ELEMENT forbidden EMPTY >
+
+<!-- 
+
+@attr rfssName the rfssName (inherited from globaltopology.xml). 
+
+@attr operation This is a local policy for the home RFSS for the given SU.
+	It defines what REGISTER operations are allowable from a given RFSS.
+	This addresses tests which generate FORBIDDEN responses from an RFSS. This attribute
+	allows you to specify a local policy on registration.
+
+
+-->
+
+<!ATTLIST forbidden 
+	operation      (REGISTER|REGISTER-QUERY|ALL) "ALL"
+	rfssName	CDATA  #REQUIRED
+>
+
+
+
+<!-- 
+@attr id	- the id for this tag. Can be referred to in a script.
+
+@attr rfssName  - The symbolic name which we use to  refer to the RFSS in the test system.
+		This must reference an RFSS in the global topology file.
+@attr servedSuLeaseTime - the time for which we keep registration 
+			of a served Su (default is infinity or until the su moves)
+@attr servedGroupLeaseTime  - the time for which we keep registration of a 
+			served Group member (default is infinity or 
+			until the group has no served SU in our range).
+@attr groupRegistrationExpiresTime - the time for which the home 
+			SU remembers its groups (default is infinity ).
+@attr groupCallInviteProcessingTime - the time that the RFSS takes to 
+			respond to a group call INVITE in seconds.
+@attr rfResourcesAvailable - true if RF resources are available at the rfss.
+@attr querySuCredentialsBeforeRegistration  if true, query before registration 
+			when an unregistered SU  tries to register itself 
+@attr queryGroupCredentialsBeforeRegistration if true, then before sending a 
+			register to a group, query the group credentials first.
+@attr registerConfirmTime  - time that it takes to confirm an SU 
+	during Register CONFIRM processing. If non zero, a session
+	progress 183 is sent out while the registration is being confrimed.
+
+@attr isAdvancedRtpResourceManagementSupported  - a flag that indicates
+	whether the RFSS supports advanced resource management.
+
+@attr isInterestedInLosingAudio - a flag that indicates whether the RFSS
+	is interested in losing audio.
+
+@attr isCallingSuInitrans - a flag that controls the setting of c-initrans for
+		su to su calls. This is used by the called home RFSS
+
+@attr maxRtpPorts - the max number of available RTP ports 
+         ( to emulate limited RTP resources ) .
+
+
+-->
+<!ATTLIST rfssconfig 
+	id				CDATA     #IMPLIED
+	rfssName		        CDATA     #REQUIRED
+	groupRegistrationExpiresTime    CDATA     "UNBOUNDED"
+	servedGroupLeaseTime            CDATA     "UNBOUNDED"
+	groupCallInviteProcessingTime   CDATA     "0"
+	rfResourcesAvailable		(true|false) "true"
+	maxRtpPorts			CDATA   "UNBOUNDED"
+	querySuCredentialsBeforeRegistration	(true|false) "false"
+	queryGroupCredentialsBeforeRegistration (true|false) "false"
+	registerConfirmTime		CDATA "0"
+	isAdvancedRtpResourceManagementSupported (true|false) "false"
+	isInterestedInLosingAudio	(true|false) "false"
+	isCallingSuInitrans		(true|false) "true"
+     
+>
+
+<!--  
+@attr id a symbolic id which can be used in the testscript.xml to refer to this SU.
+@attr suName its name
+@attr initialState on or off
+@attr homeRfssKnowsAboutMeFor time for which home recognizes this SU
+@attr homeRfssRegistersMeFor 	time for which home keeps registration records
+	Right now only 0 and UNBOUNDED are supported.
+@attr inviteProcessingDelay time to process INVITE If RF resources not available by this time, the SU sends a BUSY.
+@attr registerOnForce  Re-register automatically when force register is presented for this su.
+@attr servingRfssReferencesMeFor  Simulates how long the serving RFSS keeps a record of this SU in its mobility table.
+@attr availability the state of the SU when a call setup request comes in.
+@attr isAvailable determines whether this SU is available to take incoming 
+	SU to SU calls.
+@attr protectionDisposition Indicates what to do with the c-protected flag 
+		at the called home in a Unit to unit call.
+
+@attr checkSuPresenceOnRegister - a flag that indicates r-presence parameter 
+	should be added on register-register.
+@attr checkCallPermission - a flag that indicates the U2U call permission 
+        should be checked.
+@attr skipRegisterRegister - a flag that indicates the subscriber initial
+        Register should be skipped.
+-->
+
+<!--EHC add suState -->
+<!ATTLIST suconfig
+	suName					CDATA    #REQUIRED
+	id					CDATA    #IMPLIED
+	initialState        			(on|off) "off" 
+	suState        				(on|off) "off" 
+	homeRfssKnowsAboutMeFor 		(0|UNBOUNDED) "UNBOUNDED"
+	homeRfssRegistersMeFor 			(0|UNBOUNDED) "UNBOUNDED"
+	servingRfssReferencesMeFor   		(0|UNBOUNDED) "UNBOUNDED"
+	inviteProcessingDelay			CDATA "0"
+	registerOnForce				(true|false) "true"
+	isAvailable				(true|false) "true"
+	checkSuPresenceOnRegister       	(true|false) "true"
+	checkCallPermission       		(true|false) "true"
+	skipRegisterRegister       		(true|false) "false"
+	protectionDisposition		        (forward_protected|
+						 clear_protected  |
+						 reject_protected |
+						 reject_unprotected) "forward_protected"
+>
+
+<!-- 
+@attr id - A link which is referenced in the testscript.xml file.
+@attr groupName - The symbolic name of the group. Refers to a group name defined in globalconfig.xml
+@attr homeRfssKnowsAboutMeFor the time for which the home RFSS keeps a record
+	of this group (defaults to "unbounded").
+@attr protectionDisposition - 
+	a flag that indicates whether the home RFSS forwards the 
+	c-protected flag in the INVITE body or rejects it. 
+        This flag indicates whether encrypted streams are supported or not.
+
+-->
+<!ATTLIST sgconfig
+	id					CDATA   #IMPLIED
+	groupName				CDATA   #REQUIRED
+	homeRfssKnowsAboutMeFor			CDATA "UNBOUNDED"
+	protectionDisposition		        (forward_protected|
+						 clear_protected  |
+						 reject_protected |
+						 reject_unprotected) "forward_protected"
+>
+
+<!--
+@attr suName - the SU Name of the subscriber. Must be defined in the associated globaltopology.xml file 
+-->
+<!ATTLIST subscriber
+	suName					CDATA #REQUIRED
+	
+>
+
+<!--
+A user profile may be specified as in Table 23 of the 102 BACA spec or it may be specified in 
+xml attribute form. If specified in PCDATA form, then it overrides the xml attribute
+setting.
+-->
+
+<!ELEMENT userprofile (#PCDATA) >
+
+<!--
+@attr availCheckSupported Whether or not availability check is supported (same as u-availcheck ) 
+@attr isFullDuplex whether or not the unit is full duplex. Note that it is the same as u-dup
+@attr accessPermission System access permission ( same as u-access)
+@attr isSecureCapable Secure capable attribute ( same as u-sec )
+@attr groupCallPermission the group call permission (u-gcall)
+@attr unitToUnitCallPermission the unit to unit call permission (u-ucall)
+@attr unitToUnitCallPriority The priority for unit to unit calls (u-upri)
+@attr interconnectPermission The interconnect permission. (u-iccall)
+@attr unitToUnitCallSetupPreference The call setup preference (u-prefsetup)
+@attr interconnectSecurity The interconnect security parameter ( u-icsec )	
+@attr interconnectCallPriority the interconnect call priority ( u-icpri) in the range 1 to 10.
+@attr radioInhibit the radio inhibition. (u-radiohibit)
+-->
+<!ATTLIST userprofile
+availCheckSupported	(AvailabilityCheck|DirectCall|AvailabilityCheckAndDirectCall) "AvailabilityCheckAndDirectCall"
+isFullDuplex ( true|false ) "true" 
+accessPermission (None|Full|Emergency) "Full"
+isSecureCapable (true|false) "false"
+groupCallPermission (None|NonEmergency|Emergency|EmergencyAndNonEmergency) "EmergencyAndNonEmergency"
+unitToUnitCallPermission (None|Receive|Initiate|ReceiveAndInitiate) "None"
+unitToUnitCallPriority (1|2|3|4|5|6|7|8|9|10) "1"
+interconnectPermission (0|1|2|3)  "0"
+interconnectSecurity (1|2|3) "1"
+interconnectCallPriority CDATA #IMPLIED
+unitToUnitCallSetupPreference (AvailabilityCheck|DirectCall) "AvailabilityCheck"
+radioInhibit (NotRadioInhibited|RadioInhibited) "NotRadioInhibited"
+>
+
+
+<!--
+The group profile for this group.
+-->
+<!ELEMENT groupprofile (#PCDATA) >
+
+<!--
+@attr accessPermission Defines whether or not the group is allowed to make non-emergency calls. (g-access)
+@attr announcementGroup Defines the announcement group for the group. (g-agroup)
+@attr groupPriority Defines the priority of the group. (g-pri) 
+@attr emergencyCapable Defines whether or not emergency calls MAY be made on the group. (g-ecap)
+@attr emergencyPreemption Defines whether ruthless or non-ruthless pre-emption is used for emergency calls. (g-eprempt)
+@attr rfHangTime Defines the hang-timer for the group. (g-rfhangt)
+@attr confirmedGroupCallSetupTime Defines the confirmed call setup timer for the group. (g-ccsetupt)
+@attr interruptMode Defines under what conditions talk-group members MAY interrupt each other during a call (g-intmode)
+@attr groupSecurityLevel Defines the allowable security levels of the call (g-sec)
+@attr interconnectFlag Defines whether or not the group MAY have PSTN sourced calls (g-ic)
+@attr interconnectSecurity Defines the required security level at the beginning of an interconnect call. (g-icsecstart)
+
+-->
+<!ATTLIST groupprofile
+
+accessPermission (EmergencyOnly|NonEmergencyAllowed) "NonEmergencyAllowed"
+announcementGroup CDATA #IMPLIED
+groupPriority	(1|2|3|4|5|6|7|8|9|10) "1"
+emergencyCapable (EmergencyCallsAllowed|EmergencyCallsNotAllowed) "EmergencyCallsAllowed"
+emergencyPreemption (NonRuthless|Ruthless) "NonRuthless"
+rfHangTime  CDATA #IMPLIED
+confirmedGroupCallSetupTime CDATA #IMPLIED
+interruptMode (NeverAllowed|PriorityInterruptAllowed|AlwaysAllowd) "NeverAllowed"
+groupSecurityLevel (ClearOnly|SecureOnly|ClearAndSecure) "ClearAndSecure"
+interconnectFlag (true|false) "false"
+interconnectSecurity (Clear|Secure) "Clear"
+
+>

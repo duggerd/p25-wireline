@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<BODY>
+<H2>ISSI Test Tools - Getting Started Guide</H2>
+<P>
+The ISSI Test Tools (ITT) is a software tool designed for the conformance and performance testing of the ISSI specifications TIA-102.BACA and TIA-102.CACC.
+</P>
+<BR>
+<BR>
+<H2>Software Download</H2>
+<P>
+The ITT is version controlled under subversion on the java.net site. 
+</P>
+<a href="https://p25-wireline.dev.java.net">P25-wireline Home</a>
+<P>
+Two favorites of download are available. The itt-install jar file will install the tool on user's computer on a single click. The issi-tools zip file contains the source code for tool developers.
+The ITT had been tested under the Window-XP and Linux operating system.
+</P>
+<BR>
+<BR>
+<H2>Software Documentation</H2>
+<P>
+The software documentations can be found under [install_dir]/doc/index.html.
+</P>
+<BR>
+<BR>
+<H2>Prerequisites</H2>
+<P>
+The ITT is developed in java programming language. Before you can launch the tool, you will need to install java JRE 1.6 or JDK 1.6 and the jpcap runtime library.
+</P>
+<a href="http://java.sun.com/javase/downloads/index.jsp">java JDK or JRE download</a>
+<P>
+<a href="http://netresearch.ics.uci.edu/kfujii/jpcap/doc/download.html">jpcap runtime library</a>
+</P>
+<BR>
+<BR>
+<H2>ITT Software Components</H2>
+<P>
+After installation, there will be 3 icons available on desktop to launch the ITT software components:
+</P>
+<OL>
+<LI>Conformance Console</LI>
+<LI>Standalone Emulator</LI>
+<LI>Performance Trace Analyzer</LI>
+</OL>
+<P>
+The Conformance Console and Standalone Emulator are used to perform ISS conformance testing in distributed and standalone mode respectively. The Standalone Emulator is very useful during the development of the ITT software. The Conformance Console is used for the actual testing of RFSSs in distributed environment.
+</P>
+<P>
+The Performance Trace Analyzer is used to analyzer the performance of RFSSs from the pcap file captured using the WireShark. It calculates the performance parameters from the captured traces in accordance to ISSI specifications.
+</P>
+<BR>
+<BR>
+<H2>ITT Users</H2>
+<P>
+The ITT user will use one of icons to launch the desired ITT components.
+</P>
+<BR>
+<BR>
+<H2>ITT Developers</H2>
+<P>
+Before any development, ITT developer will be required to install ant 1.7 or later.
+<BR>
+<a href="http://ant.apache.org/bindownload.cgi">ant download</a>
+</P>
+<P>
+After unzipping of the source code, ant tool can be used to build the ITT:
+<BR>
+> ant clean
+<BR>
+> ant compile
+<BR>
+> ant installer
+<BR>
+</P>
+<P>
+To launch ITT Console in a standalone mode:
+<BR>
+> ant emulatorGUI
+</P>
+<P>
+To launch ITT Performance Analyzer:
+<BR>
+> ant analyzerGUI
+</P>
+<BR>
+<BR>
+<H2>ITT License</H2>
+<P>
+The ITT is in the public domain (see copyrights in LICENSES directory for full statement). 
+<BR>
+You may use ITT in any product or project without acknowledgement, but you are requested
+to acknowledge our contributions.
+</P>
+<BR>
+<H2>Acknowedgement</H2>
+<P>
+The development is sponsored by NIST Office of Law Enforcement Stardards (NIST OLES). The Department of Homeland Security sporsored the production of this material under an Interagency Agreement with the Institute for Telecommunication Sciences (ITS).
+</P>
+</BODY>
+</HTML>

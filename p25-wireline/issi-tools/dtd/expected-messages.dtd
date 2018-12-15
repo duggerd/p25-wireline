@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+This is the dtd for the expected messages at the RFSSs. 
+After the test is run we test if we find a match for the accumulated messages
+
+@title Expected Messages Specification
+@root expected-messages
+-->
+<!ELEMENT expected-messages ( siprequests,sipresponses ) >
+
+<!--
+@attr siprequests is the SIP request
+@attr sipresponses is the SIP response
+ -->
+<!ELEMENT siprequests ( siprequest*)>
+<!ELEMENT sipresponses ( sipresponse*)>
+<!ELEMENT sipresponse (#PCDATA) >
+<!ELEMENT siprequest (#PCDATA) >

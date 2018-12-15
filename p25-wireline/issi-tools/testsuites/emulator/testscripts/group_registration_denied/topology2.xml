@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config
+>
+
+<sgconfig
+	groupName="group_2"
+	homeRfssKnowsAboutMeFor="0"
+>
+<subscriber
+	suName="su_11"
+/>
+</sgconfig>
+
+</conformance-test-config>

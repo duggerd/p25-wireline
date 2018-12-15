@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script>
+
+<!-- change terminateAfter 10 to -1 -->
+<su-to-su-call-setup-scenario
+	id="su-to-su-call-0"
+	callingSuName="callingSu"
+	calledSuName ="calledSu"
+	terminateAfter="-1"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</su-to-su-call-setup-scenario>
+
+<!-- At 10 seconds the RF resources become available -->
+<rfss-script
+	id="enableResources"
+	method="enableRfResources"
+	rfssName="Xrfss_1"
+	description="enable rf resources at rfss"
+>
+<trigger
+	type="time"
+	value="10"
+/>
+<script>
+def enableRfResources():
+	global rfss
+	rfss.enableRfResources()
+</script>
+</rfss-script>
+
+</test-script>

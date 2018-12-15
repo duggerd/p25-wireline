@@ -1,0 +1,26 @@
+
+
+<body>
+
+This package defines Classes for the Group Service Profiel ( defined in Chapter 3 Section 8 of the ISSI Messages and Proceedures
+Document.
+<pre>
+
+Name							Field		Compact form 	Meaning																			Default
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Access Permission				g-access		g-as	Defines whether or not the group is allowed to make non-emergency calls. 			Non-emergency Calls enabled.
+Announcement Group				g-agroup		g-ag	Defines the announcement group for the group.										No Default
+Priority						g-pri	    	g-p		Defines the priority of the group.													Subject to Local Policy
+Emergency Capable				g-ecap	    	g-ec	Defines whether or not emergency calls MAY be made on the group.					Emergency Calls Enabled.
+Emergency Preemption			g-eprempt		g-ep	Defines whether ruthless or non-ruthless pre-emption is used for emergency calls.	Non-ruthless (next available resource)
+Hang Time						g-rfhangt		g-h		Defines the hang-timer for the group.												0 seconds (Transmission trunked)
+Confirmed Call Setup Time		g-ccsetupT		g-c		Defines the confirmed call setup timer for the group.								0 seconds (Unconfirmed calls)
+Interrupt Mode					g-intmode	    g-in	Defines under what conditions talk-group members MAY interrupt each other during a call	Never allowed
+Security						g-sec		    g-s		Defines the allowable security levels of the call										Clear or Secure
+Interconnect Flag				g-ic		    g-ic	Defines whether or not the group MAY have PSTN sourced calls							No
+Interconnect Security			g-icsecstart	g-ics	     Defines the required security level at the beginning of an interconnect call.		Clear
+Manufacturer Specific Parameter	g-mfid<mfid>	g-m<mfid>    Allows for manufacturer specific attributes										None
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+</pre>
+</body>
+

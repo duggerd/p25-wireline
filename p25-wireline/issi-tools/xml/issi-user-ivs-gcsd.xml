@@ -1,0 +1,18 @@
+<ivs-delays>
+   <ivs-gcsd title="Measurements Default for Group Call Setup Delay(GCSD)" diagram="gfx/diagrams/IVS-GCSD.JPG">
+      <parameter key="Tg1" value="200"/>
+      <parameter key="Tg2" value="10"/>
+      <parameter key="Tg3" value="10" maximum="50"/>
+      <parameter key="Tg4" value="60" maximum="200"/>
+      <parameter key="Tg5" value="10"/>
+      <parameter key="Tg6" value="110" maximum="350"/>
+      <parameter key="Tg7" value="110"/>
+      <parameter key="Tg8" value="60"/>
+      <parameter key="Tg9" value="60"/>
+      <parameter key="Tg10" value="170" maximum="550"/>
+      <parameter key="Tg11" value="220"/>
+   </ivs-gcsd>
+   <ivs-status title="Measurements Default for ISSI Voice Services">
+      <comment>Measurements Default values from specification.</comment>
+   </ivs-status>
+</ivs-delays>

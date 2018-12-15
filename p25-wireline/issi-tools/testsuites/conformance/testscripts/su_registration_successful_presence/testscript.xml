@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	traceGenerationTime="5"
+>
+
+<!-- at time 5 seconds, Su turns on. This is automatially 
+done by the tester. -->
+
+
+</test-script>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<shortcuts>
+  <skipIfNotSupported />
+  <programGroup defaultName="ISSI-TOOLS" location="applications" />
+
+  <!-- Windows -->
+  <shortcut
+    name="ITT Conformance Console"
+    target="$JAVA_HOME\bin\javaw"
+    commandLine='-Xms256m -Xmx512m -Djava.library.path=./bin/native/jpcap -classpath "./diets.jar;./lib/*"  gov.nist.p25.issi.testlauncher.DietsGUI -startup startup/diets-standalone.properties'
+    workingDirectory="$INSTALL_PATH"
+    description="ITT Conformance Console"
+    iconFile="$INSTALL_PATH\gfx\tester-icon.ico"
+    iconIndex="0"
+    initialState="normal"
+    programGroup="yes"
+    desktop="yes"
+    applications="no"
+    startMenu="no"
+    startup="no">
+    <createForPack name="Base"/>
+    <os family="windows"/>
+  </shortcut>
+
+  <shortcut
+    name="ITT Standalone Emulator"
+    target="$JAVA_HOME\bin\javaw"
+    commandLine='-Xms256m -Xmx512m -Djava.library.path=./bin/native/jpcap -classpath "./diets.jar;./lib/*"  gov.nist.p25.issi.testlauncher.DietsGUI -startup startup/diets-emulator.properties'
+    workingDirectory="$INSTALL_PATH"
+    description="ITT Standalone Emulator"
+    iconFile="$INSTALL_PATH\gfx\tester-icon.ico"
+    iconIndex="0"
+    initialState="normal"
+    programGroup="yes"
+    desktop="yes"
+    applications="no"
+    startMenu="no"
+    startup="no">
+    <createForPack name="Base"/>
+    <os family="windows"/>
+  </shortcut>
+
+  <shortcut
+    name="ITT Performance and Trace Analyzer"
+    target="$JAVA_HOME\bin\javaw"
+    commandLine='-Xms256m -Xmx512m -Djava.library.path=./bin/native/jpcap -classpath "./diets.jar;./lib/*" gov.nist.p25.issi.analyzer.gui.TraceAnalyzerGUI'
+    workingDirectory="$INSTALL_PATH"
+    description="ITT Performance and Trace Analyzer"
+    iconFile="$INSTALL_PATH\gfx\tester-icon.ico"
+    iconIndex="0"
+    initialState="normal"
+    programGroup="yes"
+    desktop="yes"
+    applications="no"
+    startMenu="no"
+    startup="no">
+    <createForPack name="Base"/>
+    <os family="windows"/>
+  </shortcut>
+
+  <!-- Used for testing izpack script only
+  <shortcut
+    name="ITT JavaApp Tester"
+    target="$JAVA_HOME\bin\javaw"
+    commandLine='-Xms256m -Xmx512m -classpath "./diets.jar;./lib/*" gov.nist.p25.common.swing.jcapps.JComponentTreeTest'
+    workingDirectory="$INSTALL_PATH"
+    description="ITT JavaApp Tester"
+    iconFile="$INSTALL_PATH\gfx\tester-icon.ico"
+    iconIndex="0"
+    initialState="normal"
+    programGroup="yes"
+    desktop="yes"
+    applications="no"
+    startMenu="no"
+    startup="no">
+    <createForPack name="Base"/>
+    <os family="windows"/>
+  </shortcut>
+   -->
+
+  <shortcut
+    name="ITT Uninstaller"
+    target="$JAVA_HOME/bin/java"
+    commandLine='-jar "$INSTALL_PATH/Uninstaller/uninstaller.jar"'
+    workingDirectory=""
+    description="ITT uninstaller"
+    iconFile="$INSTALL_PATH\gfx\tester-icon.ico"
+    iconIndex="0"
+    initialState="normal"
+    programGroup="yes"
+    desktop="no"
+    applications="no"
+    startMenu="no"
+    startup="no">
+    <createForPack name="Base"/>
+    <os family="windows"/>
+  </shortcut>
+
+  <!-- ================================================== -->
+  <!-- UNIX Menu: to debug set terminal="true" -->
+  <shortcut
+    name="ITT_Conformance_Console"
+    target="$JAVA_HOME/bin/java"
+    commandLine='-Xms256m -Xmx512m -Djava.library.path=./bin/native/jpcap -classpath "./diets.jar:./lib/*"  gov.nist.p25.issi.testlauncher.DietsGUI -startup startup/diets-standalone.properties'
+    workingDirectory="$INSTALL_PATH"
+    description="ITT Conformance Console"
+    iconFile="$INSTALL_PATH/gfx/tester-icon.gif"
+    iconIndex="0"
+    initialState="noShow"
+    programGroup="yes"
+    desktop="yes"
+    applications="no"
+    startMenu="no"
+    startup="no"
+    type="Application"
+    encoding="UTF-8"
+    terminal="false"
+    createForAll="true">
+    <createForPack name="Base" />
+    <os family="unix" />
+  </shortcut>
+
+  <shortcut
+    name="ITT_Standalone_Emulator"
+    target="$JAVA_HOME/bin/java"
+    commandLine='-Xms256m -Xmx512m -Djava.library.path=./bin/native/jpcap -classpath "./diets.jar:./lib/*"  gov.nist.p25.issi.testlauncher.DietsGUI -startup startup/diets-emulator.properties'
+    workingDirectory="$INSTALL_PATH"
+    description="ITT Standalone Emulator"
+    iconFile="$INSTALL_PATH/gfx/tester-icon.gif"
+    iconIndex="0"
+    initialState="noShow"
+    programGroup="yes"
+    desktop="yes"
+    applications="no"
+    startMenu="no"
+    startup="no"
+    type="Application"
+    encoding="UTF-8"
+    terminal="false"
+    createForAll="true">
+    <createForPack name="Base" />
+    <os family="unix" />
+  </shortcut>
+
+  <shortcut
+    name="ITT_Performance_and_Trace_Analyzer"
+    target="$JAVA_HOME/bin/java"
+    commandLine='-Xms256m -Xmx512m -Djava.library.path=./bin/native/jpcap -classpath "./diets.jar:./lib/*" gov.nist.p25.issi.analyzer.gui.TraceAnalyzerGUI'
+    workingDirectory="$INSTALL_PATH"
+    description="Performance and Trace Analyzer"
+    iconFile="$INSTALL_PATH/gfx/tester-icon.gif"
+    iconIndex="0"
+    initialState="noShow"
+    programGroup="yes"
+    desktop="yes"
+    applications="no"
+    startMenu="no"
+    startup="no"
+    type="Application"
+    encoding="UTF-8"
+    terminal="false"
+    createForAll="true">
+    <createForPack name="Base" />
+    <os family="unix" />
+  </shortcut>
+
+  <!-- Used for testing izpack script only
+  <shortcut
+    name="ITT_JavaApp_Tester"
+    target="$JAVA_HOME/bin/java"
+    commandLine='-Xms256m -Xmx512m -classpath "./diets.jar:./lib/*" gov.nist.p25.common.swing.jcapps.JComponentTreeTest'
+    workingDirectory="$INSTALL_PATH"
+    description="ITT JavaApp Tester"
+    iconFile="$INSTALL_PATH/gfx/tester-icon.gif"
+    iconIndex="0"
+    initialState="noShow"
+    programGroup="yes"
+    desktop="yes"
+    applications="no"
+    startMenu="no"
+    startup="no"
+    type="Application"
+    encoding="UTF-8" 
+    terminal="false"
+    createForAll="true">
+    <createForPack name="Base"/>
+    <os family="unix" />
+  </shortcut>
+   -->
+
+  <shortcut
+    name="ITT_Uninstaller"
+    target="$JAVA_HOME/bin/java"
+    commandLine='-jar "$INSTALL_PATH/Uninstaller/uninstaller.jar"'
+    workingDirectory=""
+    description="ITT uninstaller"
+    iconFile="$INSTALL_PATH/gfx/tester-icon.gif"
+    iconIndex="0"
+    initialState="noShow"
+    programGroup="yes"
+    desktop="no"
+    applications="no"
+    startMenu="yes"
+    startup="no"
+    type="Application"
+    encoding="UTF-8">
+    <createForPack name="Base"/>
+    <os family="unix" />
+  </shortcut>
+
+</shortcuts>

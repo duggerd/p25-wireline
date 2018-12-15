@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> <head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>Event Driven Test Script Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>testscript.dtd</code></b>: <a href='testscript.dtd.html'>Elements</a> - Entities - <a href='testscript.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='testscript.dtd.org.html' target='_top'>NO FRAMES</a></p><pre id='dtd_source'><span class="dtd_processing_instruction">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span>
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">This is the Definition of the tags and attributes for the elements of</span>
+<span class="dtd_comment">the test script. The test script defines a set of event triggered tags</span>
+<span class="dtd_comment">and attributes for event driven scripts that are read by the ISSI </span>
+<span class="dtd_comment">test framework. </span>
+<span class="dtd_comment">A test script defines an event triggered set of actions. Event triggers</span>
+<span class="dtd_comment">are events (such as real-clock time, SIP or PTT message arrivals at</span>
+<span class="dtd_comment">an emulated RFSS) that trigger a scripting action. Scripting actions</span>
+<span class="dtd_comment">are specified using xml tags where ever possible so that parameters</span>
+<span class="dtd_comment">may be checked at the time the script is parsed. This reduces runtime</span>
+<span class="dtd_comment">errors. Following this design approach, all call setup actions are</span>
+<span class="dtd_comment">specified using xml tags. In addition we support actions to specify</span>
+<span class="dtd_comment">fragments of jython code (a Java implementation of Python). These</span>
+<span class="dtd_comment">fragments of jython code may invoke a set of functions specific to the</span>
+<span class="dtd_comment">RFSS or SU for which they are specified.  </span>
+
+
+<span class="dtd_dtddoc_tag">@title</span><span class="dtd_comment"> Event Driven Test Script Specification</span>
+<span class="dtd_dtddoc_tag">@root</span><span class="dtd_comment"> test-script</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">The top level tag for the test script.</span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">test-script</span><span class="dtd_plain"> (( </span><span class="dtd_attribute_name">su-to-su-call-setup-scenario</span><span class="dtd_plain"> | </span>
+<span class="dtd_plain">            </span><span class="dtd_attribute_name">group-call-setup-scenario</span><span class="dtd_plain"> | </span>
+<span class="dtd_plain">            </span><span class="dtd_attribute_name">roaming-scenario</span><span class="dtd_plain"> | </span>
+<span class="dtd_plain">            </span><span class="dtd_attribute_name">su-script</span><span class="dtd_plain"> | </span>
+<span class="dtd_plain">            </span><span class="dtd_attribute_name">rfss-script</span><span class="dtd_plain"> )* , </span><span class="dtd_attribute_name">post-condition</span><span class="dtd_plain">*)  </span><span class="dtd_tag_symbols">&gt;</span>
+
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">The tag for setting up an SU to SU Call. </span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">su-to-su-call-setup-scenario</span><span class="dtd_plain">  (</span><span class="dtd_attribute_name">trigger</span><span class="dtd_plain">)</span><span class="dtd_tag_symbols">&gt;</span>
+
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_comment">The tag for setting up a group call. This specifies the attributes </span>
+<span class="dtd_comment">necessary for group call setup and teardown.</span>
+<span class="dtd_comment">NOTE: Some of these parameters affect the call setup params going</span>
+<span class="dtd_comment">out with the invite and others affect the INVITE Priority</span>
+<span class="dtd_comment">header. </span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">group-call-setup-scenario</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">trigger</span><span class="dtd_plain">) </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">The tag for emulating an SU Roaming action.</span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">roaming-scenario</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">trigger</span><span class="dtd_plain">) </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">This tag specifies the attributes and code fragment necessary to script</span>
+<span class="dtd_comment">an SU action. Scripted actions are for actions specific to an SU such</span>
+<span class="dtd_comment">as turning the SU ON or OFF or sending a talk spurt to the peer of an</span>
+<span class="dtd_comment">SU to SU call to a group call. The methods that can be invoked from the</span>
+<span class="dtd_comment">script are described in the following section.--&gt;</span><span class="dtd_plain"> </span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">su-script</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">trigger</span><span class="dtd_plain">, </span><span class="dtd_attribute_name">script</span><span class="dtd_plain">)  </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">This tag specifies a code fragment to be executed at an emulated</span>
+<span class="dtd_comment">RFSS. Scripted actions are specific to that emulated RFSS such as</span>
+<span class="dtd_comment">dropping or adding RF resources, RTP resources etc. The methods that can</span>
+<span class="dtd_comment">be invoked from the script are described in the following section. </span>
+<span class="dtd_comment">The jython code fragment can invoke</span>
+<span class="dtd_comment">any of the methods of the </span>
+<span class="dtd_comment">&lt;a href=&quot;../../doc/javadoc/gov/nist/p25/issi/rfss/tester/RfssScriptInterface.html&quot;&gt;RfssScriptInterface &lt;/a&gt;. The Jython global value</span>
+<span class="dtd_comment">&lt;b&gt;currentRfss&lt;/b&gt; refers to the emulated RFSS on which this </span>
+<span class="dtd_comment">script is executed.</span>
+
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">rfss-script</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">trigger</span><span class="dtd_plain">, </span><span class="dtd_attribute_name">script</span><span class="dtd_plain">) </span><span class="dtd_tag_symbols">&gt;</span>
+
+
+<span class="dtd_comment">&lt;!-- Encloses a piece of jython code. </span>
+<span class="dtd_comment"> --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">script</span><span class="dtd_plain"> (</span><span class="dtd_keyword">#PCDATA</span><span class="dtd_plain">)</span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- The trigger action ( specifies the event condition for the enclosing tag)</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">trigger</span><span class="dtd_plain"> </span><span class="dtd_keyword">EMPTY</span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- An optional post condition that is evaluated after the test completes --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">post-condition</span><span class="dtd_plain"> (</span><span class="dtd_keyword">#PCDATA</span><span class="dtd_plain">)</span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_dtddoc_tag">@attr type</span><span class="dtd_comment">  the type of trigger. Can be one of the following types :</span>
+<span class="dtd_comment">   &lt;ul&gt;</span>
+<span class="dtd_comment">    &lt;li&gt; &lt;b&gt; time &lt;/b&gt; trigger - fires on time relative to the </span>
+<span class="dtd_comment">       start of test.</span>
+<span class="dtd_comment">    &lt;li&gt;&lt;b&gt; ptt_message&lt;/b&gt; trigger - fires on arrival of the type </span>
+<span class="dtd_comment">    of PTT message specified.</span>
+<span class="dtd_comment">    &lt;li&gt;&lt;b&gt;sip_request&lt;/b&gt; trigger - fires on arrival of the type</span>
+<span class="dtd_comment">    of SIP request specified.</span>
+<span class="dtd_comment">    &lt;li&gt;&lt;b&gt;sip_response&lt;/b&gt; trigger - fires on arrival of the type</span>
+<span class="dtd_comment">    of SIP response specified.</span>
+<span class="dtd_comment">   &lt;/ul&gt;</span>
+
+<span class="dtd_dtddoc_tag">@attr refId</span><span class="dtd_comment"> - a reference ID to allow us to specify relative time triggers.</span>
+<span class="dtd_comment">    If this is set, then the trigger fires after another named</span>
+<span class="dtd_comment">    event firing. This allows us to specify event dependencies.</span>
+<span class="dtd_comment">    </span>
+
+<span class="dtd_dtddoc_tag">@attr oneShot</span><span class="dtd_comment"> - true implies that the trigger fires just once.</span>
+
+<span class="dtd_dtddoc_tag">@attr value</span><span class="dtd_comment"> - the trigger value. Its interpretation depends upon the type</span>
+<span class="dtd_comment">    of trigger. For time trigger, value is a time value. For sip_message</span>
+<span class="dtd_comment">    trigger, value specifies the type of message. For a ptt_message</span>
+<span class="dtd_comment">    the value specifies the Ptt message type.</span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">trigger</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">type</span><span class="dtd_plain">  (</span><span class="dtd_attribute_name">time</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">ptt_message</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">sip_request</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">sip_response</span><span class="dtd_plain">) </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">oneShot</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;true&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">refId</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">value</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_dtddoc_tag">@attr  testName</span><span class="dtd_comment"> - the test name </span>
+<span class="dtd_dtddoc_tag">@attr  rtpMessageLog</span><span class="dtd_comment"> the location where to put the logged rtp and ptt messages.</span>
+<span class="dtd_dtddoc_tag">@attr  sipMessageLog</span><span class="dtd_comment"> the location where to put the sip messages.</span>
+<span class="dtd_dtddoc_tag">@attr  generateSipTrace</span><span class="dtd_comment"> whether or not to capture a sip trace.</span>
+<span class="dtd_dtddoc_tag">@attr  generatePttTrace</span><span class="dtd_comment"> whether or not to capture a PTT trace.</span>
+<span class="dtd_dtddoc_tag">@attr  testCompletionDelay</span><span class="dtd_comment"> time after the final expected sip message is seen</span>
+<span class="dtd_comment">    to when the test is considered to be completed.</span>
+<span class="dtd_dtddoc_tag">@attr traceGenerationTime</span><span class="dtd_comment"> time to generate the trace for this test.</span>
+
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">test-script</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">testName</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">rtpMessageLog</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;logs/messagelog.ptt&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">sipMessageLog</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;logs/messagelog.sip&quot;</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">generateSipTrace</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">yes</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">no</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;yes&quot;</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">generatePttTrace</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">yes</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">no</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;no&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">testCompletionDelay</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;0&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">traceGenerationTime</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;25&quot;</span>
+<span class="dtd_plain">    </span>
+<span class="dtd_tag_symbols">&gt;</span>
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_dtddoc_tag">@attr locationSelector</span><span class="dtd_comment">  If the location predicate returns true then the</span>
+<span class="dtd_comment">         assertion predicate is run. </span>
+<span class="dtd_comment">          return true if the assertion is to be checked at </span>
+<span class="dtd_comment">          the RFSS for which it evaluated to true.</span>
+
+<span class="dtd_dtddoc_tag">@attr assertion</span><span class="dtd_comment">  is the name of the function that will be </span>
+<span class="dtd_comment">                     invoked that should be returning a boolean value.</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">post-condition</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">        </span><span class="dtd_attribute_name">assertion</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">        </span><span class="dtd_attribute_name">locationSelector</span><span class="dtd_plain">  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment"> an identifier for this stanza (can be referred to in </span>
+<span class="dtd_comment">            scripts ).</span>
+
+<span class="dtd_dtddoc_tag">@attr callingSuName</span><span class="dtd_comment">  name of the calling SU. Must be defined in the</span>
+<span class="dtd_comment">    associated topology.xml</span>
+
+<span class="dtd_dtddoc_tag">@attr calledSuName</span><span class="dtd_comment">  name of the called SU. Must be defined in the</span>
+<span class="dtd_comment">    assoicated topology.xml</span>
+
+<span class="dtd_dtddoc_tag">@attr isEmergency</span><span class="dtd_comment">  whether or not this is an emergency call.</span>
+
+<span class="dtd_dtddoc_tag">@attr terminateAfter</span><span class="dtd_comment">   time after which the call is Terminated ( with a BYE)</span>
+
+<span class="dtd_dtddoc_tag">@attr isTerminatedByCalledServing</span><span class="dtd_comment"> a flag which indicates whether the called</span>
+<span class="dtd_comment">    party terminates call. </span>
+
+<span class="dtd_dtddoc_tag">@attr cancelAfter</span><span class="dtd_comment"> time after which to cancel the call. Note that cancel may</span>
+<span class="dtd_comment">    not succeed.</span>
+
+<span class="dtd_dtddoc_tag">@attr talkSpurtSentBy</span><span class="dtd_comment"> which end sends a talk spurt after setup  (this is an</span>
+<span class="dtd_comment">        optional attribute ).</span>
+
+<span class="dtd_dtddoc_tag">@attr isTalkSpurtForced</span><span class="dtd_comment"> whether or not talk spurt is forced.</span>
+
+<span class="dtd_dtddoc_tag">@attr isProtected</span><span class="dtd_comment"> a flag that indicates whether the call setup is protected or not. </span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">su-to-su-call-setup-scenario</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">id</span><span class="dtd_plain">        </span><span class="dtd_keyword">ID</span><span class="dtd_plain">        </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">callingSuName</span><span class="dtd_plain">     </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">     </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">calledSuName</span><span class="dtd_plain">      </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">     </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">cancelAfter</span><span class="dtd_plain">       </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">terminateAfter</span><span class="dtd_plain">    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isTerminatedByCalledServing</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isEmergency</span><span class="dtd_plain">       (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">talkSpurtSentBy</span><span class="dtd_plain">   </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">  </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isTalkSpurtForced</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isProtected</span><span class="dtd_plain">       (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment"> a unique identifier for this stanza </span>
+<span class="dtd_comment">             (can be referred to in scripts ).</span>
+
+<span class="dtd_dtddoc_tag">@attr callingSuName</span><span class="dtd_comment">   name of the calling SU</span>
+
+<span class="dtd_dtddoc_tag">@attr calledGroupName</span><span class="dtd_comment">  name of the called group</span>
+
+<span class="dtd_dtddoc_tag">@attr priority</span><span class="dtd_comment">  the call priority </span>
+
+<span class="dtd_dtddoc_tag">@attr isEmergency</span><span class="dtd_comment">  &quot;emergency&quot; flag</span>
+
+<span class="dtd_dtddoc_tag">@attr isConfirmed</span><span class="dtd_comment">  &quot;confirmed group call&quot; flag</span>
+
+<span class="dtd_dtddoc_tag">@attr cancelAfter</span><span class="dtd_comment">  time after which call is canceled</span>
+
+<span class="dtd_dtddoc_tag">@attr terminateAfter</span><span class="dtd_comment">  time after which the call is Terminated ( with a BYE)</span>
+
+<span class="dtd_dtddoc_tag">@attr isTalkSpurtSentAfterCallSetup</span><span class="dtd_comment"> calling SU send a talk spurt after call setup.</span>
+
+<span class="dtd_dtddoc_tag">@attr isTalkSpurtForced</span><span class="dtd_comment"> a flag that indicates if the talk spurt </span>
+<span class="dtd_comment">        is forced or not.</span>
+<span class="dtd_comment">        </span>
+<span class="dtd_dtddoc_tag">@attr isProtected</span><span class="dtd_comment"> a flag that indicates whether the call setup is protected or not. This </span>
+<span class="dtd_comment">    controls the c-protected parameter.</span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">group-call-setup-scenario</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">id</span><span class="dtd_plain">      </span><span class="dtd_keyword">ID</span><span class="dtd_plain">  </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">callingSuName</span><span class="dtd_plain">   </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">calledGroupName</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">priority</span><span class="dtd_plain">    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_attribute_value">&quot;1&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isEmergency</span><span class="dtd_plain">     (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isConfirmed</span><span class="dtd_plain">     (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">cancelAfter</span><span class="dtd_plain">     </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">terminateAfter</span><span class="dtd_plain">  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isTalkSpurtSentAfterCallSetup</span><span class="dtd_plain">  (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">)  </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isProtected</span><span class="dtd_plain">   (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isTalkSpurtForced</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment"> - a unique identifier for this event triggered action.</span>
+
+<span class="dtd_dtddoc_tag">@attr suName</span><span class="dtd_comment"> - symbolic name of the su that is moving.</span>
+
+<span class="dtd_dtddoc_tag">@attr destinationRfssName</span><span class="dtd_comment"> - symbolic name of the destination RFSS.</span>
+
+<span class="dtd_dtddoc_tag">@attr delay</span><span class="dtd_comment"> - time taken for the move.</span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">roaming-scenario</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">id</span><span class="dtd_plain"> </span><span class="dtd_keyword">ID</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">suName</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">destinationRfssName</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">delay</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;0&quot;</span>
+<span class="dtd_plain">    </span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment"> - the unique id for this su script.</span>
+<span class="dtd_dtddoc_tag">@attr suName</span><span class="dtd_comment"> - must specify an su that is defined in the associated</span>
+<span class="dtd_comment">    topology.xml file.</span>
+
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment"> = the unique id for this SU script.</span>
+
+<span class="dtd_dtddoc_tag">@attr suName</span><span class="dtd_comment"> = the name of the SU that this script references.</span>
+<span class="dtd_comment">    this must be defined in the associated topology.xml file </span>
+<span class="dtd_comment">    for the test script.</span>
+
+<span class="dtd_dtddoc_tag">@attr description</span><span class="dtd_comment"> = the decription of this scripting action.</span>
+
+<span class="dtd_dtddoc_tag">@attr method</span><span class="dtd_comment"> = the jython method to invoke in the enclosed script.</span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_plain">    </span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">su-script</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">id</span><span class="dtd_plain">           </span><span class="dtd_keyword">ID</span><span class="dtd_plain">    </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">suName</span><span class="dtd_plain">           </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">description</span><span class="dtd_plain">              </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">method</span><span class="dtd_plain">           </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+
+
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment"> = the unique id for this RFSS script.</span>
+<span class="dtd_dtddoc_tag">@attr rfssName</span><span class="dtd_comment"> = the name of the emulated RFSS that this script references.</span>
+<span class="dtd_dtddoc_tag">@attr description</span><span class="dtd_comment"> = the decription of this scripting action.</span>
+<span class="dtd_dtddoc_tag">@attr method</span><span class="dtd_comment"> = the jython method to invoke in the enclosed script.</span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">rfss-script</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">id</span><span class="dtd_plain">          </span><span class="dtd_keyword">ID</span><span class="dtd_plain">    </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">rfssName</span><span class="dtd_plain">        </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">description</span><span class="dtd_plain">             </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">method</span><span class="dtd_plain">          </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+</pre>
+</body></html>

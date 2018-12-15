@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<rfssconfig rfssName="rfss_2" querySuCredentialsBeforeRegistration="true"/>
+
+
+<!-- RFSS 3 is forbidden from making any REGISTRATIONS or REGISTRATION
+queries -->
+<suconfig suName="su_12" initialState="off">
+<forbidden operation="REGISTER-QUERY" rfssName="rfss_2"/>
+</suconfig>
+
+</conformance-test-config>

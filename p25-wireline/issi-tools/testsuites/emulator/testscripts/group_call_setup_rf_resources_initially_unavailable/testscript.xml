@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	traceGenerationTime="15"
+>
+
+<rfss-script
+	id="rfss-script"
+	method="addRfResources"
+	rfssName="servedRfss"
+	description="enable RF resources at this rfss"
+>
+<trigger
+	type="time"
+	value="10"
+/>
+<script>
+def addRfResources() :
+	rfss.enableRfResources()
+</script>
+</rfss-script>
+
+<group-call-setup-scenario
+	id="group-call-setup-scenario-1"
+	callingSuName="callingSu"
+	calledGroupName="calledGroup"
+	isConfirmed="true"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</group-call-setup-scenario>
+
+</test-script>

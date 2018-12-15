@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	testCompletionDelay="25"
+>
+<group-call-setup-scenario
+	id="group-call-setup-scenario-1"
+	callingSuName="callingSu"
+	calledGroupName="calledGroup"
+>
+<trigger
+	type="time"
+	value="4"
+/>
+</group-call-setup-scenario>
+
+<rfss-script	
+	id="rfss-script"
+	rfssName="calledGroup:groupHome"
+	method="doConnectivityLoss"
+	description="Stop sending heartbeats from group home to serving Rfss "
+>
+<trigger
+	type="time"
+	value="8"
+/>
+<script>
+
+def doConnectivityLoss():
+	global rfss 
+	rfss.stopHeartbeatTransmissionFromGroupHome("calledGroup","groupServing")
+</script>
+</rfss-script>
+
+</test-script>

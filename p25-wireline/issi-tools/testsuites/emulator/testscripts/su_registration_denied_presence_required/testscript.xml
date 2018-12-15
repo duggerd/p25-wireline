@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	traceGenerationTime="15"
+>
+
+<!-- at time 5 seconds, Su turns on. This is automatially 
+done by the tester. This registers presence. Then we want to 
+register again but without pesence. This will generate the
+error condition. -->
+<rfss-script
+	id="reRegisterSu"
+	rfssName="rfss_3"
+	method="doRegisterRegister"
+	description="Re register the SU "
+>
+<trigger
+	type="time"
+	value="10"
+/>
+<script>
+def doRegisterRegister() :
+	rfss.triggerRegistration("registeringSu","false")
+</script>
+</rfss-script>
+
+</test-script>

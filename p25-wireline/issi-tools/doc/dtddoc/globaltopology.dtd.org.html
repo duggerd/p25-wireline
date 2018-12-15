@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> <head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>Global Topology Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>globaltopology.dtd</code></b>: <a href='globaltopology.dtd.html'>Elements</a> - Entities - <a href='globaltopology.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='globaltopology.dtd.org.html' target='_top'>NO FRAMES</a></p><pre id='dtd_source'><span class="dtd_processing_instruction">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span>
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_comment">The ISSI emulation consists of multiple rfsss, su's and groups.  </span>
+<span class="dtd_comment">The global topology configuration file specifies the SUs and group</span>
+<span class="dtd_comment">assignments for the given test suite. You will have to configure</span>
+<span class="dtd_comment">your unit under test to be aware of these user and group</span>
+<span class="dtd_comment">IDs, home RFSSs etc. The global topology references</span>
+<span class="dtd_comment">RFSS entities that are defined in the associated</span>
+<span class="dtd_comment">&quot;systemtopology.xml&quot; file. Note that the Rfss IDs reference</span>
+<span class="dtd_comment">those that are defined in the &quot;systemtopology.xml&quot; and these</span>
+<span class="dtd_comment">are also referenced in each individual test case </span>
+<span class="dtd_comment">topology.xml file. Therefore these names should</span>
+<span class="dtd_comment">not be changed for a given test suite.</span>
+
+
+<span class="dtd_dtddoc_tag">@title</span><span class="dtd_comment"> Global Topology Specification</span>
+<span class="dtd_dtddoc_tag">@root</span><span class="dtd_comment"> global-topology</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_comment">&lt;!-- The top level tag for the configuration of global topology. The global topology is the global assignment of SUs and Groups to RFSSs across all </span>
+<span class="dtd_comment">tests int he system. You should configure your test system to be aware of the SU's and Gruoups specified in this file.</span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">global-topology</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">rfssconfig</span><span class="dtd_plain">+,</span><span class="dtd_attribute_name">suconfig</span><span class="dtd_plain">*,</span><span class="dtd_attribute_name">sgconfig</span><span class="dtd_plain">*)</span><span class="dtd_tag_symbols">&gt;</span>
+
+
+
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_dtddoc_tag">@attr rfssName</span><span class="dtd_comment"> The RFSS name. This must refer to an </span>
+<span class="dtd_comment">        RFSS defined in the associated systemtopology.xml </span>
+<span class="dtd_comment">        file. Do not change this assignment for a given</span>
+<span class="dtd_comment">        test suite otherwise the test scripts that </span>
+<span class="dtd_comment">        refer to this name may break.</span>
+<span class="dtd_dtddoc_tag">@attr selftestPort</span><span class="dtd_comment"> The port used for self test trace generation.</span>
+<span class="dtd_comment">        Selftest involves running the scenario for each emulated</span>
+<span class="dtd_comment">        RFSS using localhost (127.0.0.1) and selftestPort for </span>
+<span class="dtd_comment">        SIP signaling call setup. The generated traces is</span>
+<span class="dtd_comment">        IP address and port independent. This can be any</span>
+<span class="dtd_comment">        random integer.</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">rfssconfig</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">rfssName</span><span class="dtd_plain">            </span><span class="dtd_keyword">ID</span><span class="dtd_plain">    </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">selftestPort</span><span class="dtd_plain">                    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- This defines the configuration of an RFSS. The name must match that</span>
+<span class="dtd_comment">specified in systemconfig. --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">rfssconfig</span><span class="dtd_plain">  </span><span class="dtd_keyword">EMPTY</span><span class="dtd_plain"> </span><span class="dtd_tag_symbols">&gt;</span>
+
+
+<span class="dtd_comment">&lt;!-- Defines an SU. An SU has an associated User Profile which the Home</span>
+<span class="dtd_comment">RFSS keeps. This is initialized with default values that can be overriden</span>
+<span class="dtd_comment">in the test topology file for the given test. --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">suconfig</span><span class="dtd_plain"> </span><span class="dtd_keyword">EMPTY</span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- A group configuration tag. A group is statically configured </span>
+<span class="dtd_comment"> with</span>
+<span class="dtd_comment">one or more subscribers. Note that the subscribers are specified as</span>
+<span class="dtd_comment">Subscriber units. A group  has a group profile which is initialized</span>
+<span class="dtd_comment">with default values which can be overriden for the given group in the</span>
+<span class="dtd_comment">test topology file.</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">sgconfig</span><span class="dtd_plain"> </span><span class="dtd_keyword">EMPTY</span><span class="dtd_tag_symbols">&gt;</span>
+
+
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_dtddoc_tag">@attr suName</span><span class="dtd_comment"> SU name. This is a uniqe symbolic identifier for the su.</span>
+
+<span class="dtd_dtddoc_tag">@attr suId</span><span class="dtd_comment"> SU numeric unit id as defined in TIA 102 BACA (specified in Hex)</span>
+
+<span class="dtd_dtddoc_tag">@attr homeRfssName</span><span class="dtd_comment"> Home RFSS name (must refer to a rfss referenced in this file </span>
+<span class="dtd_comment">        and defined in systemtopology.xml ).</span>
+
+<span class="dtd_dtddoc_tag">@attr servingRfssName</span><span class="dtd_comment"> Serving RFSS name</span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">suconfig</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">suName</span><span class="dtd_plain">                  </span><span class="dtd_keyword">ID</span><span class="dtd_plain">    </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">suId</span><span class="dtd_plain">                    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">homeRfssName</span><span class="dtd_plain">                </span><span class="dtd_keyword">IDREF</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">servingRfssName</span><span class="dtd_plain">             </span><span class="dtd_keyword">IDREF</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_dtddoc_tag">@attr groupName</span><span class="dtd_comment"> its unique symolic name. Note that this name should</span>
+<span class="dtd_comment">    not be changed otherwise the tests that refer to this group</span>
+<span class="dtd_comment">    will break. Note that subscribers are sepcified on a per test</span>
+<span class="dtd_comment">    basis. See the topologyconfig.xml for a given test to see</span>
+<span class="dtd_comment">    subscriber assignments.</span>
+<span class="dtd_dtddoc_tag">@attr sgId</span><span class="dtd_comment"> The group ID ( as defined in TIA 102 BACA) specified in Hex. </span>
+<span class="dtd_comment">    You can assign any unique value you want to this filed.</span>
+<span class="dtd_dtddoc_tag">@attr homeRfssName</span><span class="dtd_comment"> The name of the Home RFSS of this group. The home</span>
+<span class="dtd_comment">    Rfss must be defined in the systemtopology file associated</span>
+<span class="dtd_comment">    with the test suite.</span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">sgconfig</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">groupName</span><span class="dtd_plain">               </span><span class="dtd_keyword">ID</span><span class="dtd_plain">    </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">sgId</span><span class="dtd_plain">                    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">homeRfssName</span><span class="dtd_plain">                </span><span class="dtd_keyword">IDREF</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+
+
+
+
+</pre>
+</body></html>

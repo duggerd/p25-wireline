@@ -1,0 +1,20 @@
+<ivs-delays>
+   <ivs-ucsd title="Measurements Default for SU-to-SU Call Setup Delay(UCSD)" diagram="gfx/diagrams/IVS-UCSD.JPG">
+      <parameter key="Tu1" value="170"/>
+      <parameter key="Tu2" value="10" maximum="30"/>
+      <parameter key="Tu3" value="10" maximum="30"/>
+      <parameter key="Tu4" value="210"/>
+      <parameter key="Tu5" value="170"/>
+      <parameter key="Tu6" value="60" maximum="200"/>
+      <parameter key="Tu7" value="10" maximum="50"/>
+      <parameter key="Tu8" value="10" maximum="50"/>
+      <parameter key="Tu9" value="290"/>
+      <parameter key="Tu10" value="60"/>
+      <parameter key="Tu11" value="10"/>
+      <parameter key="Tu12" value="10"/>
+      <parameter key="Tu13" value="240"/>
+   </ivs-ucsd>
+   <ivs-status title="Measurements Default for ISSI Voice Services">
+      <comment>Performanace Measurements Default values from specifications.</comment>
+   </ivs-status>
+</ivs-delays>

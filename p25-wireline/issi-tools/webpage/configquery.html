@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- need VML namespace and CSS for the GPolyline -->
+<HTML xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+
+<HEAD>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<TITLE>ITT Configuration Query</TITLE>
+</HEAD>
+
+<script src="js/sarissa.js" type="text/javascript"></script>
+
+<script language="JavaScript" charset="utf-8">
+var req = false;
+var service = "Unknown";
+
+function XcreateXHR()
+{
+   // Sarrisa
+   //alert("Calling Sarrisa...");
+   var http = new XMLHttpRequest();
+   return http;
+}
+//-------------------------------------------------------------------
+function loadXML(xmlFile)
+{
+   var xmlDoc = false;
+
+   //load xml file
+   if (window.ActiveXObject)
+   {
+      // code for IE
+      xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+      xmlDoc.async=false;
+      xmlDoc.load( xmlFile);
+   }
+   else if (document.implementation && document.implementation.createDocument)
+   {
+      // code for Mozilla, Firefox, Opera, etc.
+      xmlDoc=document.implementation.createDocument("","",null);
+      xmlDoc.load( xmlFile);
+      //xmlDoc.onload=onloadFtn;
+   }
+   else
+   {
+      alert("Browser cannot handle xml input: "+xmlFile);
+   }
+   return xmlDoc;
+}
+function identityTransform( )
+{ 
+   var transform = "None";
+   j = document.ajax.transform.length;
+   for(i=0; i < j; i++) {
+      if( document.ajax.transform[i].checked)
+         transform = document.ajax.transform[i].value;
+   }
+   //alert( "transform: "+transform);
+   if( transform=="None")
+      return req.responseText;
+
+   //alert( "transform:using xsl/identity2.xsl");
+   var xmlDoc = req.responseXML;   
+   var xslDoc = loadXML( "xsl/identity2.xsl");
+   var html = xmlDoc.transformNode( xslDoc);
+   //alert( html);
+   //document.ajax.textarea.value = html;
+
+   return html;
+}
+//-------------------------------------------------------------------
+function submitForm()
+{ 
+   req = XcreateXHR();
+   req.onreadystatechange = processResult;
+
+   wstype = "/diets/controller";
+   service = "Unknown";
+   j = document.ajax.service.length;
+   for(i=0; i < j; i++) {
+      if( document.ajax.service[i].checked) {
+         service = document.ajax.service[i].value;
+         if( i > 6) {
+            wstype = "/rfss/control";
+         }
+      }
+   }
+
+   var type = "Unknown";
+   j = document.ajax.type.length;
+   for(i=0; i < j; i++) {
+      if( document.ajax.type[i].checked)
+         var type = document.ajax.type[i].value;
+   }
+
+   //----------------------------------------------------------
+   //alert( service+":"+type);
+   var host = "http://"+document.ajax.rfss.value+":"+
+              document.ajax.port.value+wstype;
+              //document.ajax.port.value+"/diets/controller";
+   //alert("host="+host);
+
+   document.ajax.textarea.value="";
+   var url = "";
+   var body = "";
+   if( type=="GET")
+   {
+      // http://host:8763/diets/controller?command=getTesterConfig
+      url = host + "?command=" + service;
+      //alert( url);
+
+      req.open( "GET", url, true);
+      req.setRequestHeader("Content-Type", "text/html");
+      req.setRequestHeader("If-Modified-Since", "Sat, 1 Jan 2000 00:00:00 GMT");
+      req.send( null); 
+   }
+   else if( type=="POST")
+   {
+      url = host + "?command=" + service;
+      body = "";
+      //var clen = body.length;
+      //alert( "["+clen+"]"+body);
+
+      req.open( "POST", url, true);
+      req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      //req.setRequestHeader("Content-Length", ""+clen);
+      req.setRequestHeader("If-Modified-Since", "Sat, 1 Jan 2000 00:00:00 GMT");
+      req.send( body); 
+   }
+   else
+   {
+      alert( "Unknown type="+type);
+   }
+}
+//--------------------------------------------------------------------
+function buildIssiTesterConfig( root)
+{
+   // build header
+   var msg = "<h2>issi-tester-config</h2>";
+
+   var results = root.getElementsByTagName("diets-daemon");
+   //alert("diets-daemon: length="+results.length);
+
+   // build header
+   msg += "<h3>diets-daemon</h3>" +
+     '<table border="1">' +
+     "<tr>" +
+     "<td><b>ipAddress</b></td>" +
+     "<td><b>httpPort</b></td>" +
+     "<td><b>name</b></td>" +
+     "<td><b>isConformanceTester</b></td>" +
+     "<td><b>isPacketMonitor</b></td>" +
+     "<td><b>refid</b></td>" +
+     "</tr>";
+
+   if( results != null)
+   for(var k=0; k < results.length; k++) {
+      var item = results[k];
+      var ip = item.getAttribute("ipAddress");
+      var port = item.getAttribute("httpPort");
+      var name = item.getAttribute("name");
+      var tester = item.getAttribute("isConformanceTester");
+      var monitor = item.getAttribute("isPacketMonitor");
+      msg += "<tr>" +
+             "<td>" + ip + "</td>" +
+             "<td>" + port + "</td>" +
+             "<td>" + name + "</td>" +
+             "<td>" + tester + "</td>" +
+             "<td>" + monitor + "</td>";
+
+      msg += "<td>";
+      var refids = item.getElementsByTagName("refid");
+      for(var j=0; j < refids.length; j++) {
+         var id = refids[j].getAttribute("id");
+	 msg += "<br>" + id;
+      }
+      msg += "</td></tr>";
+   } 
+   msg += "</table>";
+   return msg;
+}
+//--------------------------------------------------------------------
+function buildSystemTopology( root)
+{
+   // build header
+   var msg = "<h2>system-topology</h2>";
+
+   //----------------------------------------------------
+   var results = root.getElementsByTagName("wacn-config");
+   msg += "<h3>wacn-config</h3>" +
+     '<table border="1">' +
+     "<tr>" +
+     "<td><b>wacnName</b></td>" +
+     "<td><b>wacnId</b></td>" +
+     "</tr>";
+
+   if( results != null)
+   for(var k=0; k < results.length; k++) {
+      var item = results[k];
+      var wacnName = item.getAttribute("wacnName");
+      var wacnId = item.getAttribute("wacnId");
+      msg += "<tr>" +
+             "<td>" + wacnName + "</td>" +
+             "<td>" + wacnId + "</td>" +
+             "</tr>";
+   } 
+   msg += "</table>";
+
+   //----------------------------------------------------
+   var results = root.getElementsByTagName("systemconfig");
+   msg += "<h3>systemconfig</h3>" +
+     '<table border="1">' +
+     "<tr>" +
+     "<td><b>systemName</b></td>" +
+     "<td><b>systemId</b></td>" +
+     "<td><b>wacnName</b></td>" +
+     "</tr>";
+
+   if( results != null)
+   for(var k=0; k < results.length; k++) {
+      var item = results[k];
+      var systemName = item.getAttribute("systemName");
+      var systemId = item.getAttribute("systemId");
+      var wacnName = item.getAttribute("wacnName");
+      msg += "<tr>" +
+             "<td>" + systemName + "</td>" +
+             "<td>" + systemId + "</td>" +
+             "<td>" + wacnName + "</td>" +
+             "</tr>";
+   } 
+   msg += "</table>";
+
+   //----------------------------------------------------
+   var results = root.getElementsByTagName("rfssconfig");
+   msg += "<h3>rfssconfig</h3>" +
+     '<table border="1">' +
+     "<tr>" +
+     "<td><b>rfssName</b></td>" +
+     "<td><b>rfssId</b></td>" +
+     "<td><b>systemName</b></td>" +
+     "<td><b>port</b></td>" +
+     "<td><b>color</b></td>" +
+     "<td><b>emulated</b></td>" +
+     "</tr>";
+
+   if( results != null)
+   for(var k=0; k < results.length; k++) {
+      var item = results[k];
+      var rfssName = item.getAttribute("rfssName");
+      var rfssId = item.getAttribute("rfssId");
+      var systemName = item.getAttribute("systemName");
+      var port = item.getAttribute("port");
+      var color = item.getAttribute("color");
+      var emulated = item.getAttribute("emulated");
+      msg += "<tr>" +
+             "<td>" + rfssName + "</td>" +
+             "<td>" + rfssId + "</td>" +
+             "<td>" + systemName + "</td>" +
+             "<td>" + port + "</td>" +
+             "<td>" + color + "</td>" +
+             "<td>" + emulated + "</td>" +
+             "</tr>";
+   } 
+   msg += "</table>";
+   return msg;
+}
+//--------------------------------------------------------------------
+function buildGlobalTopology( root)
+{
+   // build header
+   var msg = "<h2>global-topology</h2>";
+
+   //----------------------------------------------------
+   var results = root.getElementsByTagName("rfssconfig");
+   msg += "<h3>rfssconfig</h3>" +
+     '<table border="1">' +
+     "<tr>" +
+     "<td><b>rfssName</b></td>" +
+     "<td><b>selftestPort</b></td>" +
+     "</tr>";
+
+   if( results != null)
+   for(var k=0; k < results.length; k++) {
+      var item = results[k];
+      var rfssName = item.getAttribute("rfssName");
+      var selftestPort = item.getAttribute("selftestPort");
+      msg += "<tr>" +
+             "<td>" + rfssName + "</td>" +
+             "<td>" + selftestPort + "</td>" +
+             "</tr>";
+   } 
+   msg += "</table>";
+
+   //----------------------------------------------------
+   var results = root.getElementsByTagName("sgconfig");
+   msg += "<h3>sgconfig</h3>" +
+     '<table border="1">' +
+     "<tr>" +
+     "<td><b>groupName</b></td>" +
+     "<td><b>sgId</b></td>" +
+     "<td><b>homeRfssName</b></td>" +
+     "</tr>";
+
+   if( results != null)
+   for(var k=0; k < results.length; k++) {
+      var item = results[k];
+      var groupName = item.getAttribute("groupName");
+      var sgId = item.getAttribute("sgId");
+      var homeRfssName = item.getAttribute("homeRfssName");
+      msg += "<tr>" +
+             "<td>" + groupName + "</td>" +
+             "<td>" + sgId + "</td>" +
+             "<td>" + homeRfssName + "</td>" +
+             "</tr>";
+   } 
+   msg += "</table>";
+
+   //----------------------------------------------------
+   var results = root.getElementsByTagName("suconfig");
+   msg += "<h3>suconfig</h3>" +
+     '<table border="1">' +
+     "<tr>" +
+     "<td><b>suName</b></td>" +
+     "<td><b>suId</b></td>" +
+     "<td><b>homeRfssName</b></td>" +
+     "<td><b>serving RfssName</b></td>" +
+     "</tr>";
+
+   if( results != null)
+   for(var k=0; k < results.length; k++) {
+      var item = results[k];
+      var suName = item.getAttribute("suName");
+      var suId = item.getAttribute("suId");
+      var homeRfssName = item.getAttribute("homeRfssName");
+      var servingRfssName = item.getAttribute("servingRfssName");
+      msg += "<tr>" +
+             "<td>" + suName + "</td>" +
+             "<td>" + suId + "</td>" +
+             "<td>" + homeRfssName + "</td>" +
+             "<td>" + servingRfssName + "</td>" +
+             "</tr>";
+   } 
+   msg += "</table>";
+   return msg;
+}
+//--------------------------------------------------------------------
+function processResult()
+{ 
+   //alert("processResult: readyState="+req.readyState);
+   if(req.readyState == 4)
+   {
+     if(req.status == 200)
+     {
+       //document.ajax.textarea.value=req.responseText;   
+       document.ajax.textarea.value = identityTransform();
+
+       var root = req.responseXML.documentElement;
+       var tagName = root.tagName;
+       //alert( "tagName="+tagName);
+
+       var tablehtml = "Unknown tagName: "+tagName;
+       if( tagName=="issi-tester-config")
+       {
+          tablehtml = buildIssiTesterConfig( root);
+       }
+       else if( tagName=="system-topology")
+       {
+          tablehtml = buildSystemTopology( root);
+       }
+       else if( tagName=="global-topology")
+       {
+          tablehtml = buildGlobalTopology( root);
+       }
+       //alert( tablehtml);
+       //document.ajax.tablearea.value = tablehtml;
+       document.getElementById("tablearea").innerHTML = tablehtml;
+     }   
+     else   
+     {
+       var msg = "Error: returned status code " +
+          req.status + " " + req.statusText;
+       document.ajax.textarea.value= msg;
+       //alert( msg);
+     }   
+   } 
+}
+//-------------------------------------------------------------------
+</script>
+</HEAD>
+
+<!--BODY bgcolor=#ccddcc-->
+<BODY onunload"GUnload()">
+
+<FORM name="ajax" method="POST" action="">
+<center>
+ <p><H2><b>ITT Configuration Query</b></H2></p>
+ <p>
+   <b>Host: </b><input type="text" name="rfss" value="132.163.65.100" />
+   <b>  Port:</b><input type="text" name="port" value="8763" />
+ </p>
+ <p>
+   <b>Service: /diets/controller</b>
+   <!-- http:/host:port/diets/controller?command=XXX -->
+   <br>
+   <input type="radio" name="service" value="getTesterConfig" checked>getTesterConfig
+   <input type="radio" name="service" value="getGlobalTopology">getGlobalTopology
+   <input type="radio" name="service" value="getSystemTopology">getSystemTopology
+   <br>
+   <input type="radio" name="service" value="getAllTesterConfig">getAllTesterConfig
+   <input type="radio" name="service" value="getAllGlobalTopology">getAllGlobalTopology
+   <input type="radio" name="service" value="getAllSystemTopology">getAllSystemTopology
+   <br>
+   <input type="radio" name="service" value="getRuntimeException">getRuntimeException
+   <!-- http:/host:port/rfss/control?command=XXX -->
+   <br><br>
+   <b>Service: /rfss/control</b>
+   <br>
+   <input type="radio" name="service" value="getRfssConfig">getRfssConfig
+   <input type="radio" name="service" value="getRfssStatusInfo">getRfssStatusInfo
+   <input type="radio" name="service" value="isTestCompleted">isTestCompleted
+   <br>
+   <input type="radio" name="service" value="getTestResults">getTestResults
+   <input type="radio" name="service" value="getSipTrace">getSipTrace
+   <input type="radio" name="service" value="getPttTrace">getPttTrace
+   <input type="radio" name="service" value="getDateTime">getDateTime
+ </p>
+ <p>
+   <b>Type:</b>
+   <input type="radio" name="type" value="GET" checked>GET
+   <input type="radio" name="type" value="POST">POST
+ </p>
+ <p>
+   <b>Transform:</b>
+   <input type="radio" name="transform" value="None" checked>None
+   <input type="radio" name="transform" value="Identity">Identity
+ </p>
+ <p>
+   <input type="button" value="Submit" onclick="submitForm()">
+   <input type="reset" value="Reset">
+ </p>
+
+ <table border="1">
+   <tr>
+      <textarea id="textarea" name="textarea" cols=80 rows=18></textarea>
+   </tr>
+ </table>
+ <p>
+ <div id="tablearea"></div>
+ </p>
+
+</center>
+
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><TITLE>ISSI Tester - User Documentation</TITLE></HEAD>
+<BODY>
+<H2>ITT - Conformance Tester</H2>
+<H3>Introduction</H3>
+<P>
+The ISSI Tester tool is designed to be a distributed test system which will enable users
+to run conformance tests in accordance to the ISSI Specification (TIA-102.BACA).
+</P>
+<BR>
+<BR>
+<H3>User Interface Layout</H3>
+<P>
+The user interface area is divided into the top(Conformance Tests) and bottom(Test Traces)
+panels. These panels are further subdivided into left and right panels with context 
+information.
+</P>
+<BR>
+<P>
+The Top- Conformanace Tests panel consists of a list of conformance tests on the left and 
+the test description on the right panel. Depending on the test being selected, the corresponding
+test details will be displayed on the right-hand-side tabbed panes. 
+</P>
+<BR>
+<P>
+The Bottom- Test Traces panel consists of test traces(SIP and PTT) of each test runs on
+the left panel and the corresponding message details on the right panel.
+</P>
+<BR>
+<BR>
+<H3>ScreenShot</H3>
+<BR>
+<IMG src="screenshot.jpg" />
+<BR>
+<BR>
+<BR>
+<H3>Test Procedures</H3>
+<P>
+In general, the ISSI Conformance Test procedures are as follows:
+</P>
+<UL>
+<LI>Test Setup</LI>
+<LI>Generate Trace</LI>
+<LI>Run Test</LI>
+</UL>
+<BR>
+These options are available on the top left panel under the conformance tests lists panel.
+<BR>
+<BR>
+<BR>
+<H3>Test Setup</H3>
+<P>
+When the ISSI Tester first launched using the ITT Console or from the application pulldown menu,
+the current host IP address will be displayed on the title bar. At this time, the only 
+option allowed will be "Test Setup" for the selected conformance testcase.  
+</P>
+<BR>
+<IMG src="testsetup.jpg" />
+<P>
+The Test Setup dialog allows user to configure the IP addresses of the RFSSes involved
+in the test. The menu also allows uses to change the name, id, port, and other parameters.
+Once confirmed, the tester will setup test configuration and distribute the topology
+to the RFSSes involved.
+</P>
+After the Test Setup is performed, the other options will be available to user.
+<BR>
+<BR>
+<BR>
+<H3>Generate Trace</H3>
+<P>
+The Generate Trace option is used to generate reference traces of the selected conformance test. The Generate Trace must be performed before the test can be run. The reference traces will be used to grade the test traces for pass and fail. 
+</P>
+<BR>
+<BR>
+<H3>Run Test</H3>
+<P>
+After the reference traces are generated, the conformance test can be run. The SIP and PTT traces will be captured and compared with the reference traces in grading the test.
+</P>
+<BR>
+<BR>
+<H3>Test Results</H3>
+<P>
+The test description and test results conatined in the top and bottom panels can be saved on demand for future references.
+</P>
+<BR>
+<BR>
+<H3>Log Files</H3>
+<P>
+The ISSI Tester maintains various run-time log files under the installed directory /logs.
+The most useful being the debuglog.txt and guidebuglog.txt files just to name a few.
+The motivated users are encouraged to consult these log files when a problem is encountered.  
+<BR>
+<BR>
+<BR>
+<H3>Test Profile Setup</H3>
+<P>
+The Conformance Tester is pre-loaded with all test cases defined in the TIA-102.CACC specificaition. The Test Profile Setup option under the Test pulldown menu can be used to define the user's test profile from the existing list or it's custom test.
+</P>
+<BR>
+<IMG src="profilesetup.jpg" />
+<P>
+<H5>Last update 05/23/2009</H5>
+</BODY>
+</HTML>

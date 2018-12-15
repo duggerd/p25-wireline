@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>Global Topology Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>globaltopology.dtd</code></b>: <a href='globaltopology.dtd.html'>Elements</a> - Entities - <a href='globaltopology.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='globaltopology.dtd.html' target='_top'>NO FRAMES</a></p><h1>Global Topology Specification</h1>
+<p>The ISSI emulation consists of multiple rfsss, su's and groups.
+The global topology configuration file specifies the SUs and group
+assignments for the given test suite. You will have to configure
+your unit under test to be aware of these user and group
+IDs, home RFSSs etc. The global topology references
+RFSS entities that are defined in the associated
+"systemtopology.xml" file. Note that the Rfss IDs reference
+those that are defined in the "systemtopology.xml" and these
+are also referenced in each individual test case
+topology.xml file. Therefore these names should
+not be changed for a given test suite.</p><br />
+<a name='global-topology'></a>
+<br /><table class='elementTitle' summary="global-topology"><tr><td class='leftElementTitle'>
+&lt;global-topology&gt;</td><td class='rightElementTitle'>
+Root element
+</td></tr></table>
+<p>The top level tag for the configuration of global topology. The global topology is the global assignment of SUs and Groups to RFSSs across all
+tests int he system. You should configure your test system to be aware of the SU's and Gruoups specified in this file.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;global-topology&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;global-topology&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#rfssconfig'>rfssconfig</a></td><td>At least one</td></tr>
+<tr><td><a href='#sgconfig'>sgconfig</a></td><td>Any number</td></tr>
+<tr><td><a href='#suconfig'>suconfig</a></td><td>Any number</td></tr>
+</tbody></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#rfssconfig'>rfssconfig</a>+, <a href='#suconfig'>suconfig</a>*, <a href='#sgconfig'>sgconfig</a>*)</p><a name='rfssconfig_rfssName'></a>
+<br /><table class='attributeTitle' summary="rfssName"><tr><td class='leftAttributeTitle'>
+@rfssName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>The RFSS name. This must refer to an
+RFSS defined in the associated systemtopology.xml
+file. Do not change this assignment for a given
+test suite otherwise the test scripts that
+refer to this name may break.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='rfssconfig_selftestPort'></a>
+<br /><table class='attributeTitle' summary="selftestPort"><tr><td class='leftAttributeTitle'>
+@selftestPort</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>The port used for self test trace generation.
+Selftest involves running the scenario for each emulated
+RFSS using localhost (127.0.0.1) and selftestPort for
+SIP signaling call setup. The generated traces is
+IP address and port independent. This can be any
+random integer.</p><p><span class='inTextTitle'>Required</span></p><a name='rfssconfig'></a>
+<br /><table class='elementTitle' summary="rfssconfig"><tr><td class='leftElementTitle'>
+&lt;rfssconfig/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#global-topology'>global-topology</a>
+</td></tr></table>
+<p>This defines the configuration of an RFSS. The name must match that
+specified in systemconfig.</p><blockquote>
+<table  summary="&lt;rfssconfig&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;rfssconfig&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#rfssconfig_rfssName'>rfssName</a></td><td><i>Match the ID rules.</i></td><td></td></tr><tr><td><a href='#rfssconfig_selftestPort'>selftestPort</a></td><td></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='suconfig'></a>
+<br /><table class='elementTitle' summary="suconfig"><tr><td class='leftElementTitle'>
+&lt;suconfig/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#global-topology'>global-topology</a>
+</td></tr></table>
+<p>Defines an SU. An SU has an associated User Profile which the Home
+RFSS keeps. This is initialized with default values that can be overriden
+in the test topology file for the given test.</p><blockquote>
+<table  summary="&lt;suconfig&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;suconfig&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#suconfig_homeRfssName'>homeRfssName</a></td><td><i>Match the IDREF rules.</i></td><td></td></tr><tr><td><a href='#suconfig_servingRfssName'>servingRfssName</a></td><td><i>Match the IDREF rules.</i></td><td></td></tr><tr><td><a href='#suconfig_suId'>suId</a></td><td></td><td></td></tr><tr><td><a href='#suconfig_suName'>suName</a></td><td><i>Match the ID rules.</i></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='sgconfig'></a>
+<br /><table class='elementTitle' summary="sgconfig"><tr><td class='leftElementTitle'>
+&lt;sgconfig/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#global-topology'>global-topology</a>
+</td></tr></table>
+<p>A group configuration tag. A group is statically configured with
+one or more subscribers. Note that the subscribers are specified as
+Subscriber units. A group has a group profile which is initialized
+with default values which can be overriden for the given group in the
+test topology file.</p><blockquote>
+<table  summary="&lt;sgconfig&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;sgconfig&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#sgconfig_groupName'>groupName</a></td><td><i>Match the ID rules.</i></td><td></td></tr><tr><td><a href='#sgconfig_homeRfssName'>homeRfssName</a></td><td><i>Match the IDREF rules.</i></td><td></td></tr><tr><td><a href='#sgconfig_sgId'>sgId</a></td><td></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='suconfig_suName'></a>
+<br /><table class='attributeTitle' summary="suName"><tr><td class='leftAttributeTitle'>
+@suName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>SU name. This is a uniqe symbolic identifier for the su.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='suconfig_suId'></a>
+<br /><table class='attributeTitle' summary="suId"><tr><td class='leftAttributeTitle'>
+@suId</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>SU numeric unit id as defined in TIA 102 BACA (specified in Hex)</p><p><span class='inTextTitle'>Required</span></p><a name='suconfig_homeRfssName'></a>
+<br /><table class='attributeTitle' summary="homeRfssName"><tr><td class='leftAttributeTitle'>
+@homeRfssName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>Home RFSS name (must refer to a rfss referenced in this file
+and defined in systemtopology.xml ).</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the IDREF rules.</i> - <span class='inTextTitle'>Required</span></p><a name='suconfig_servingRfssName'></a>
+<br /><table class='attributeTitle' summary="servingRfssName"><tr><td class='leftAttributeTitle'>
+@servingRfssName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>Serving RFSS name</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the IDREF rules.</i> - <span class='inTextTitle'>Required</span></p><a name='sgconfig_groupName'></a>
+<br /><table class='attributeTitle' summary="groupName"><tr><td class='leftAttributeTitle'>
+@groupName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#sgconfig'>sgconfig</a>
+</td></tr></table>
+<p>its unique symolic name. Note that this name should
+not be changed otherwise the tests that refer to this group
+will break. Note that subscribers are sepcified on a per test
+basis. See the topologyconfig.xml for a given test to see
+subscriber assignments.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='sgconfig_sgId'></a>
+<br /><table class='attributeTitle' summary="sgId"><tr><td class='leftAttributeTitle'>
+@sgId</td><td class='rightAttributeTitle'>
+Attribute of <a href='#sgconfig'>sgconfig</a>
+</td></tr></table>
+<p>The group ID ( as defined in TIA 102 BACA) specified in Hex.
+You can assign any unique value you want to this filed.</p><p><span class='inTextTitle'>Required</span></p><a name='sgconfig_homeRfssName'></a>
+<br /><table class='attributeTitle' summary="homeRfssName"><tr><td class='leftAttributeTitle'>
+@homeRfssName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#sgconfig'>sgconfig</a>
+</td></tr></table>
+<p>The name of the Home RFSS of this group. The home
+Rfss must be defined in the systemtopology file associated
+with the test suite.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the IDREF rules.</i> - <span class='inTextTitle'>Required</span></p></body></html>

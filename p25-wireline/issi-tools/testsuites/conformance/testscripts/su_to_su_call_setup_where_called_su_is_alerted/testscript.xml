@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script>
+
+<!--  This defines the scenario -->
+<su-to-su-call-setup-scenario
+	id="su-to-su-call-0"
+	callingSuName="su_12"
+	calledSuName ="su_34"
+>
+<trigger
+	type="time"
+	value="0"
+/>
+</su-to-su-call-setup-scenario>
+
+<su-script 
+	id="su-script"
+	suName="su_34"
+	method="doCallTeardown"
+	description="tear down call segment"
+>
+<trigger
+	type="time"
+	value="10"
+/>
+<script>
+def doCallTeardown():
+	global su
+	su.terminateCallSegment()
+</script>
+</su-script>
+
+</test-script>

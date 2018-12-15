@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xmlresponse>
+  <item_count> 4 </item_count> 
+  <item> 
+    <id> 15 </id> 
+    <name> Finger Bun </name> 
+    <price> $0.80 ea </price> 
+  </item> 
+  <item> 
+    <id> 16 </id> 
+    <name> Donuts </name> 
+    <price> $0.50 ea </price> 
+  </item> 
+  <item> 
+    <id> 17 </id> 
+    <name> Apple Pie </name> 
+    <price> $1.20 slice </price> 
+  </item> 
+  <item> 
+    <id> 18 </id> 
+    <name> Double Choc Chip Cup Cakes </name> 
+    <price> $1.00 ea </price> 
+  </item> 
+  <error_code> 0 </error_code> 
+</xmlresponse>

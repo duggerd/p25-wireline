@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+
+<!-- The initial state is OFF so that the serving RFSS does not 
+register the SU -->
+
+<suconfig
+	suName="su_21"
+	initialState="on"
+	id="suToQuery"
+	servingRfssReferencesMeFor="0"
+/>
+
+</conformance-test-config>

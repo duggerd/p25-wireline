@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<rfssconfig rfssName="rfss_2" queryGroupCredentialsBeforeRegistration="true"/>
+
+<sgconfig groupName="group_1" homeRfssKnowsAboutMeFor="0">
+<subscriber suName="su_22"/>
+</sgconfig>
+
+</conformance-test-config>

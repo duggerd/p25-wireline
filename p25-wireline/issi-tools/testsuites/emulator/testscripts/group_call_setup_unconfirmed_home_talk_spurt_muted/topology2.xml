@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config traceOrder="Xrfss_1,rfss_2,rfss_3">
+
+<suconfig suName="su_11" id="callingSu"/>
+<suconfig suName="su_33" id="calledSu"/>
+<suconfig suName="su_111" id="higherPrioritySu"/>
+
+<sgconfig groupName="group_2" id="calledGroup">
+<subscriber suName="su_11"/>
+<subscriber suName="su_33"/>
+<subscriber suName="su_111"/>
+</sgconfig>
+
+</conformance-test-config>
+

@@ -1,0 +1,9 @@
+<processing>
+  <job name="Run ISSI-TESTER">
+    <executefile name="java">
+      <arg>-jar</arg>
+      <arg>"$INSTALL_PATH/diets.jar"</arg>
+    </executefile>
+  </job>
+</processing>
+

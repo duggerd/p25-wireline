@@ -1,0 +1,30 @@
+<ivs-delays>
+   <ivs-gcsd title="Performance Specifications for Group Call Setup Delay(GCSD)" diagram="gfx/diagrams/IVS-GCSD.JPG">
+      <parameter key="Tg1" value="200"/>
+      <parameter key="Tg2" value="10"/>
+      <parameter key="Tg3" value="10" maximum="50"/>
+      <parameter key="Tg4" value="60" maximum="200"/>
+      <parameter key="Tg5" value="10"/>
+      <parameter key="Tg6" value="110" maximum="350"/>
+      <parameter key="Tg7" value="110"/>
+      <parameter key="Tg8" value="60"/>
+      <parameter key="Tg9" value="60"/>
+      <parameter key="Tg10" value="170" maximum="550"/>
+      <parameter key="Tg11" value="0"/>
+      <parameter key="Tg_ip1" value="30" maximum="100"/>
+      <parameter key="Tg_ip2" value="30" maximum="100"/>
+      <parameter key="Tg_ip3" value="30" maximum="100"/>
+      <parameter key="Tg_ip4" value="30" maximum="100"/>
+      <parameter key="Tg_ip5" value="30" maximum="100"/>
+      <parameter key="Tg_ip6" value="30" maximum="100"/>
+      <parameter key="Tg_ip7" value="30"/>
+      <parameter key="Tgrant_CallingCAI" value="620" calculated="true"/>
+      <parameter key="Tgrant_CalledCAI" value="450" calculated="true"/>
+      <parameter key="Tgrant_CallingISSI" value="250" calculated="true"/>
+      <parameter key="Tgrant_CalledISSI" value="250" calculated="true"/>
+   </ivs-gcsd>
+   <ivs-status title="Performanace Recommendations for CSSI Voice Services">
+      <comment>Performanace specifications based on TIA-102.CACB, April 2007. Confirmed Group Call.
+CSSI Performance: Destination Console</comment>
+   </ivs-status>
+</ivs-delays>

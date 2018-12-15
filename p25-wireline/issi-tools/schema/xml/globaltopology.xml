@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<!DOCTYPE global-topology SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/globaltopology.dtd">
+<global-topology> 
+
+<rfssconfig
+	rfssName="rfss_5"
+	selftestPort ="4423"
+/>
+<rfssconfig
+	rfssName="rfss_4"
+	selftestPort ="4234"
+/>
+<rfssconfig
+	rfssName="rfss_3"
+	selftestPort ="4231"
+/>
+<rfssconfig
+	rfssName="rfss_2"
+	selftestPort ="4312"
+/>
+<rfssconfig
+	rfssName="rfss_1"
+	selftestPort ="4123"
+/>
+
+<suconfig
+	suId="111"
+	suName="su_111"
+	homeRfssName="rfss_1"
+	servingRfssName="rfss_1"
+/>
+<suconfig
+	suId="211"
+	suName="su_211"
+	homeRfssName="rfss_2"
+	servingRfssName="rfss_1"
+/>
+<suconfig
+	suId="25"
+	suName="su_25"
+	homeRfssName="rfss_2"
+	servingRfssName="rfss_5"
+/>
+<suconfig
+	suId="22"
+	suName="su_22"
+	homeRfssName="rfss_2"
+	servingRfssName="rfss_2"
+/>
+<suconfig
+	suId="21"
+	suName="su_21"
+	homeRfssName="rfss_2"
+	servingRfssName="rfss_1"
+/>
+<suconfig
+	suId="14d"
+	suName="su_333"
+	homeRfssName="rfss_3"
+	servingRfssName="rfss_3"
+/>
+<suconfig
+	suId="121"
+	suName="su_121"
+	homeRfssName="rfss_1"
+	servingRfssName="rfss_2"
+/>
+<suconfig
+	suId="13"
+	suName="su_13"
+	homeRfssName="rfss_1"
+	servingRfssName="rfss_3"
+/>
+<suconfig
+	suId="222"
+	suName="su_222"
+	homeRfssName="rfss_2"
+	servingRfssName="rfss_2"
+/>
+<suconfig
+	suId="12"
+	suName="su_12"
+	homeRfssName="rfss_1"
+	servingRfssName="rfss_2"
+/>
+<suconfig
+	suId="11"
+	suName="su_11"
+	homeRfssName="rfss_1"
+	servingRfssName="rfss_1"
+/>
+<suconfig
+	suId="34"
+	suName="su_34"
+	homeRfssName="rfss_3"
+	servingRfssName="rfss_4"
+/>
+<suconfig
+	suId="33"
+	suName="su_33"
+	homeRfssName="rfss_3"
+	servingRfssName="rfss_3"
+/>
+
+<sgconfig
+	groupName="group_1"
+	sgId="1"
+	homeRfssName="rfss_1"
+/>
+<sgconfig
+	groupName="group_2"
+	sgId="5"
+	homeRfssName="rfss_2"
+/>
+<sgconfig
+	groupName="group_3"
+	sgId="3"
+	homeRfssName="rfss_3"
+/>
+
+</global-topology>

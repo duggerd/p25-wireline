@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	testCompletionDelay="10"
+	traceGenerationTime="10"
+>
+
+<su-script
+	id="su-script"
+	suName="deregisterSu"
+	method="turnOff"
+	description="Trigger De-registration from serving rfss."
+>
+<trigger
+	type="time"
+	value="5"
+/>
+<script>
+def turnOff():
+	global su
+	su.setState(SuState.OFF)
+</script>
+</su-script>
+
+</test-script>

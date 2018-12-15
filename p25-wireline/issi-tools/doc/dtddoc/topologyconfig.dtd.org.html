@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> <head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>Topology Configuration Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>topologyconfig.dtd</code></b>: <a href='topologyconfig.dtd.html'>Elements</a> - Entities - <a href='topologyconfig.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='topologyconfig.dtd.org.html' target='_top'>NO FRAMES</a></p><pre id='dtd_source'><span class="dtd_processing_instruction">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span>
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_comment">This document allows you to specialize the configuration of </span>
+<span class="dtd_comment">the emulated RFSSs involved in a test. </span>
+<span class="dtd_comment">The ISSI emulation consists of multiple RFSSs, SU's and groups that are defined in the associated</span>
+<span class="dtd_comment">systemtopology.xml file for a test suite and inherited by the globaltopology.xml file for that test suite.</span>
+<span class="dtd_comment">The globaltopolgy.xml file is where you set SU and group associations. Here is where you define</span>
+<span class="dtd_comment">things like Group membership and other test specific behabiors. In this file you will specify user and group profiles as well as timers, registration</span>
+<span class="dtd_comment">and other such information. This is a specialization of the attributes of these emulated entities that are defined</span>
+<span class="dtd_comment">in the corresponding global-topology.xml file. The contents of the xml document are interpreted in the context of an</span>
+<span class="dtd_comment">associated globaltopology.xml. The rfss names and group names here are tied to the rfss and group names that</span>
+<span class="dtd_comment">are defined in globlatopology.xml. </span>
+
+
+<span class="dtd_dtddoc_tag">@title</span><span class="dtd_comment"> Topology Configuration Specification</span>
+<span class="dtd_dtddoc_tag">@root</span><span class="dtd_comment"> conformance-test-config</span>
+<span class="dtd_comment"> --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">conformance-test-config</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">rfssconfig</span><span class="dtd_plain">*,</span><span class="dtd_attribute_name">suconfig</span><span class="dtd_plain">*,</span><span class="dtd_attribute_name">sgconfig</span><span class="dtd_plain">*)</span><span class="dtd_tag_symbols">&gt;</span>
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_dtddoc_tag">@attr THEARTBEAT</span><span class="dtd_comment"> Timer values that you can set up ( override defaults) for this test.</span>
+<span class="dtd_dtddoc_tag">@attr traceOrder</span><span class="dtd_comment"> Comma separated list of rfss names for ordering the vertical lines of the sequence diagram</span>
+<span class="dtd_comment">    to make it more readable. If this attribute is left out, then the trace is ordered in the order</span>
+<span class="dtd_comment">    of sent messages (i.e. if RFSS_A sends a message before RFSS_B then it appears before RFSS_B</span>
+<span class="dtd_comment">    in the sequence diagram ).</span>
+
+
+<span class="dtd_comment"> --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">conformance-test-config</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">THEARTBEAT</span><span class="dtd_plain">  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;10000&quot;</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">traceOrder</span><span class="dtd_plain">  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- This defines the configuration of an RFSS.  --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">rfssconfig</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">unknown-unit</span><span class="dtd_plain">*) </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_comment">An unknown unit is a unit that the RFSS does not know about. </span>
+<span class="dtd_comment">No nested tags for this  one. An RFSS that sees PTT request from</span>
+<span class="dtd_comment">an unknown Unit will reject the PTT Request. </span>
+<span class="dtd_comment">     </span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">unknown-unit</span><span class="dtd_plain"> </span><span class="dtd_keyword">EMPTY</span><span class="dtd_plain"> </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_comment">Defines an SU. An SU has an associated User Profile which the Home RFSS keeps. The nested forbidden tag is a list of RFSSs that the Home RFSS </span>
+<span class="dtd_comment">will not allow to register an SU from for the given SUID. </span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">suconfig</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">userprofile</span><span class="dtd_plain">?,</span><span class="dtd_attribute_name">forbidden</span><span class="dtd_plain">*) </span><span class="dtd_tag_symbols">&gt;</span>
+
+
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_comment">A group configuration tag. A group is statically configured </span>
+<span class="dtd_comment">with one or more subscribers. Each subscriber is an SU. A group has a group </span>
+<span class="dtd_comment">profile that is stored at the group home. </span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">sgconfig</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">subscriber</span><span class="dtd_plain">+,</span><span class="dtd_attribute_name">groupprofile</span><span class="dtd_plain">?,</span><span class="dtd_attribute_name">forbidden</span><span class="dtd_plain">*)</span><span class="dtd_tag_symbols">&gt;</span>
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_comment">Defines a Subscriber. A subscriber to a group is an SU. </span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">subscriber</span><span class="dtd_plain"> </span><span class="dtd_keyword">EMPTY</span><span class="dtd_plain"> </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_dtddoc_tag">@attr suName</span><span class="dtd_comment"> The unknown SU symbolic name. Must be specified in the associated globaltopology.xml </span>
+
+<span class="dtd_comment"> --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">unknown-unit</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">suName</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- The tag that defines an RFSS that a given RFSS will not accept registrations from. --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">forbidden</span><span class="dtd_plain"> </span><span class="dtd_keyword">EMPTY</span><span class="dtd_plain"> </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_dtddoc_tag">@attr rfssName</span><span class="dtd_comment"> the rfssName (inherited from globaltopology.xml). </span>
+
+<span class="dtd_dtddoc_tag">@attr operation</span><span class="dtd_comment"> This is a local policy for the home RFSS for the given SU.</span>
+<span class="dtd_comment">    It defines what REGISTER operations are allowable from a given RFSS.</span>
+<span class="dtd_comment">    This addresses tests which generate FORBIDDEN responses from an RFSS. This attribute</span>
+<span class="dtd_comment">    allows you to specify a local policy on registration.</span>
+
+
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">forbidden</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">operation</span><span class="dtd_plain">      (</span><span class="dtd_attribute_name">REGISTER</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">REGISTER-QUERY</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">ALL</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;ALL&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">rfssName</span><span class="dtd_plain">    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">  </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment">    - the id for this tag. Can be referred to in a script.</span>
+
+<span class="dtd_dtddoc_tag">@attr rfssName</span><span class="dtd_comment">  - The symbolic name which we use to  refer to the RFSS in the test system.</span>
+<span class="dtd_comment">        This must reference an RFSS in the global topology file.</span>
+<span class="dtd_dtddoc_tag">@attr servedSuLeaseTime</span><span class="dtd_comment"> - the time for which we keep registration </span>
+<span class="dtd_comment">            of a served Su (default is infinity or until the su moves)</span>
+<span class="dtd_dtddoc_tag">@attr servedGroupLeaseTime</span><span class="dtd_comment">  - the time for which we keep registration of a </span>
+<span class="dtd_comment">            served Group member (default is infinity or </span>
+<span class="dtd_comment">            until the group has no served SU in our range).</span>
+<span class="dtd_dtddoc_tag">@attr groupRegistrationExpiresTime</span><span class="dtd_comment"> - the time for which the home </span>
+<span class="dtd_comment">            SU remembers its groups (default is infinity ).</span>
+<span class="dtd_dtddoc_tag">@attr groupCallInviteProcessingTime</span><span class="dtd_comment"> - the time that the RFSS takes to </span>
+<span class="dtd_comment">            respond to a group call INVITE in seconds.</span>
+<span class="dtd_dtddoc_tag">@attr rfResourcesAvailable</span><span class="dtd_comment"> - true if RF resources are available at the rfss.</span>
+<span class="dtd_dtddoc_tag">@attr querySuCredentialsBeforeRegistration</span><span class="dtd_comment">  if true, query before registration </span>
+<span class="dtd_comment">            when an unregistered SU  tries to register itself </span>
+<span class="dtd_dtddoc_tag">@attr queryGroupCredentialsBeforeRegistration</span><span class="dtd_comment"> if true, then before sending a </span>
+<span class="dtd_comment">            register to a group, query the group credentials first.</span>
+<span class="dtd_dtddoc_tag">@attr registerConfirmTime</span><span class="dtd_comment">  - time that it takes to confirm an SU </span>
+<span class="dtd_comment">    during Register CONFIRM processing. If non zero, a session</span>
+<span class="dtd_comment">    progress 183 is sent out while the registration is being confrimed.</span>
+
+<span class="dtd_dtddoc_tag">@attr isAdvancedRtpResourceManagementSupported</span><span class="dtd_comment">  - a flag that indicates</span>
+<span class="dtd_comment">    whether the RFSS supports advanced resource management.</span>
+
+<span class="dtd_dtddoc_tag">@attr isInterestedInLosingAudio</span><span class="dtd_comment"> - a flag that indicates whether the RFSS</span>
+<span class="dtd_comment">    is interested in losing audio.</span>
+
+<span class="dtd_dtddoc_tag">@attr isCallingSuInitrans</span><span class="dtd_comment"> - a flag that controls the setting of c-initrans for</span>
+<span class="dtd_comment">        su to su calls. This is used by the called home RFSS</span>
+
+<span class="dtd_dtddoc_tag">@attr maxRtpPorts</span><span class="dtd_comment"> - the max number of available RTP ports </span>
+<span class="dtd_comment">         ( to emulate limited RTP resources ) .</span>
+
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">rfssconfig</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">id</span><span class="dtd_plain">              </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">     </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">rfssName</span><span class="dtd_plain">                </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">     </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">groupRegistrationExpiresTime</span><span class="dtd_plain">    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">     </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">servedGroupLeaseTime</span><span class="dtd_plain">            </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">     </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">groupCallInviteProcessingTime</span><span class="dtd_plain">   </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">     </span><span class="dtd_attribute_value">&quot;0&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">rfResourcesAvailable</span><span class="dtd_plain">        (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;true&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">maxRtpPorts</span><span class="dtd_plain">         </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">querySuCredentialsBeforeRegistration</span><span class="dtd_plain">    (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">queryGroupCredentialsBeforeRegistration</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">registerConfirmTime</span><span class="dtd_plain">     </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;0&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isAdvancedRtpResourceManagementSupported</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isInterestedInLosingAudio</span><span class="dtd_plain">   (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isCallingSuInitrans</span><span class="dtd_plain">     (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;true&quot;</span>
+<span class="dtd_plain">     </span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--  </span>
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment"> a symbolic id which can be used in the testscript.xml to refer to this SU.</span>
+<span class="dtd_dtddoc_tag">@attr suName</span><span class="dtd_comment"> its name</span>
+<span class="dtd_dtddoc_tag">@attr initialState</span><span class="dtd_comment"> on or off</span>
+<span class="dtd_dtddoc_tag">@attr homeRfssKnowsAboutMeFor</span><span class="dtd_comment"> time for which home recognizes this SU</span>
+<span class="dtd_dtddoc_tag">@attr homeRfssRegistersMeFor</span><span class="dtd_comment">    time for which home keeps registration records</span>
+<span class="dtd_comment">    Right now only 0 and UNBOUNDED are supported.</span>
+<span class="dtd_dtddoc_tag">@attr inviteProcessingDelay</span><span class="dtd_comment"> time to process INVITE If RF resources not available by this time, the SU sends a BUSY.</span>
+<span class="dtd_dtddoc_tag">@attr registerOnForce</span><span class="dtd_comment">  Re-register automatically when force register is presented for this su.</span>
+<span class="dtd_dtddoc_tag">@attr servingRfssReferencesMeFor</span><span class="dtd_comment">  Simulates how long the serving RFSS keeps a record of this SU in its mobility table.</span>
+<span class="dtd_dtddoc_tag">@attr availability</span><span class="dtd_comment"> the state of the SU when a call setup request comes in.</span>
+<span class="dtd_dtddoc_tag">@attr isAvailable</span><span class="dtd_comment"> determines whether this SU is available to take incoming </span>
+<span class="dtd_comment">    SU to SU calls.</span>
+<span class="dtd_dtddoc_tag">@attr protectionDisposition</span><span class="dtd_comment"> Indicates what to do with the c-protected flag </span>
+<span class="dtd_comment">        at the called home in a Unit to unit call.</span>
+
+<span class="dtd_dtddoc_tag">@attr checkSuPresenceOnRegister</span><span class="dtd_comment"> - a flag that indicates r-presence parameter </span>
+<span class="dtd_comment">    should be added on register-register.</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">suconfig</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">suName</span><span class="dtd_plain">                  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">    </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">id</span><span class="dtd_plain">                  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">    </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">initialState</span><span class="dtd_plain">                    (</span><span class="dtd_attribute_name">on</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">off</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;off&quot;</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">homeRfssKnowsAboutMeFor</span><span class="dtd_plain">         (0|</span><span class="dtd_attribute_name">UNBOUNDED</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">homeRfssRegistersMeFor</span><span class="dtd_plain">          (0|</span><span class="dtd_attribute_name">UNBOUNDED</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">servingRfssReferencesMeFor</span><span class="dtd_plain">          (0|</span><span class="dtd_attribute_name">UNBOUNDED</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">inviteProcessingDelay</span><span class="dtd_plain">           </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;0&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">registerOnForce</span><span class="dtd_plain">             (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;true&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isAvailable</span><span class="dtd_plain">             (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;true&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">checkSuPresenceOnRegister</span><span class="dtd_plain">           (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;true&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">protectionDisposition</span><span class="dtd_plain">               (</span><span class="dtd_attribute_name">forward_protected</span><span class="dtd_plain">|</span>
+<span class="dtd_plain">                         </span><span class="dtd_attribute_name">clear_protected</span><span class="dtd_plain">  |</span>
+<span class="dtd_plain">                         </span><span class="dtd_attribute_name">reject_protected</span><span class="dtd_plain"> |</span>
+<span class="dtd_plain">                         </span><span class="dtd_attribute_name">reject_unprotected</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;forward_protected&quot;</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment"> - A link which is referenced in the testscript.xml file.</span>
+<span class="dtd_dtddoc_tag">@attr groupName</span><span class="dtd_comment"> - The symbolic name of the group. Refers to a group name defined in globalconfig.xml</span>
+<span class="dtd_dtddoc_tag">@attr homeRfssKnowsAboutMeFor</span><span class="dtd_comment"> the time for which the home RFSS keeps a record</span>
+<span class="dtd_comment">    of this group (defaults to &quot;unbounded&quot;).</span>
+<span class="dtd_dtddoc_tag">@attr protectionDisposition</span><span class="dtd_comment"> - </span>
+<span class="dtd_comment">    a flag that indicates whether the home RFSS forwards the </span>
+<span class="dtd_comment">    c-protected flag in the INVITE body or rejects it. </span>
+<span class="dtd_comment">        This flag indicates whether encrypted streams are supported or not.</span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">sgconfig</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">id</span><span class="dtd_plain">                  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">groupName</span><span class="dtd_plain">               </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">homeRfssKnowsAboutMeFor</span><span class="dtd_plain">         </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_attribute_value">&quot;UNBOUNDED&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">protectionDisposition</span><span class="dtd_plain">               (</span><span class="dtd_attribute_name">forward_protected</span><span class="dtd_plain">|</span>
+<span class="dtd_plain">                         </span><span class="dtd_attribute_name">clear_protected</span><span class="dtd_plain">  |</span>
+<span class="dtd_plain">                         </span><span class="dtd_attribute_name">reject_protected</span><span class="dtd_plain"> |</span>
+<span class="dtd_plain">                         </span><span class="dtd_attribute_name">reject_unprotected</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;forward_protected&quot;</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_dtddoc_tag">@attr suName</span><span class="dtd_comment"> - the SU Name of the subscriber. Must be defined in the associated globaltopology.xml file </span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">subscriber</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">suName</span><span class="dtd_plain">                  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">A user profile may be specified as in Table 23 of the 102 BACA spec or it may be specified in </span>
+<span class="dtd_comment">xml attribute form. If specified in PCDATA form, then it overrides the xml attribute</span>
+<span class="dtd_comment">setting.</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">userprofile</span><span class="dtd_plain"> (</span><span class="dtd_keyword">#PCDATA</span><span class="dtd_plain">) </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_dtddoc_tag">@attr availCheckSupported</span><span class="dtd_comment"> Whether or not availability check is supported (same as u-availcheck ) </span>
+<span class="dtd_dtddoc_tag">@attr isFullDuplex</span><span class="dtd_comment"> whether or not the unit is full duplex. Note that it is the same as u-dup</span>
+<span class="dtd_dtddoc_tag">@attr accessPermission</span><span class="dtd_comment"> System access permission ( same as u-access)</span>
+<span class="dtd_dtddoc_tag">@attr isSecureCapable</span><span class="dtd_comment"> Secure capable attribute ( same as u-sec )</span>
+<span class="dtd_dtddoc_tag">@attr groupCallPermission</span><span class="dtd_comment"> the group call permission (u-gcall)</span>
+<span class="dtd_dtddoc_tag">@attr unitToUnitCallPermission</span><span class="dtd_comment"> the unit to unit call permission (u-ucall)</span>
+<span class="dtd_dtddoc_tag">@attr unitToUnitCallPriority</span><span class="dtd_comment"> The priority for unit to unit calls (u-upri)</span>
+<span class="dtd_dtddoc_tag">@attr interconnectPermission</span><span class="dtd_comment"> The interconnect permission. (u-iccall)</span>
+<span class="dtd_dtddoc_tag">@attr unitToUnitCallSetupPreference</span><span class="dtd_comment"> The call setup preference (u-prefsetup)</span>
+<span class="dtd_dtddoc_tag">@attr interconnectSecurity</span><span class="dtd_comment"> The interconnect security parameter ( u-icsec )  </span>
+<span class="dtd_dtddoc_tag">@attr interconnectCallPriority</span><span class="dtd_comment"> the interconnect call priority ( u-icpri) in the range 1 to 10.</span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">userprofile</span>
+<span class="dtd_attribute_name">availCheckSupported</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">AvailabilityCheck</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">DirectCall</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">AvailabilityCheckAndDirectCall</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;AvailabilityCheckAndDirectCall&quot;</span>
+<span class="dtd_attribute_name">isFullDuplex</span><span class="dtd_plain"> ( </span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain"> ) </span><span class="dtd_attribute_value">&quot;true&quot;</span><span class="dtd_plain"> </span>
+<span class="dtd_attribute_name">accessPermission</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">None</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">Full</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">Emergency</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;Full&quot;</span>
+<span class="dtd_attribute_name">isSecureCapable</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_attribute_name">groupCallPermission</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">None</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">NonEmergency</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">Emergency</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">EmergencyAndNonEmergency</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;EmergencyAndNonEmergency&quot;</span>
+<span class="dtd_attribute_name">unitToUnitCallPermission</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">None</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">Receive</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">Initiate</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">ReceiveAndInitiate</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;None&quot;</span>
+<span class="dtd_attribute_name">unitToUnitCallPriority</span><span class="dtd_plain"> (1|2|3|4|5|6|7|8|9|10) </span><span class="dtd_attribute_value">&quot;1&quot;</span>
+<span class="dtd_attribute_name">interconnectPermission</span><span class="dtd_plain"> (0|1|2|3)  </span><span class="dtd_attribute_value">&quot;0&quot;</span>
+<span class="dtd_attribute_name">interconnectSecurity</span><span class="dtd_plain"> (1|2|3) </span><span class="dtd_attribute_value">&quot;1&quot;</span>
+<span class="dtd_attribute_name">interconnectCallPriority</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_attribute_name">unitToUnitCallSetupPreference</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">AvailabilityCheck</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">DirectCall</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;AvailabilityCheck&quot;</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">The group profile for this group.</span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">groupprofile</span><span class="dtd_plain"> (</span><span class="dtd_keyword">#PCDATA</span><span class="dtd_plain">) </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_dtddoc_tag">@attr accessPermission</span><span class="dtd_comment"> Defines whether or not the group is allowed to make non-emergency calls. (g-access)</span>
+<span class="dtd_dtddoc_tag">@attr announcementGroup</span><span class="dtd_comment"> Defines the announcement group for the group. (g-agroup)</span>
+<span class="dtd_dtddoc_tag">@attr groupPriority</span><span class="dtd_comment"> Defines the priority of the group. (g-pri) </span>
+<span class="dtd_dtddoc_tag">@attr emergencyCapable</span><span class="dtd_comment"> Defines whether or not emergency calls MAY be made on the group. (g-ecap)</span>
+<span class="dtd_dtddoc_tag">@attr emergencyPreemption</span><span class="dtd_comment"> Defines whether ruthless or non-ruthless pre-emption is used for emergency calls. (g-eprempt)</span>
+<span class="dtd_dtddoc_tag">@attr rfHangTime</span><span class="dtd_comment"> Defines the hang-timer for the group. (g-rfhangt)</span>
+<span class="dtd_dtddoc_tag">@attr confirmedGroupCallSetupTime</span><span class="dtd_comment"> Defines the confirmed call setup timer for the group. (g-ccsetupt)</span>
+<span class="dtd_dtddoc_tag">@attr interruptMode</span><span class="dtd_comment"> Defines under what conditions talk-group members MAY interrupt each other during a call (g-intmode)</span>
+<span class="dtd_dtddoc_tag">@attr groupSecurityLevel</span><span class="dtd_comment"> Defines the allowable security levels of the call (g-sec)</span>
+<span class="dtd_dtddoc_tag">@attr interconnectFlag</span><span class="dtd_comment"> Defines whether or not the group MAY have PSTN sourced calls (g-ic)</span>
+<span class="dtd_dtddoc_tag">@attr interconnectSecurity</span><span class="dtd_comment"> Defines the required security level at the beginning of an interconnect call. (g-icsecstart)</span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">groupprofile</span>
+
+<span class="dtd_attribute_name">accessPermission</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">EmergencyOnly</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">NonEmergencyAllowed</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;NonEmergencyAllowed&quot;</span>
+<span class="dtd_attribute_name">announcementGroup</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_attribute_name">groupPriority</span><span class="dtd_plain">   (1|2|3|4|5|6|7|8|9|10) </span><span class="dtd_attribute_value">&quot;1&quot;</span>
+<span class="dtd_attribute_name">emergencyCapable</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">EmergencyCallsAllowed</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">EmergencyCallsNotAllowed</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;EmergencyCallsAllowed&quot;</span>
+<span class="dtd_attribute_name">emergencyPreemption</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">NonRuthless</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">Ruthless</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;NonRuthless&quot;</span>
+<span class="dtd_attribute_name">rfHangTime</span><span class="dtd_plain">  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_attribute_name">confirmedGroupCallSetupTime</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_attribute_name">interruptMode</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">NeverAllowed</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">PriorityInterruptAllowed</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">AlwaysAllowd</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;NeverAllowed&quot;</span>
+<span class="dtd_attribute_name">groupSecurityLevel</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">ClearOnly</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">SecureOnly</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">ClearAndSecure</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;ClearAndSecure&quot;</span>
+<span class="dtd_attribute_name">interconnectFlag</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span>
+<span class="dtd_attribute_name">interconnectSecurity</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">Clear</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">Secure</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;Clear&quot;</span>
+
+<span class="dtd_tag_symbols">&gt;</span>
+</pre>
+</body></html>

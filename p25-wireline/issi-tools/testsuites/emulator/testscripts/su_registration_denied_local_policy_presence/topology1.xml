@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<!-- This asserts the presence flag on registration -->
+<!-- This SU Is forbidden from registering from RFSS 2 -->
+<suconfig suName="su_12" id="registeringSu">
+<forbidden rfssName="rfss_2"/>
+</suconfig>
+
+</conformance-test-config>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+This document defines the ISSI runtime data.
+
+@title ISSI Runtime Data Specification
+@root issi-runtime-data
+ -->
+<!ELEMENT issi-runtime-data (rfss-session-info*) >
+<!ELEMENT rfss-session-info (ptt-session*)>
+<!ELEMENT ptt-session EMPTY >
+<!ATTLIST ptt-session
+	sessionType (mmfSession|smfSession|SmfMmfSession) #REQUIRED
+	rfssId CDATA #IMPLIED
+	myRtpRecvPort CDATA #REQUIRED
+	myIpAddress CDATA #REQUIRED
+	remoteIpAddress CDATA #REQUIRED
+	remoteRtpRecvPort CDATA #REQUIRED
+	linkType CDATA #REQUIRED
+>
+<!ATTLIST rfss-session-info
+	rfssId CDATA #REQUIRED
+>

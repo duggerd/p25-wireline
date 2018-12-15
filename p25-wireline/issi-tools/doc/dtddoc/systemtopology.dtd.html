@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>System Topology Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>systemtopology.dtd</code></b>: <a href='systemtopology.dtd.html'>Elements</a> - Entities - <a href='systemtopology.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='systemtopology.dtd.html' target='_top'>NO FRAMES</a></p><h1>System Topology Specification</h1>
+<a name='system-topology'></a>
+<br /><table class='elementTitle' summary="system-topology"><tr><td class='leftElementTitle'>
+&lt;system-topology&gt;</td><td class='rightElementTitle'>
+Root element
+</td></tr></table>
+<p>Defines the system topology for the emulator. The system topology is where you define System and WACN IDs as well as
+the IP addresses and the ports where the emulated and actual components run. You define your RFSS IDs ( as defined in
+102 BACA ) here. This xml document is relevant to both the DIETS tester and the DIETS packet monitor.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;system-topology&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;system-topology&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#rfssconfig'>rfssconfig</a></td><td>At least one</td></tr>
+<tr><td><a href='#systemconfig'>systemconfig</a></td><td>At least one</td></tr>
+<tr><td><a href='#wacn-config'>wacn-config</a></td><td>At least one</td></tr>
+</tbody></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#wacn-config'>wacn-config</a>+, <a href='#systemconfig'>systemconfig</a>+, <a href='#rfssconfig'>rfssconfig</a>+)</p><a name='rfssconfig'></a>
+<br /><table class='elementTitle' summary="rfssconfig"><tr><td class='leftElementTitle'>
+&lt;rfssconfig/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#system-topology'>system-topology</a>
+</td></tr></table>
+<p>Defines an RFSS configuration.</p><blockquote>
+<table  summary="&lt;rfssconfig&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;rfssconfig&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#rfssconfig_color'>color</a></td><td>BLACK, BLUE, MAGENTA, GREEN, RED, CYAN</td><td>BLACK</td></tr><tr><td><a href='#rfssconfig_emulated'>emulated</a></td><td>true, false</td><td>true</td></tr><tr><td><a href='#rfssconfig_ipAddress'>ipAddress</a></td><td></td><td></td></tr><tr><td><a href='#rfssconfig_port'>port</a></td><td></td><td></td></tr><tr><td><a href='#rfssconfig_rfssId'>rfssId</a></td><td></td><td></td></tr><tr><td><a href='#rfssconfig_rfssName'>rfssName</a></td><td><i>Match the ID rules.</i></td><td></td></tr><tr><td><a href='#rfssconfig_systemName'>systemName</a></td><td><i>Match the IDREF rules.</i></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='wacn-config'></a>
+<br /><table class='elementTitle' summary="wacn-config"><tr><td class='leftElementTitle'>
+&lt;wacn-config/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#system-topology'>system-topology</a>
+</td></tr></table>
+<p>A tag that defines a WACN. You can have multiple of these tags and assign RFSSs to different systems.</p><blockquote>
+<table  summary="&lt;wacn-config&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;wacn-config&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#wacn-config_wacnId'>wacnId</a></td><td></td><td></td></tr><tr><td><a href='#wacn-config_wacnName'>wacnName</a></td><td><i>Match the ID rules.</i></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='systemconfig'></a>
+<br /><table class='elementTitle' summary="systemconfig"><tr><td class='leftElementTitle'>
+&lt;systemconfig/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#system-topology'>system-topology</a>
+</td></tr></table>
+<p>A tag that defines a system configuration.</p><blockquote>
+<table  summary="&lt;systemconfig&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;systemconfig&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#systemconfig_systemId'>systemId</a></td><td></td><td></td></tr><tr><td><a href='#systemconfig_systemName'>systemName</a></td><td><i>Match the ID rules.</i></td><td></td></tr><tr><td><a href='#systemconfig_wacnName'>wacnName</a></td><td><i>Match the IDREF rules.</i></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='rfssconfig_rfssName'></a>
+<br /><table class='attributeTitle' summary="rfssName"><tr><td class='leftAttributeTitle'>
+@rfssName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> - The symbolic name which we use to
+refer to the RFSS in the test system.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='rfssconfig_rfssId'></a>
+<br /><table class='attributeTitle' summary="rfssId"><tr><td class='leftAttributeTitle'>
+@rfssId</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> - is the rfss Id for the rfss.</p><p><span class='inTextTitle'>Required</span></p><a name='rfssconfig_ipAddress'></a>
+<br /><table class='attributeTitle' summary="ipAddress"><tr><td class='leftAttributeTitle'>
+@ipAddress</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> - is the Ip address where the Rfss will run.
+This is a required parameter if the RFSS is not emulated.
+If the Rfss is emulated, a tag corresponding to thie RFSS must appear
+in issi-tester-configuration.xml.
+For example a tag &lt;refId id="rfss_1.daemon" />
+in issi-tester-configuration.xml implies that
+emulated Rfss with name rfss_1
+will run on the DIETS daemon.</p><a name='rfssconfig_port'></a>
+<br /><table class='attributeTitle' summary="port"><tr><td class='leftAttributeTitle'>
+@port</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> - is the sip signaling port where the rfss
+will accept incoming sip messages. This is a required
+parameter.</p><p><span class='inTextTitle'>Required</span></p><a name='rfssconfig_emulated'></a>
+<br /><table class='attributeTitle' summary="emulated"><tr><td class='leftAttributeTitle'>
+@emulated</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> - a true/false flag
+that indicates whether the Rfss
+is emulated or real.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: true</p><a name='rfssconfig_systemName'></a>
+<br /><table class='attributeTitle' summary="systemName"><tr><td class='leftAttributeTitle'>
+@systemName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>- The system name to which this RFSS belongs</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the IDREF rules.</i> - <span class='inTextTitle'>Required</span></p><a name='rfssconfig_color'></a>
+<br /><table class='attributeTitle' summary="color"><tr><td class='leftAttributeTitle'>
+@color</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>- the color to use to fill the box on the graphical panel.</p><p><span class='inTextTitle'>Possible values</span>: BLACK, BLUE, MAGENTA, GREEN, RED, CYAN - <span class='inTextTitle'>Default value</span>: BLACK</p><a name='wacn-config_wacnName'></a>
+<br /><table class='attributeTitle' summary="wacnName"><tr><td class='leftAttributeTitle'>
+@wacnName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#wacn-config'>wacn-config</a>
+</td></tr></table>
+<p>the unique symbolic name to assign to this Wacn.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='wacn-config_wacnId'></a>
+<br /><table class='attributeTitle' summary="wacnId"><tr><td class='leftAttributeTitle'>
+@wacnId</td><td class='rightAttributeTitle'>
+Attribute of <a href='#wacn-config'>wacn-config</a>
+</td></tr></table>
+<p> the numeric WACN ID to assign to the WACN.</p><p><span class='inTextTitle'>Required</span></p><a name='systemconfig_systemName'></a>
+<br /><table class='attributeTitle' summary="systemName"><tr><td class='leftAttributeTitle'>
+@systemName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#systemconfig'>systemconfig</a>
+</td></tr></table>
+<p>is the unique symbolic name.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='systemconfig_systemId'></a>
+<br /><table class='attributeTitle' summary="systemId"><tr><td class='leftAttributeTitle'>
+@systemId</td><td class='rightAttributeTitle'>
+Attribute of <a href='#systemconfig'>systemconfig</a>
+</td></tr></table>
+<p>is the numerical ID assigned for the system as defined in 102 BACA.</p><p><span class='inTextTitle'>Required</span></p><a name='systemconfig_wacnName'></a>
+<br /><table class='attributeTitle' summary="wacnName"><tr><td class='leftAttributeTitle'>
+@wacnName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#systemconfig'>systemconfig</a>
+</td></tr></table>
+<p>is the name of the WACN for this system.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the IDREF rules.</i> - <span class='inTextTitle'>Required</span></p></body></html>

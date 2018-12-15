@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script>
+
+<!-- This action generates the initial call. This one should fail even 
+though it is started first. -->
+<group-call-setup-scenario
+	id="group-call-setup-scenario-2"
+	callingSuName= "firstCaller"
+	calledGroupName ="calledGroup"
+	isEmergency="false"
+	priority="4"
+>
+<trigger
+	type="msectime"
+	value="4000"
+/>
+</group-call-setup-scenario>
+
+<!-- This action generates the colliding call at a higher priority. 
+This one should succeed. -->
+<group-call-setup-scenario
+	id="group-call-setup-scenario-1"
+	callingSuName= "secondCaller"
+	calledGroupName ="calledGroup"
+	priority="8"
+	isEmergency="false"
+>
+<trigger
+	type="msectime"
+	value="9600"
+/>
+</group-call-setup-scenario>
+
+</test-script>

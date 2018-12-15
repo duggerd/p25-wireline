@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	traceGenerationTime="10"
+>
+
+<!-- automatic registration action is all we need here -->
+
+</test-script>

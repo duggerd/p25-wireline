@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<!-- testCompletionDelay="10" -->
+<test-script
+	generatePttTrace="yes"
+	traceGenerationTime="20"
+>
+<!-- change terminateAfter 10 to -1 -->
+<!-- This defines the scenario -->
+<su-to-su-call-setup-scenario
+	id="su-to-su-call"
+	callingSuName="callingSu"
+	calledSuName="calledSu"
+	terminateAfter="-1"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</su-to-su-call-setup-scenario>
+
+<su-script
+	id="suScript"
+	suName="callingSu"
+	method="doPttQuery"
+	description="PTT Query from a serving RFSS using vendor specific mechanisms"
+>
+<trigger
+	type="time"
+	value="12"
+/>
+<script>
+def doPttQuery():
+	global su
+	su.sendHeartbeatQuery()
+</script>
+</su-script>
+
+</test-script>

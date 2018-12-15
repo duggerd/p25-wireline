@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config traceOrder="Xrfss_1,rfss_2">
+
+<rfssconfig rfssName="rfss_2" id="servedRfss" registerConfirmTime="2"/>
+
+<sgconfig groupName="group_1" id="testGroup">
+<subscriber suName="su_22"/>
+<groupprofile>
+g-access:1
+g-agroup:0B4561A27271
+g-pri:2
+g-ecap:1
+g-eprempt:0
+g-rfhangt:0
+g-ccsetupT:0
+g-intmode:0
+g-sec:1
+g-ic:0
+g-icsecstart:0
+</groupprofile>
+</sgconfig>
+
+</conformance-test-config>

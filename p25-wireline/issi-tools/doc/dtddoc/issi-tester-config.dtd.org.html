@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> <head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>ISSI Tester Configuration Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>issi-tester-config.dtd</code></b>: <a href='issi-tester-config.dtd.html'>Elements</a> - Entities - <a href='issi-tester-config.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='issi-tester-config.dtd.org.html' target='_top'>NO FRAMES</a></p><pre id='dtd_source'><span class="dtd_processing_instruction">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span>
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">This defines the global configuration of the distributed test system.</span>
+<span class="dtd_comment">The distributed test system consists of one or more daemons which are</span>
+<span class="dtd_comment">started at specified IP addresses and which listen for commands </span>
+<span class="dtd_comment">sent to it through specified HTTP Ports. A daemon can consist</span>
+<span class="dtd_comment">of a tester service  and a packet monitoring service. These are </span>
+<span class="dtd_comment">indepenedent services. </span>
+
+<span class="dtd_dtddoc_tag">@title</span><span class="dtd_comment"> ISSI Tester Configuration Specification </span>
+<span class="dtd_dtddoc_tag">@root</span><span class="dtd_comment"> issi-tester-configuration</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_comment">&lt;!-- The root of the tester configuration --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">issi-tester-configuration</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">diets-daemon</span><span class="dtd_plain">+) </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_comment">Specifies a diets daemon which manages a conformance testing </span>
+<span class="dtd_comment">service and a packet monitoring service and runs at a specified IP </span>
+<span class="dtd_comment">address. </span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">diets-daemon</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">refid</span><span class="dtd_plain">+) </span><span class="dtd_tag_symbols">&gt;</span>
+
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_comment">Specifies a reference ID for the daemon. A single daemon can have</span>
+<span class="dtd_comment">several reference IDs. RFSSs are mappings from the system topology </span>
+<span class="dtd_comment">to map an Rfss to a daemon instance. WARNING Edit with care.</span>
+<span class="dtd_comment">This is a link. If you change this link you may break a dependency.</span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">refid</span><span class="dtd_plain"> </span><span class="dtd_keyword">EMPTY</span><span class="dtd_tag_symbols">&gt;</span>
+
+
+
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_dtddoc_tag">@attr id</span><span class="dtd_comment"> a symbolic name assigned to the daemon. The default ID is the ip </span>
+<span class="dtd_comment">address of the node. This id can be referenced in the systemtopology.xml</span>
+<span class="dtd_comment">file for the test suite.</span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">refid</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">id</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span><span class="dtd_plain"> </span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_dtddoc_tag">@attr name</span><span class="dtd_comment"> is the daemon name. </span>
+<span class="dtd_dtddoc_tag">@attr httpPort</span><span class="dtd_comment"> is the port where the conformance testing service may be</span>
+<span class="dtd_comment">contacted. This defaults to 8763. If this port conficts on your machine,</span>
+<span class="dtd_comment">then you may override this property using this attribute but make sure that</span>
+<span class="dtd_comment">the DIETS daemon on the target machine is running at the appropriate</span>
+<span class="dtd_comment">address.</span>
+
+<span class="dtd_dtddoc_tag">@attr isConformanceTester</span><span class="dtd_comment"> a flag that indicates whether conformance testing</span>
+<span class="dtd_comment">    services are enabled for this daemon</span>
+
+<span class="dtd_dtddoc_tag">@attr isPacketMonitor</span><span class="dtd_comment"> a flag that indicates whether or not packet monitoring</span>
+<span class="dtd_comment">    services are enabled for this daemon.</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">diets-daemon</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">name</span><span class="dtd_plain">     </span><span class="dtd_keyword">ID</span><span class="dtd_plain">     </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">httpPort</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">  </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isConformanceTester</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;true&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">isPacketMonitor</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;false&quot;</span><span class="dtd_plain"> </span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+
+</pre>
+</body></html>

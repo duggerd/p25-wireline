@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<!DOCTYPE issi-tester-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/globaltopology.dtd">
+<global-topology>
+
+<!-- This is a global topology file. It defines SUs and Groups 
+The RFSS ids in the file refer to the values in systemtopology.xml,
+The following are random ports.  Each SU and group defined
+here has a default SU / Group profile. They can be overriden
+in the topologyconfig.xml file for each test case.
+
+IMPORTANT:  DO NOT change the RFSS names in this script and the SU 
+names in this script. You are free to change the ID assignments and 
+port assignments. 
+-->
+
+<rfssconfig
+	rfssName= "rfss_1"
+	selftestPort = "4123"
+/>
+
+<rfssconfig
+	rfssName = "rfss_2"
+	selftestPort = "4312"
+/>
+<rfssconfig
+	rfssName="rfss_3"	
+	selftestPort = "4231"
+/>
+<rfssconfig
+	rfssName="rfss_4"	
+	selftestPort = "4234"
+/>
+<rfssconfig
+	rfssName="rfss_5"	
+	selftestPort = "4423"
+/>
+
+<!-- Another SU homed and served at RFSS 1 -->
+<suconfig
+	suName		="su_11"
+	suId		="11"
+	homeRfssName 	="rfss_1"
+	servingRfssName ="rfss_1"
+/>
+
+
+<!-- Another SU homed and served at RFSS 1 -->
+<suconfig
+	suName			="su_111"
+	suId			="111"
+	homeRfssName 	        ="rfss_1"
+	servingRfssName         ="rfss_1"
+/>
+
+
+<!-- an su homed and served at rfss 3 -->
+<suconfig
+	suName			= "su_33"
+	suId			= "33"
+	homeRfssName 	        = "rfss_3"
+	servingRfssName         = "rfss_3"
+/>
+
+
+<!-- an su homed and served at rfss 3 -->
+<suconfig
+	suName			="su_333"
+	suId			="333"
+	homeRfssName 	        ="rfss_3"
+	servingRfssName         ="rfss_3"
+/>
+
+
+<!-- an su homed and served at rfss 2 -->
+<suconfig
+	suName			="su_22"
+	suId			="22"
+	homeRfssName 		= "rfss_2"
+	servingRfssName 	= "rfss_2"
+/>
+
+<!-- another su homed and served at rfss 2 -->
+<suconfig
+	suName		="su_222"
+	suId            ="222"
+	homeRfssName    = "rfss_2"
+	servingRfssName = "rfss_2"
+/>
+
+<!-- an su homed at 1 and served at 2 -->
+<suconfig
+	suName		="su_12"
+	suId            ="12"
+	homeRfssName    = "rfss_1"
+	servingRfssName = "rfss_2"
+/>
+<!-- this is homed at 2 and served at 1 -->
+<suconfig
+	suName		="su_21"
+	suId            ="21"
+	homeRfssName    = "rfss_2"
+	servingRfssName = "rfss_1"
+/>
+
+<suconfig
+	suName		="su_13"
+	suId            ="13"
+	homeRfssName    = "rfss_1"
+	servingRfssName = "rfss_3"
+/>
+
+
+<!-- has higher priority for u2u calls -->
+<suconfig
+	suName="su_34"
+	suId="34"
+	homeRfssName = "rfss_3"
+	servingRfssName = "rfss_4"
+/>
+
+<!-- Group configurations. This is homed at the IUT -->
+<sgconfig
+	groupName= "group_1"
+	sgId = "1"
+	homeRfssName = "rfss_1"
+/>
+
+<sgconfig
+	groupName= "group_2"
+	sgId = "5"
+	homeRfssName = "rfss_2"
+/>
+
+<sgconfig
+	groupName= "group_3"
+	sgId = "6"
+	homeRfssName = "rfss_3"
+/>
+
+</global-topology>
+

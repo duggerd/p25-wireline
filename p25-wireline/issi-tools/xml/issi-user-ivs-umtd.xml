@@ -1,0 +1,15 @@
+<ivs-delays>
+   <ivs-umtd title="Measurements Default for SU-to-SU Call Message Transfer Delay(UMTD)" diagram="gfx/diagrams/IVS-UMTD.JPG">
+      <parameter key="Tu_ad1" value="200"/>
+      <parameter key="Tu_ad2" value="10"/>
+      <parameter key="Tu_ad3" value="10"/>
+      <parameter key="Tu_ad4" value="170"/>
+      <parameter key="Tu_ad5" value="200"/>
+      <parameter key="Tu_ad6" value="10"/>
+      <parameter key="Tu_ad7" value="10"/>
+      <parameter key="Tu_ad8" value="170"/>
+   </ivs-umtd>
+   <ivs-status title="Measurements Default for ISSI Voice Services">
+      <comment>Measurements Default Values from specifications.</comment>
+   </ivs-status>
+</ivs-delays>

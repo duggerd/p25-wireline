@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config traceOrder="rfss_2,Xrfss_1">
+
+
+<!-- this takes 5 seconds to process the invite. We configure it this way
+to allow for cancel.
+-->
+<rfssconfig rfssName="Xrfss_1" rfResourcesAvailable="false"/>
+<rfssconfig rfssName="rfss_2" rfResourcesAvailable="false" groupCallInviteProcessingTime="5"/>
+
+<sgconfig groupName="group_2">
+<subscriber suName="su_11"/>
+<subscriber suName="su_22"/>
+<!-- set g-agroup -->
+<groupprofile>
+g-agroup:0B4561A27271
+</groupprofile>
+</sgconfig>
+
+
+</conformance-test-config>

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	traceGenerationTime="10"
+>
+
+<su-script
+	id="turnOff"
+	suName="mySu"
+	method="turnOff"
+	description="Initiate action to deregister SU."
+>
+<trigger
+	type="time"
+	value="5"
+/>
+<script>
+def turnOff() :
+	su.setState(SuState.OFF)
+</script>
+</su-script>
+	
+</test-script>

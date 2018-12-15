@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<!-- test-script -->
+<test-script
+	traceGenerationTime="25"
+>
+
+<group-call-setup-scenario
+	id="group-call-setup-scenario-1"
+	callingSuName="callingSu"
+	calledGroupName="calledGroup"
+	isProtected="false"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</group-call-setup-scenario>
+
+<rfss-script
+	id="rfss-script"
+	rfssName="groupServing"
+	method="addRtpResources"
+	description="Add RTP an RTP port to this RFSS"
+>
+<trigger
+	type="time"
+	value="6"
+/>
+<script>
+def addRtpResources() :
+	rfss.addRtpPort(1)
+</script>
+</rfss-script>
+
+</test-script>

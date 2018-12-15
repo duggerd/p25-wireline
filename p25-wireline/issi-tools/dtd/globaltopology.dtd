@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+The ISSI emulation consists of multiple rfsss, su's and groups.  
+The global topology configuration file specifies the SUs and group
+assignments for the given test suite. You will have to configure
+your unit under test to be aware of these user and group
+IDs, home RFSSs etc. The global topology references
+RFSS entities that are defined in the associated
+"systemtopology.xml" file. Note that the Rfss IDs reference
+those that are defined in the "systemtopology.xml" and these
+are also referenced in each individual test case 
+topology.xml file. Therefore these names should
+not be changed for a given test suite.
+
+
+@title Global Topology Specification
+@root global-topology
+-->
+
+<!-- The top level tag for the configuration of global topology. The global topology is the global assignment of SUs and Groups to RFSSs across all 
+tests int he system. You should configure your test system to be aware of the SU's and Gruoups specified in this file.
+-->
+<!ELEMENT global-topology (rfssconfig+,suconfig*,sgconfig*)>
+
+
+
+
+<!--
+@attr rfssName The RFSS name. This must refer to an 
+		RFSS defined in the associated systemtopology.xml 
+		file. Do not change this assignment for a given
+		test suite otherwise the test scripts that 
+		refer to this name may break.
+@attr selftestPort The port used for self test trace generation.
+		Selftest involves running the scenario for each emulated
+		RFSS using localhost (127.0.0.1) and selftestPort for 
+		SIP signaling call setup. The generated traces is
+		IP address and port independent. This can be any
+		random integer.
+-->
+
+<!ATTLIST rfssconfig 
+	rfssName 			ID    #REQUIRED
+	selftestPort                    CDATA #REQUIRED
+>
+
+<!-- This defines the configuration of an RFSS. The name must match that
+specified in systemconfig. -->
+<!ELEMENT rfssconfig  EMPTY >
+
+
+<!-- Defines an SU. An SU has an associated User Profile which the Home
+RFSS keeps. This is initialized with default values that can be overriden
+in the test topology file for the given test. -->
+<!ELEMENT suconfig EMPTY>
+
+<!-- A group configuration tag. A group is statically configured  with
+one or more subscribers. Note that the subscribers are specified as
+Subscriber units. A group  has a group profile which is initialized
+with default values which can be overriden for the given group in the
+test topology file.
+-->
+
+<!ELEMENT sgconfig EMPTY>
+
+
+
+<!-- 
+@attr suName SU name. This is a uniqe symbolic identifier for the su.
+
+@attr suId SU numeric unit id as defined in TIA 102 BACA (specified in Hex)
+
+@attr homeRfssName Home RFSS name (must refer to a rfss referenced in this file 
+		and defined in systemtopology.xml ).
+
+@attr servingRfssName Serving RFSS name
+
+-->
+<!ATTLIST suconfig
+	suName					ID    #REQUIRED
+	suId					CDATA #REQUIRED
+	homeRfssName				IDREF #REQUIRED
+	servingRfssName				IDREF #REQUIRED
+>
+
+
+<!-- 
+@attr groupName its unique symolic name. Note that this name should
+	not be changed otherwise the tests that refer to this group
+	will break. Note that subscribers are sepcified on a per test
+	basis. See the topologyconfig.xml for a given test to see
+	subscriber assignments.
+@attr sgId The group ID ( as defined in TIA 102 BACA) specified in Hex. 
+	You can assign any unique value you want to this filed.
+@attr homeRfssName The name of the Home RFSS of this group. The home
+	Rfss must be defined in the systemtopology file associated
+	with the test suite.
+-->
+<!ATTLIST sgconfig
+	groupName				ID    #REQUIRED
+	sgId					CDATA #REQUIRED
+	homeRfssName				IDREF #REQUIRED
+>
+
+
+
+
+

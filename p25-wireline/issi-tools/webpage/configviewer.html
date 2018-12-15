@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<title>ISSI Local Configuration Viewer</title>
+
+<script src="js/sarissa.js" type="text/javascript"></script>
+
+</head>
+
+<body onunload="GUnload()">
+<form name="ajax" method="POST" action="">
+<b>ISSI Local Configuration - Conformance</b>
+<table border=1>
+  <tr>
+    <td>
+      <div id="xmldiv" style="display: inline; width: 550px; height: 450px">
+      <layer>
+        <textarea id="textarea" name="textarea" cols=80 rows=26></textarea>
+      </layer>
+      </div>
+    </td>
+    <td width=200 valign="top" style="text-decoration: underline; color: #4444ff;">
+      <div id="side_bar"></div>
+    </td>
+  </tr>
+</table>
+</form>
+<br>
+<!-- Standalone Emulator -->
+<form name="emulator" method="POST" action="">
+<b>ISSI Local Configuration - Emulator</b>
+<table border=1>
+  <tr>
+    <td>
+      <div id="em_xmldiv" style="display: inline; width: 550px; height: 450px">
+      <layer>
+        <textarea id="em_textarea" name="em_textarea2" cols=80 rows=26></textarea>
+      </layer>
+      </div>
+    </td>
+    <td width=200 valign="top" style="text-decoration: underline; color: #4444ff;">
+      <div id="em_side_bar"></div>
+    </td>
+  </tr>
+</table>
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+      var side_bar_html = "";
+      var htmls = [];
+      var i = 0;
+
+      var em_side_bar_html = "";
+      var em_htmls = [];
+      var j = 0;
+
+      // create conformance side-bar
+      createLink("Tester Configuration", "../testerconfig/standalone-configuration.xml");
+      createLink("System Topology", "../testsuites/conformance/systemtopology.xml");
+      createLink("Global Topology", "../testsuites/conformance/testscripts/globaltopology.xml");
+      createLink("Test Registry", "../testsuites/conformance/testscripts/testregistry.xml");
+
+      document.getElementById("side_bar").innerHTML = side_bar_html;
+
+      // create emulator side-bar
+      createEmulatorLink("Tester Configuration", "../testerconfig/emulator-configuration.xml");
+      createEmulatorLink("System Topology", "../testsuites/emulator/systemtopology.xml");
+      createEmulatorLink("Global Topology", "../testsuites/emulator/testscripts/globaltopology.xml");
+      createEmulatorLink("Test Registry", "../testsuites/emulator/testscripts/testregistry.xml");
+
+      document.getElementById("em_side_bar").innerHTML = em_side_bar_html;
+
+    //---------------------------------------------
+    function conformanceClick(i) {
+      loadConfig( 1, htmls[i]);
+    }
+    function createLink(label,html) {
+      htmls[i] = html;
+      side_bar_html += '<a href="javascript:conformanceClick(' +i +')">' +label +'<\/a><br>';
+      i++;
+    }
+    //---------------------------------------------
+    function emulatorClick(j) {
+      loadConfig( 2, em_htmls[j]);
+    }
+    function createEmulatorLink(label,html) {
+      em_htmls[j] = html;
+      em_side_bar_html += '<a href="javascript:emulatorClick(' +j +')">' +label +'<\/a><br>';
+      j++;
+    }
+
+    //---------------------------------------------
+    function loadConfig( type, filename) {
+      alert("Please wait, loading "+filename);
+
+      var request = new XMLHttpRequest();
+
+      request.open("GET", filename, true);
+      request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+
+          // populate textarea
+          if(type == 1) {
+             document.ajax.textarea.value = request.responseText;
+          } else if(type == 2) {
+             document.emulator.em_textarea.value = request.responseText;
+          }
+        }
+      }
+      request.send(null);
+    }
+//]]>
+</script>
+</body>
+</html>
+

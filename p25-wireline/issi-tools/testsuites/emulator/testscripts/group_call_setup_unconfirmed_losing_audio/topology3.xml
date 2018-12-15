@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config
+>
+
+<suconfig
+	suName="su_11"
+	id="callingSu"	
+/>
+<suconfig
+	suName="su_33"
+	id="callingSu"	
+/>
+<suconfig
+	suName="su_333"
+	id="higherPrioritySu"	
+/>
+
+<sgconfig
+	groupName="group_2"
+	id="calledGroup"
+>
+<subscriber
+	suName="su_11"
+/>
+<subscriber
+	suName="su_33"
+/>
+<subscriber
+	suName="su_333"
+/>
+</sgconfig>
+
+</conformance-test-config>

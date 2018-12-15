@@ -1,0 +1,652 @@
+<?xml version="1.0"?>
+
+<project name="issi-tester" default="compile" basedir=".">
+<description>
+      Build file for the ISSI Emulator.
+</description>
+
+
+   <!-- TODO : Break this into separate XML FILES:
+               * build.xml:  Use this just for compiling
+
+     Command                   Description                                
+     ================================================================
+        ant                       (Default) Compile ISSI Emulator files.    
+        ant compile               Compile ISSI Emulator files. 
+        ant cleanlogs             Clean log and debug files.               
+        ant clean                 Clean Java class files.                   
+        ant tests                 Run the tests and generate log files.     
+        ant manual                Generate the Word manual from javadocs.   
+        ant javadoc               Generate Javadoc.                         
+        ant startup               Start console.                    
+        ant testerGUI             Start ISSI Tester GUI.                    
+        ant analyzerGUI           Start PCAP Trace AnalyzerGUI.
+        ant setupGUI              Start TestConfig Setup GUI.
+        ant setupDialog           Start TestConfig Setup Dialog.
+        ant curtopology           Start XML CurrentTopology test.
+        ant mkdirs                Internal tests for RFSS.                 
+        ant blockheadertest       Test P25 block headers.                
+        ant p25payloadtest        Test P25 payload.                   
+        ant pttcontrolwordtest    Test P25 control word.                
+        ant p25blocktest          Test P25 blocks.                      
+        ant mobility              Test mobility management case.         
+        ant unittests             Test unit tests.                         
+        ant runscript -Dtest=test-name Run an individual test.
+        ant diets-jar             Build a jar file containing ISSI Tester
+        ant installer             Build an IZPACK installer for ISSI Tester
+
+        ant daemon                Run the daemon (for client server operation)
+        ant testservice           Run the daemon and test service.
+        ant verify                Verify a given test.
+   -->
+
+   <property file="ant-build.properties" />
+   <property name="startup" value="startup/diets-standalone.properties" />
+   <property name="emulator" value="startup/diets-emulator.properties" />
+
+   <!-- Project directories -->
+   <property name="root" value="." />
+   <property name="src" location="${root}/src" />
+   <property name="classes" location="${root}/classes" />
+   <property name="doc" location="${root}/doc" />
+   <property name="webpage" location="${root}/webpage" />
+   <property name="lib" location="${root}/lib" />
+   <property name="icon" location="${root}/icon" />
+   <property name="output" location="${root}/output" />
+   <property name="xml" location="${root}/xml" />
+   <property name="tools" location="${root}/tools" />
+   <property name="tracefile" value="" />
+   <property name="reftraces" value="refmessages" />
+   <property name="testrun" value="testrun" />
+   <property name="junit.output.dir" value="junit"/>
+
+   <!-- dependent libraries -->
+   <property name="log4j_jar" value="${lib}/${log4j}" />
+   <property name="junit_jar" value="${lib}/${junit}" />
+   <property name="jainsip_jar" value="${lib}/${jainsip}" />
+   <property name="jetty_jar" value="${lib}/${jettyjar}" />
+   <property name="servlet_jar" value="${lib}/${servletjar}" />
+   <property name="commonslogging_jar" value="${lib}/${commonsloggingjar}" />
+   <property name="jython_jar"   value="${lib}/${jythonjar}" />
+   <property name="httpclient_jar" value="${lib}/${httpclientjar}" />
+   <property name="jpcap_jar" value="${lib}/${jpcapjar}" />
+   
+
+   <property name="nistsip_jar" value="${lib}/${nistsip}" />
+   <property name="nistsdp_jar" value="${lib}/${nistsdp}" />
+   <property name="junit.reports" value="${root}/junit-reports" />
+   <property name="junit_jar" value="${lib}/${junit}" />
+   <property name="logs" value="${root}/logs" />
+
+   <!-- Properties for the HTTP server and client -->
+   <property name="tester.configuration" value = "${testerconfig}" />
+   <property name="tester.ipaddress" value = "${localaddress}" />
+   <property name="global.topology" value= "${globaltopology}" />
+
+
+   <!-- Target to check availability of libs -->
+   <target name="checklibs">
+      <available file="${jpcap_jar}" property="jpcap.jar.available" />
+      <available file="${httpclient_jar}" property="httpclient.available" />
+      <available file="${log4j_jar}" property="log4j.available" />
+      <available file="${jetty_jar}" property="jetty.available" />
+      <available file="${servlet_jar}" property="servlet.available" />
+      <available file="${commonslogging_jar}" property="commonslogging.available" />
+      <available file="${jython_jar}" property ="jythonjar.available" />
+      
+      <fail message="${httpclient_jar} available ${httpclient.available}">
+         <condition>
+            <not>
+               <istrue value="${httpclient.available}" />
+            </not>
+         </condition>
+      </fail>
+      <fail message="${jetty_jar} is not set. Get it from mortbay.org">
+         <condition>
+            <not>
+               <istrue value="${jetty.available}" />
+            </not>
+         </condition>
+      </fail>
+      <fail message="${servlet_jar} available ${servlet.available}">
+         <condition>
+            <not>
+               <istrue value="${servlet.available}" />
+            </not>
+         </condition>
+      </fail>
+      <fail message="${log4j_jar} available not set -- get it from the log4j project.">
+         <condition>
+            <not>
+               <istrue value="${log4j.available}" />
+            </not>
+         </condition>
+      </fail>
+      <fail message="${commonslogging_jar} Not set  get it from the APACHE tomcat project.">
+         <condition>
+            <not>
+               <istrue value="${commonslogging.available}" />
+            </not>
+         </condition>
+      </fail>
+      <fail message="${jython_jar} available ${jythonjar.available}">
+         <condition>
+            <not>
+               <istrue value="${jythonjar.available}" />
+            </not>
+         </condition>
+      </fail>
+   </target>
+
+   <path id="project.class.path">
+      <pathelement location="${classes}" />
+      <pathelement location="lib/commons-fileupload-1.2.jar" />
+      <pathelement location="lib/mail.jar" />
+      <pathelement location="lib/commons-lang-2.3.jar" />
+      <pathelement location="lib/xbean-2.3.0.jar" />
+      <pathelement location="lib/jsr173_1.0.jar" />
+      <pathelement location="lib/xmlbeans-globaltopology.jar" />
+      <pathelement location="lib/xmlbeans-systemtopology.jar" />
+      <pathelement location="lib/xmlbeans-pttmessages.jar" />
+      <pathelement location="lib/xmlbeans-conformancetestconfig.jar" />
+      <pathelement location="lib/xmlbeans-issitesterconfig.jar" />
+      <pathelement location="lib/xmlbeans-ivsdelays.jar" />
+      <pathelement location="lib/xmlbeans-allmessages.jar" />
+      <pathelement location="lib/xmlbeans-testregistry.jar" />
+      <pathelement location="lib/xmlbeans-testscript.jar" />
+      <pathelement location="lib/p25stack-1.0.jar" />
+
+      <pathelement location="${httpclient_jar}" />
+      <pathelement location="${log4j_jar}" />
+      <pathelement location="${jainsip_jar}" />
+      <pathelement location="${nistsip_jar}" />
+      <pathelement location="${nistsdp_jar}" />
+      <pathelement location="${junit_jar}" />
+      <pathelement location="${java.class.path}" />
+      <pathelement location="${jetty_jar}" />
+      <pathelement location="${servlet_jar}" />
+      <pathelement location="${jpcap_jar}" />
+      <pathelement location="${jython_jar}" />
+      <pathelement location="${commonslogging_jar}" />
+   </path>
+   
+   <target name="cleandebug" description = "clean only debug logs" >
+      <delete failonerror="false" >
+         <fileset dir="./logs" includes="**/*debug*.txt" />
+      </delete>
+      <delete failonerror="false" >
+         <fileset dir="./logs" includes="**/*error*.txt" />
+      </delete>
+      <delete failonerror="false" dir="${junit.reports}" />
+   </target>
+   
+   <target name="cleanrefmsg" description="clean reference messages files">
+      <delete failonerror="false" dir="${reftraces}" />
+      <mkdir dir="${reftraces}" />
+   </target>
+   <target name="cleanoutput" description="clean output diretcory">
+      <delete failonerror="false" dir="${output}" />
+      <mkdir dir="${output}" />
+   </target>
+
+   <target name="cleanlogs" description="clean log files and debug files">
+      <delete failonerror="false" dir="${testrun}" />
+      <delete failonerror="false" dir="${reftraces}" />
+      <delete failonerror="false" dir="${logs}" />
+      <delete failonerror="false" dir="${junit.reports}" />
+      <delete failonerror="false" dir="${logs}" />
+      <delete failonerror="false" dir="${junit.reports}" />
+   </target>
+
+   <target name="clean" description="clean up previous build" depends="cleanlogs">
+
+      <!-- Delete existing directories to ensure removal of old classes -->
+      <delete dir="${classes}" />
+      <delete dir="${doc}/javadoc" />
+      <delete dir="${junit.reports}" />
+
+      <!-- Make new directories -->
+      <mkdir dir="${classes}" />
+      <mkdir dir="${logs}" />
+      <mkdir dir="${doc}" />
+      <mkdir dir="${doc}/javadoc" />
+      <mkdir dir="${junit.reports}" />
+   </target>
+
+   <!-- run the tests to generate a log and view it. This is a temporary target. -->
+   <target name="tests" depends="cleanlogs,callsetuptest1" />
+
+   <!-- run all the test cases. -->
+   <target name="selftest" description="Generate the reference log files">
+      <java classname= "gov.nist.p25.issi.rfss.tester.ScriptRunner" 
+            fork="true" classpathref="project.class.path">
+         <arg value="-registry" />
+         <arg value="testregistry.xml" />
+      </java>
+   </target>
+
+   
+   <!-- run a specific test case. Everything is hardwired for conformance. -->
+   <target name="runscript" description="run a specific named script" depends="cleanlogs">
+      <java classname= "gov.nist.p25.issi.rfss.tester.ScriptRunner"
+            fork="true" classpathref="project.class.path">
+         <arg value="${test}" />
+      </java>
+   </target>
+
+      
+   <target name="diets-jar" depends="compile" description="build a jar">
+     <jar manifest="META-INF/MANIFEST.MF" 
+        destfile="diets.jar" >
+        <fileset dir="${classes}">
+          <include name="gov/nist/**/*.class" />
+          <include name="**/*.property" />
+          <include name="**/*.properties" />
+          <include name="**/*.txt" />
+        </fileset>
+     </jar>
+   </target>
+
+
+   <target name="compile" depends="checklibs" description="compile the source">
+      <!-- Compile the java code from ${src} into ${classes} -->
+      <mkdir dir="${classes}" />
+      <copy file="log4j.properties"  toDir="${classes}" />
+      <copy file="releasenote.txt"  toDir="${classes}" />
+      <copy file="thingtodo.txt"  toDir="${classes}" />
+
+      <javac srcdir="${src}" 
+         destdir="${classes}" 
+         debug="${javac.debug}"
+         optimize="${javac.optimize}"
+         debuglevel="${javac.debuglevel}"
+         classpathref="project.class.path" deprecation="off" />
+      <copy toDir="${classes}">
+            <fileset dir="${src}">
+              <exclude name="**/*.java" />
+              <exclude name="**/*.class" />
+              <include name="**/*.xml" />
+              <include name="**/*.property" />
+              <include name="**/*.properties" />
+              <include name="**/*.dtd" />
+            </fileset>
+      </copy>
+   </target>
+
+<!-- *********************************************************************** -->
+   <target name="rtfmanual" description="generate the word manual document from the javadocs">
+      <!-- Generate RTF man pages from the javadoc for selected files -->
+      <exec executable="${java.home}/../bin/javadoc.exe">
+         <arg line="-docletpath  ${tools}/RTFDoclet.jar" />
+         <arg line="-filename manual.rtf" />
+         <arg line="-doclet RTFDoclet" />
+         <arg line="-sourcepath src" />
+         <arg line="-published" />
+         <arg line="src/gov/nist/p25/issi/rfss/tester/RfssScriptInterface.java src/gov/nist/p25/issi/rfss/tester/SuScriptInterface.java" />
+      </exec>
+   </target>
+
+<!-- ********************************************************************** -->
+   <!-- to use new version of izpack, change tools to tools2 -->
+   <taskdef name="izpack" classpath="tools2/standalone-compiler.jar"
+            classname="com.izforge.izpack.ant.IzPackTask" />
+
+   <target name="installer" depends="diets-jar" 
+           description="Build an installer for ISSI Tester">
+      <izpack input="tools2/izpack-install.xml"
+         output="itt-install-${diets.version}.jar"
+         installerType="standard"
+         basedir="./" />
+   </target>
+
+<!-- ********************************************************************** -->
+
+<!-- ********************************************************************** -->
+<!-- Build the DTD documentation for the important xml configuration files -->
+   <taskdef name="DTDDoc" classname="DTDDoc.DTDDocTask"
+      classpath="tools/DTDDoc.jar" />
+   
+   <!-- Note that you must have DTDDoc in your classpath -->
+   <target name="dtddoc" description="Create the documentation from DTD">
+      <DTDDoc showHiddenTags="true" showFixmeTags="false"
+         sourceDir="dtd" destDir="doc/dtddoc"
+         docTitle = "ISSI Test Tools Configurations">
+         <include name="testregistry.dtd" />
+         <include name="topologyconfig.dtd" />
+         <include name="globaltopology.dtd" />
+         <include name="systemtopology.dtd" />
+         <include name="issi-tester-config.dtd" />
+         <include name="testscript.dtd" />
+        </DTDDoc>
+    </target>
+
+<!-- ******************************************************************************** -->
+   <target name="javadoc" depends="compile" description="generate javadocs">
+      <!-- Generate javadoc for the project -->
+      <javadoc packagenames="gov.nist.p25.*" sourcepath="src" 
+         destdir="${doc}/javadoc" author="true" version="true" 
+         use="true" windowtitle="ISSI Tester scripting interface Javadocs">
+         <classpath>
+            <pathelement location="${project.class.path}" />
+         </classpath>
+
+         <doctitle>
+            <![CDATA[<h1>ISSI Tester: The ISSI Evaulation and Test System</h1>]]></doctitle>
+         <bottom>
+            <![CDATA[<i>Advanced Network Technologies Division, NIST</i>]]></bottom>
+      </javadoc>
+   </target>
+
+<!-- ******************************************************************************** -->
+
+<target name="daemon" depends="compile,mkdirs,checklibs" description="start ISSI Tester daemon ">
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.DietsDaemon">
+   <arg value="-startup" />
+   <arg value="${startup}" />
+   <assertions>
+      <enable  />
+   </assertions>
+</java>
+</target>
+
+<!-- EHC DietsService -->
+<target name="testservice" depends="compile,mkdirs,checklibs" description="start ISSI Tester daemon ">
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.startup.DietsService">
+   <arg value="-startup" />
+   <arg value="${startup}" />
+</java>
+</target>
+   
+<target name="verify" description="start verifier daemon ">
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.traceverifier.Verifier">
+   <arg value="-traces" />
+   <arg value="testrun.zip" />
+</java>
+</target>
+
+<!--***********************************************************************-->
+<!-- Start the remote test coordinator. This is the target for the 
+lanucher that sets up and executes tests on the distributed RFSSs
+IMPORTANT : Should use the same configuration flag as the Test Emulator above.
+ -->
+<!--- depreciated: to be removed
+<target name="startup" depends="mkdirs,compile,diets-jar" description="start test controller " >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.startup.DietsStartup">
+   <assertions>
+      <enable  />
+   </assertions>
+</java>
+</target>
+ -->
+
+<target name="testerGUI" depends="mkdirs,compile" description="start test controller " >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.testlauncher.DietsGUI">
+   <arg value="-startup" />
+   <arg value="${startup}" />
+   <assertions>
+      <enable  />
+   </assertions>
+</java>
+</target>
+<target name="emulatorGUI" depends="mkdirs,compile" description="start emulator controller " >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.testlauncher.DietsGUI">
+   <arg value="-startup" />
+   <arg value="${emulator}" />
+   <assertions>
+      <enable  />
+   </assertions>
+</java>
+</target>
+
+
+<target name="diets" depends="mkdirs,compile" description="start stand alone client controller " >
+<echo message="Runnig with client and server integrated." />
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.testlauncher.DietsGUI">
+   <arg value="-startup" />
+   <arg value="${startup}" />
+   <assertions>
+      <enable />
+   </assertions>
+</java>
+</target>
+
+
+<!-- run with memory profiling enabled -->
+<target name="dietsdebug" depends="mkdirs,compile,cleanlogs" description="start stand alone client controller " >
+  <echo message="Runnig with client and server integrated." />
+  <exec dir="." executable="${java.home}/bin/java.exe" >
+   <arg line = "-classpath ${classes};${httpclient_jar};${log4j_jar};${jainsip_jar};${nistsip_jar};${nistsdp_jar};${junit_jar};${jetty_jar};${servlet_jar};${jpcap_jar};${jython_jar}" />
+      <arg line="-agentlib:yjpagent=onexit=memory,alloc,dir=/. gov.nist.p25.issi.testlauncher.DietsGUI -globalTopology globaltopology.xml  -standalone -ipaddress ${tester.ipaddress}" />
+</exec>
+</target>
+
+
+<target name="analyzerGUI" depends="mkdirs,compile" description="start TraceAnalyzerGUI" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.analyzer.gui.TraceAnalyzerGUI">
+   <!-- to run in XP -->
+   <jvmarg value="-mx512m" />
+   <jvmarg value="-ms256m" />
+   <jvmarg value="-Djava.library.path=${root}/bin/native/jpcap" />
+</java>
+</target>
+
+<target name="setupGUI" depends="mkdirs,compile" description="start TestConfigControlPanel GUI" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.setup.TestConfigControlPanel">
+   <!-- to run in XP -->
+   <jvmarg value="-mx512m" />
+   <jvmarg value="-ms256m" />
+</java>
+</target>
+<target name="setupDialog" depends="mkdirs,compile" description="start TestConfigControlDialog" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.setup.TestConfigControlDialog">
+   <!-- to run in XP -->
+   <jvmarg value="-mx512m" />
+   <jvmarg value="-ms256m" />
+</java>
+</target>
+
+<target name="curtopology" depends="mkdirs,compile" description="start XML CurrentTopology Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.message.CurrentTopologyManager">
+</java>
+</target>
+
+<target name="testerconfig" depends="mkdirs,compile" description="start XML IssiTesterConfig Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.message.XmlIssiTesterConfig">
+</java>
+</target>
+
+<!-- IVS unit tests -->
+<target name="ivsdelays" depends="mkdirs,compile" description="start XML IvsDelays Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.message.XmlIvsDelaysSpec">
+</java>
+</target>
+<target name="ivssetup" depends="mkdirs,compile" description="start XML IvsDelaysSetup Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.setup.IvsDelaysSetupDialog">
+</java>
+</target>
+<target name="ivsmeasure" depends="mkdirs,compile" description="start XML IvsDelaysMeasurement Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.setup.IvsDelaysMeasurementPanel">
+</java>
+</target>
+<target name="ivsfilelist" depends="mkdirs,compile" description="start XML IvsDelays File List Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.common.swing.fileexplorer.SortedFileListDialog">
+</java>
+</target>
+
+<!-- IVS allmessages -->
+<target name="ivscalculate" depends="mkdirs,compile" description="start XML IvsDelays Calculation Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.message.XmlAllmessages">
+</java>
+</target>
+<target name="ivsanalyze" depends="mkdirs,compile" description="start XML IvsDelays Analyzer Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.fsm.IssiMessageAnalyzer">
+</java>
+</target>
+
+<!-- IMBE Tests -->
+<target name="imbeVoiceBlock" depends="mkdirs,compile" description="start IMBE Voice Block Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.p25payload.Test_IMBEVoiceBlockTest">
+</java>
+</target>
+<target name="imbeVoiceData" depends="mkdirs,compile" description="start IMBE Voice Block Test" >
+<java classpathref="project.class.path" fork="true" classname="gov.nist.p25.issi.p25payload.Test_IMBEVoiceDataGeneratorTest">
+</java>
+</target>
+
+<!-- IZPACK UNIX Test -->
+<target name="unixtest" depends="mkdirs,compile" 
+   description="start IZPACK Unix Test" >
+  <java classpathref="project.class.path" fork="true" 
+     classname="gov.nist.p25.common.swing.jcapps.JComponentTreeTest">
+  </java>
+</target>
+
+
+<!-- IMPORTANT RUN THE UNIT TESTS BEFORE COMMITTING                          -->
+<!--      IMPORTANT: JUnit jar file must be in Ant lib directory to work     -->
+<!--**************************** P25 block tests ****************************-->
+
+<!-- Internal configuration parsing tests -->
+<target name="mkdirs">
+<mkdir dir="${logs}" />
+</target>
+
+<target name="mkreportdir">
+<mkdir dir="${junit.reports}" />
+</target>
+
+<target name='internal' depends="mkdirs,mkreportdir" description="internal tests for rfss">
+
+<junit fork="yes" showoutput="yes">
+   <classpath refid="project.class.path" />
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+
+   <formatter type="xml" />
+   <test name="gov.nist.p25.issi.issiconfig.ConfigurationTest" todir="${junit.reports}" />
+</junit>
+<junit fork="yes" showoutput="yes">
+   <classpath refid="project.class.path" />
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+   <formatter type="text" />
+   <test name="gov.nist.p25.issi.test.P25BodyTest" todir="${junit.reports}" />
+</junit>
+<junit fork="yes" showoutput="yes">
+   <classpath refid="project.class.path" />
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+   <formatter type="xml" />
+   <test name="gov.nist.p25.issi.issiconfig.ConfigurationTest" todir="${junit.reports}" />
+</junit>
+
+</target>
+
+<target name='blockheadertest' depends="mkdirs,mkreportdir" description="run blockheader test">
+
+<junit fork="yes" showoutput="yes">
+   <!-- log4j configuration properties -->
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+   <formatter type="xml" />
+   <classpath refid="project.class.path" />
+   <test name="gov.nist.p25.issi.p25payload.Test_BlockHeaderTest" todir="${junit.reports}" />
+</junit>
+</target>
+
+<target name='p25payloadtest' depends="mkdirs" description="run P25 payload test">
+
+<junit fork="yes" showoutput="yes">
+   <formatter type="xml" />
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+   <classpath refid="project.class.path" />
+   <test name="gov.nist.p25.issi.p25payload.Test_P25PayloadTest" todir="${junit.reports}" />
+</junit>
+</target>
+
+<target name='pttcontrolwordtest' depends="mkdirs" description="run PTT control word test">
+
+<junit fork="yes" showoutput="yes">
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+   <classpath refid="project.class.path" />
+   <formatter type="xml" />
+   <test name="gov.nist.p25.issi.p25payload.Test_PTTControlWordTest" todir="${junit.reports}" />
+</junit>
+</target>
+<target name="p25blocktest" description="P25 block tests " depends="blockheadertest,p25payloadtest,pttcontrolwordtest" />
+<!-- Profile Parsing JUNIT tests -->
+<target name="profiletests" description="run the tests for parsing group profiles">
+<mkdir dir="${junit.reports}" />
+<mkdir dir="${logs}" />
+
+<junit fork="yes" showoutput="yes">
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+   <classpath refid="project.class.path" />
+   <formatter type="xml" />
+   <test name="gov.nist.p25.issi.p25body.serviceprofile.group.GroupServiceProfileTest" todir="${junit.reports}" />
+</junit>
+<junit fork="yes" showoutput="yes">
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+   <classpath refid="project.class.path" />
+   <formatter type="xml" />
+   <test name="gov.nist.p25.issi.p25body.serviceprofile.user.UserServiceProfileTest" todir="${junit.reports}" />
+</junit>
+</target>
+<!-- Call Setup JUNIT tests need to change the name of this -->
+<target name='callsetuptest1' depends="mkdirs" description="runs su to su call setup test">
+
+<junit fork="yes" showoutput="yes">
+   <classpath refid="project.class.path" />
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+   <formatter type="xml" />
+   <test name="gov.nist.p25.issi.rfss.tester.callsetuptests.SUToSUCallSetupTest" todir="${junit.reports}" />
+</junit>
+</target>
+
+<!-- Mobility Management tests -->
+<target name="mobility" depends="mkdirs" description="mobility management test case">
+<junit fork="yes" showoutput="yes">
+   <classpath refid="project.class.path" />
+   <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+   <formatter type="xml" />
+   <!-- EHC tester to tests -->
+   <test name="gov.nist.p25.issi.rfss.tester.mobilitytests.SuRoamingTest" todir="${junit.reports}" />
+</junit>
+</target>
+
+
+<!-- PTT Batch Tests -->
+<target name="ptttests" depends="mkdirs">
+
+   <junit fork="yes" showoutput="yes" failureproperty="testing.failed">
+      <jvmarg value="-Dlog4j.configuration=log4j.properties" />
+      <classpath refid="project.class.path" />
+      <formatter type="brief" usefile="true" />
+      <batchtest fork="yes" todir="${junit.reports}" haltonfailure="yes">
+         <fileset dir="src" >
+            <include name="gov/nist/p25/issi/transctlmgr/ptt/**/*Test.java" />
+         </fileset>
+      </batchtest>
+   </junit>
+   <fail if="testing.failed" />
+</target>
+
+<!-- This target MUST be run before commit -->
+<target name="unittests" depends="internal,cleanlogs,p25blocktest,profiletests,callsetuptest1,mobility" />
+<target name="junitreport">
+    <junitreport todir="${junit.output.dir}">
+          <fileset dir="${junit.output.dir}">
+              <include name="TEST-*.xml"/>
+         </fileset>
+         <report format="frames" todir="${junit.output.dir}"/>
+     </junitreport>
+</target>
+<target name="cvscommit" depends="clean,compile,unittests,clean,cleanlogs">
+<cvs cvsRoot='cvs -d :pserver:${cvs.username}@is2.antd.nist.gov:/home/issi/cvsroot' command="-e ${cvs.editor} -T ${cvs.tmpdir} commit" />
+
+</target>
+
+
+<target name="installpacketmonitor" description="copy the necessary files for the packet monitor to the appropriate places for linux">
+   <copy file="${lib}/jpcap.jar"   toDir="${java.home}/lib/ext"  />
+   <copy file="${lib}/libjpcap.so" toDir="${java.home}/lib/i386" />
+</target>
+
+
+</project>

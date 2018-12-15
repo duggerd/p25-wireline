@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<!-- destination for the roam -->
+<rfssconfig rfssName="Xrfss_1" id="targetRfss"/>
+
+<suconfig suName="su_12" id="roamingSu" servingRfssReferencesMeFor="0">
+</suconfig>
+
+</conformance-test-config>

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script>
+
+<rfss-script 
+	id="rfss-script"
+	rfssName="suToQuery:homeRfss"
+	method="doQuery"
+	description="Do a home query from the home rfss of su_12 without force or confirm parameters set. "
+>
+<trigger
+	type="time"
+	value="5"
+/>
+<script>
+def doQuery():
+	global rfss
+	rfss.suHomeQuery("suToQuery","noforce","noconfirm")
+</script>
+</rfss-script>
+
+</test-script>

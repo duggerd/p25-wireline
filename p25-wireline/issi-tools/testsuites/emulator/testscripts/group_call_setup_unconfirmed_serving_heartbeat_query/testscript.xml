@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	testCompletionDelay="25"
+>
+
+<group-call-setup-scenario
+	id="group-call-setup-scenario-1"
+	callingSuName="callingSu"
+	calledGroupName="calledGroup"
+	isConfirmed="false"
+	priority="4"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</group-call-setup-scenario>
+
+<rfss-script
+	id="rfssScript1"
+	rfssName="callingSu:initialServingRfss"
+	method="doPttQuery"
+	description="PTT Query from a serving RFSS using vendor specific mechanisms"
+>
+<trigger
+	type="time"
+	value="7"
+/>
+<script>
+def doPttQuery():
+	global rfss
+	rfss.pttHeartbeatQuery("calledGroup")
+
+</script>
+</rfss-script>
+
+</test-script>

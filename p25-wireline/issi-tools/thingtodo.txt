@@ -1,0 +1,102 @@
+==================================================================================
+List of Things TODO:
+03/03/2010
+==================================================================================
+
+Things still needed to be done:
+-------------------------------
+
+0. Replace the graphic canvas to setup the user test configuration. Design the
+   data structure for handling the user specific test case.
+   <Done in RC3>
+
+1. Refactor and cleanup the SIP protocol header. Use the common code in SipUtils.
+   <It is about 80% done.>
+
+
+2. Decouple the system configuration loading from the SIP graphing code.
+   So the client GUI code can be reused in standalone application.
+   <It is about 90% done>
+
+
+3. Cleanup, refactor and add hex encoding/decoding of systemId, wacnId, and suId.
+   <It is about 90% done.>
+
+4. Fixup the description of conformance tests case per latest ISSI spec. 
+
+
+5. Review the bug report and requests to modify the comformance test cases. 
+   <It is about 90% done>
+
+
+6. Remove the excessive usage of keyword 'this' in the code. Reinforce the proper
+   usage of the getter and setter in the whole code base.
+   <Done in RC5.>
+
+
+7. Review and remove the code to intercept and log errors to log file only.
+   Need to add code to handle the exception and propagate them properly.
+   <Done in RC9.>
+
+8. Checkout the unit test case and various targets in the build.xml.
+   (If it is still working, does it serve any useful purposes... etc).
+   <TODO>
+
+
+9. Review the features in pulldown menu, do we need to keep or remove them ?
+   <Done in RC5.>
+
+
+10. There are 2 bugs identified in JAIN-SIP code base. It is related to the
+   encoding/decoding the sgid field in the SIP header. Need to decide the way
+   to handle this ?
+    <Will not modify JAIN-SIP>
+
+
+11. Refactor the URL containing antd reference, so we can switch server if needed.
+    <Done in RC4>
+
+12. Remove all codes for generating RTF text.
+    <Done in RC4>
+
+13. Cleanup the code build procedures to reduce the labor to make a new release.
+    <Done in RC3>.
+    
+14. Create a User Documentation HTML page for ISSI Tester and Trace Analyzer.
+    <Done in RC4>
+
+15. Revamp the Performance Delays calculations based on the specification.
+    <Done in RC4>
+
+16. Supports of the full Conformance and CAP tests.
+    <Done in RC5>
+
+17. Sync up the test registry with latest SPEC (TIA-102.CACC).
+    <Done in RC5>
+
+
+Last upadted 09/15/2009
+==================================================================================
+
+
+Lines of Code:
+
+--------------------------------------------------------------------
+Release       No_of_Files       Total_LOC       Avg_LOC_per_file
+--------------------------------------------------------------------
+
+V1.0-RC1        352              74,449            211
+
+ ...
+
+
+V1.0-RC4        428              82,551            192
+
+V1.0-RC5        434              82,727            190
+
+V1.0-RC6        445              82,434            185
+
+V1.0-RC7        449              85,649            190
+
+
+==================================================================================

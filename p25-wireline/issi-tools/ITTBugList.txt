@@ -1,0 +1,1019 @@
+==================================================================================
+ITT Bug List Status
+==================================================================================
+
+07/27/2009 V1.0-rc7-101
+Bug Fixes are included in release.
+
+08/02/2009 V1.0-rc7-102
+Conitune to fix bugs reported against RC6.
+
+08/10/2009 V1.0-rc7-103
+Major changes: removal of call segment teardown in ALL testcases
+except the one required the teardown.
+
+09/01/2009 V1.0-rc7-106
+Testcase 12.17.x to 12.20.x are ready for test.
+
+10/05/2009 V1.0-rc8-102
+New split/tabbed trace log data viewer.
+
+10/16/2009 V1.0-rc8-103
+Expand emulator to be a standalone RFSS tester.
+
+11/24/2009 V1.0-rc9-102
+Apply the PTT message rules vertically and across RFSSes.
+
+01/11/2010 V1.0-rc10-103
+Activate the "Evalute Pass/Fail" processing and added pull-down
+menu to disable/enable Pass/Fail evaluation.
+
+03/28/2010 V1.0-rc10-107
+Re-factor the P25 stack to be independent library.
+
+==================================================================================
+
+Bug#    Status   Description                      
+----------------------------------------------------------------------------------
+#133    Fixed    Contact Header
+                 Also #135, #140, #142, #143, #154, #155, #167, #168, #182, #183
+
+
+#134    Fixed    u-radioinhibit attribute
+                 Also #136, #139, #141, #144, #156, #169
+
+#135    Fixed    Dup of #133
+
+#136    Fixed    Dup of #134
+
+#137    Fixed    a-group attribute
+
+#138    Fixed    Dup of #133
+
+#139    Fixed    Dup of #134
+
+#140    Fixed    Dup of #133
+
+#141    Fixed    Dup of #134
+
+#142    Fixed    Dup of #133
+#143    Fixed    Dup of #133
+
+#144    Fixed    Dup of #134
+
+#145    Fixed    Contact Header of Query Register
+
+-------------------------
+#146    Fixed    12.23.1 Need to remove BYE from F23 to F28.
+                 Testcase 13.1.1 shares the same code and need the BYE.
+
+#147    Fixed    12.23.1 Added F20 to F27 ao match Ref traces.
+
+#148    Fixed    12.23.1 Run traces added F20-F23.
+
+#149    Fixed    12.24.1 Fixed roaming, sdd 3 traces after F19.
+
+
+#150    Fixed    There is a BYE sip as required, but the subsequent are not
+                 <teardownCallSegmentOnError=false ? disabled teardownRequest>
+-----------------------
+#151    Fixed    12.25.x added 3 required messages.
+
+#152    Fixed    12.26.x rework the testscripts and topologyX.xml.
+
+#153    Fixed    12.13.1 Removed the message F11-f12.
+                 The last 2 messages is due to ccTeardownCallSegment.
+                 The teardwon is due to error condition. 12.13.1
+
+-----------------------
+#154    Fixed    Dup of #133
+#155    Fixed    Dup of #133
+
+#156    Fixed    Dup of #134
+
+----------------------------
+#157    ???      12.13.1 RouteHeader JAIN-SIP uses a list of routes in header.
+                 Can only be changed inside the JAIN-SIP
+                 Also #164, #170, #184, #192
+
+----------------------------
+#158    Fixed    c-duplex attribute
+                 Also #171, #176, #185
+
+#159    Fixed    P25 Boundary marker
+                 Also #173
+
+#160    ???      The ViaHeader is required and handled inside JAIN-SIP as a list of Via.
+                 The list contains a completed via header. Removal of "extra" via header
+                 will cause the SIP message truncation.
+                 Also #161, #172, #174, #177, #178, #186, #188
+                 #196, #198, #205, #206
+
+#161    ???      Dup of #160
+----------------------------
+
+#162    Fixed    Allow Header
+
+#163    Fixed    Warning Header
+
+#164    ???      The RouteHeader is required and handled inside JAIN-SIP as a list of routes.
+                 RouteHeader is added by JAIN-SIP, application doesnot have access/control.
+                 Removal of the extra route will cause problem - messages truncation.
+                 Also #184
+
+#165    ???      The ACK sip is processed inside JAIN-SIP, ITT has no access to ACK message.
+                 Thus cannot add timestamp into the message.
+                 Also #179, #180, #191, #192
+
+#166    Fixed    Error 606 and ACK message sequence.
+
+#167    Fixed    Dup of #133
+#168    Fixed    Dup of #133
+
+#169    Fixed    Dup of #134
+
+#170    ???      Dup of #164
+
+#171    Fixed    Dup of #158
+
+#172    ???      Dup of #160
+
+#173    Fixed    Dup of #159
+
+#174    ???      Dup of #160
+
+----------------------------
+#175    ???      This is NOT a bug. JAIN-SIP uses the compressed form of the
+                 Record-Route Header to store a list of routes.  It is a better
+                 way of representation (save bandwidth).
+                 See also #199
+
+----------------------------
+#176    Fixed    Dup of #158
+
+#177    ???      Dup of #160
+#178    ???      Dup of #160
+
+#179    ???      Dup of #165 ITT has no access to the ACK message, 
+                 thus cannot remove RouteHeader.
+
+#180    ???      Dup of #165
+
+#181    Fixed    12.13.5 Removed F11-F12.
+
+#182    Fixed    Dup of #133
+#183    Fixed    Dup of #133
+
+#184    ???      Dup of #164
+
+#185    Fixed    Dup of #158
+
+#186    ???      Dup of #160
+
+++++++++++++++++++++++++++++++
+#187    Fixed    The INVITE request header also affects the subsequent ACK message.
+                 <Check the ISSI spec for the ACK header>
+
+#188    ???      Dup of #160
+
+#189    Fixed    Allow header in SIP 403
+
+#190    Fixed    WarningHeader added.
+
+#191    ???      Dup of #165 (Optional RouteHeader)
+#192    ???      Dup of #165 (Timestamp inside ACK)
+
+-----------------------------
+Release 1.0-RC7-103
+-----------------------------
+
+#193    ???      Dup of #157. RouteHeader list.
+
+#194    Fixed    ContentDisposition header in INVITE
+
+#195    Fixed    Invite request header fixed, but it also affected the ACK.
+
+#196    ???      Dup of #160 ViaHeader
+
+#197    Fixed    Invite request header fixed, but it also affected the ACK.
+
+#198    ???      Dup of #160 ViaHeader
+
+#199    ???      Dup of 175, Record-Route
+
+-----------------------------
+Release 1.0-RC7-104
+-----------------------------
+#200    Fixed    c-pref:0 missing
+#201    Fixed    Order of content list. NOT a bug; just a cosmetic fix.
+#202    Fixed    Allow Header.
+
+#203    Fixed    Content-Disposition Header.
+
+#204    Fixed    c-resavil:1 missing.
+
+#205    ????     Dup of #160. ViaHeader list.
+#206    ????     Dup of #160. ViaHeader list.
+#207    ????     Dup of #175. Record-Route
+
+#208    Fixed    MIME header.
+
+#209    Fixed    c-pref:0 missing
+#210    Fixed    Dup of #204 c-resavil:1 missing.
+
+#211    Fixed    Dup of #201. Order of conetntent list.
+
+#212    ????     ACK request header. Note from developer is INCORRECTLY quoted. 
+                 The request host is due to the change in the INVITE request header.
+                 If they are changed to just p25dr, there will be SIP message problem
+                 later on in the SIP message flow (i.e. message truncation).
+
+#213    ????     Dup of #157. RouteHeader as a list.
+
+#214    Fixed    Dup of #204 c-resavil:1 missing.
+
+#215    Fixed    Removal of AllowHeader in SIP ACK.
+
+#216    Fixed    INVITE request header. It will affect the ACK. 
+                 See #212
+
+#217    Hold     ContactHeader. On hold. To be fixed when I know how.
+
+#218    Fixed    Content-Disposition.
+
+#219    Fixed    Allow Header.
+#220    Fixed    c-resavail:1.
+
+#221    ????     Dup of #212. Ack request header must consistent with INVITE.
+
+#222    Fixed    c-resavail:1.
+
+#223    ????     BYE Request header must consistent with INVITE.
+
+#224    Fixed    ContactHeader in Reg-DeReg message.
+
+#225    ????     12.25.x Message structures.
+
+............
+RC7-104
+............
+
+#226    Fixed    c:pref:1 in sip INVITE.
+
+#227    ????     Dup of Via Header List Issue.
+#228    ????     Dup of Via Header List Issue.
+#229    ????     Dup of Record-Route Header List Issue.
+
+#230    Fixed    ContentList order.
+
+#231    ????     Dup of Via Header List Issue.
+#232    ????     Dup of Via Header List Issue.
+#233    ????     Dup of Record-Route Header List Issue.
+
+
+#234    Fixed    c-resavail:1 in 200 OK.
+#235    Fixed    ContentList order.
+
+#236    ????     Dup of #212. Ack request header must consistent with INVITE.
+#237    ????     Dup of Record-Route Header List Issue.
+
+#238    Fixed    c-resavail:1 in ACK sip.
+#239    ????     Dup of Via Header List Issue.
+#240    ????     Dup of Via Header List Issue.
+#241    ????     Dup of Record-Route Header List Issue.
+
+#242    Fixed    c-resavail:1 in INVITE, ITT explicit implemtation.
+#243    Fixed    ContentList order.
+
+#244    ????     Dup of Via Header List Issue.
+#245    ????     Dup of Via Header List Issue.
+
+#246    Fixed    Record-Route in 180 Rinnging message.
+#247    Fixed    AllowHeader in Ringing 12.1.1.1.
+#248    Fixed    ContactHeader reoved in Ringing message.
+
+#249    ????     Dup of Via Header List Issue.
+#250    ????     Dup of Via Header List Issue.
+#251    ????     Dup of Record-Route Header List Issue.
+
+............
+RC7-105
+............
+
+#252    Fixed    c-resavail:1 in 200 OK.
+#253    Fixed    c-resavail:1 in 200 OK.
+#254    Fixed    ContentList order.
+
+#255    ????     Dup of #212. Ack request header must consistent with INVITE.
+#256    ????     Dup of Route Header List Issue.
+#257    Fixed    c-resavail:1 in ACK sip.
+#258    Fixed    PTT-trace message log numbered.
+#259    Fixed    PTT-trace message log numbered.
+
+#260   -----     TBD Not yet
+#261    Fixed    PTT-trace message log numbered.
+#262   -----     TBD Not yet
+
+#263    ????     c-resavil:1 in INVITE message chain. <ITT explicits implementation>
+#264    ????     Dup of Via Header List Issue.
+#265    ????     Dup of Via Header List Issue.
+#266    ????     Dup of Record-Route Header List Issue.
+#267    ????     ViaHeader follows the syntax of 200 OK, which is affected by the 
+                 Host of corresponding INVITE. Dup of 244.
+#268    ????     Dup of Via Header List Issue.
+#269    Fixed    Record-Route in 180 Rinnging message.
+#270    Fixed    ContactHeader removed in Ringing message.
+
+#271    ????     Dup of Via Header List Issue.
+#272    ????     Dup of Via Header List Issue.
+#273    ????     Dup of Record-Route Header List Issue.
+#274    Fixed    Add c-pref:1 in 200 OK message chain.
+#275    ????     Dup of ACK Request Header, ITT explicit implementation.
+#276    ????     Dup of Route Header List Issue.
+#277    Fixed    Add c-resavil:1 in ACK message chain.
+
+............
+RC7-106
+............
+
+#278   Fixed     SIP messages missing 2 additional messages.
+#279   Fixed     Complete F1-22 in distributed enviroment.
+
+#280   ????      Dup of ViaHeader List Issue.
+#281   Fixed     c-pref:1 in second INVITE.
+#282   ????      Dup of ViaHeader List Issue.
+#283   ????      Dup of Record-Route Header List Issue.
+#284   Fixed     c-pref:0 in third INVITE.
+#285   ????      Dup of ViaHeader List Issue.
+#286   ????      Dup of ViaHeader List Issue.
+#287   ????      Dup of Record-Route Header List Issue.
+#288   Fixed     c-pref:0 in third SIP 200 OK.
+#289   ????      SIP ACK request header depends on INVITE. (explicit form).
+#290   ????      Dup of Route Header List Issue.
+
+#291   Fixed     Syntax of INVITE request header mesage.
+#292   Fixed     Syntax of ContactHeader in INVITE mesage.
+#293   Fixed     Added Content Disposition Header in INVITE.
+#294   ????      ITT implementation of explicit c-pref:1.
+#295   ????      SIP ACK request header depends on INVITE. (explicit form).
+#296   ????      SIP ACK request header depends on INVITE. (explicit form).
+
+#297   Fixed     Complete messages F1-F22 in distributed environment.
+#298   Fixed     SIP Messages are completed.
+#299   -----     TBD Not yet
+
+#300   ????      SIP BYE request header depends on INVITE. (explicit form).
+#301   Fixed     Remove RouteHeader in first BYE message.
+#302   Fixed     Remove RouteHeader in second BYE message.
+
+
+..............
+RC8-101
+..............
+#xxx   Fixed     Multiple De-Registar message in 12.23.x to 12.26.x testcases.
+#225   Fixed     12.25.x c-pref:0 and c-pref:1 in the 3rd INVITE message.
+
+#260   Fixed     PTT traces incorrect in testcase 14.1.1.
+#262   Fixed     PTT traces in Test Run.
+
+..............
+RC8-102
+..............
+#xxx   Fixed     EADS- check if host is emulated before PingHost.
+#xxx   New       Expand the emulator to be standalone tester.
+
+..............
+RC8-103
+..............
+#303   Fixed     Contact header in de-register message.
+#304   Fixed     Contact header in 200 OK message.
+
+#305   ????      Remove F3-F4 in 15.2.x [may impact other testcase]
+
+#306   Fixed     Contact header in 200 OK message.
+#307   Fixed     Explicit r-force and r-confirm in Register-Query
+                 [must apply globally accross all messages]
+
+#308   Fixed     Explicit r-force:0 in 16.4.x. (Must apply globally)
+#309   Fixed     Add additional test case for 4.3.x.
+
+#310   Fixed     Warning Header in 4.4.x.
+#311   Fixed     Explicit r-presece:0 in 4.4.x. (Must apply globally)
+#312   Fixed     Explicit r-presece:0 in 4.2.x.
+
+#313   ????      Due to error 403, the JAIN-SIP will response ACK sip.
+                 ITT has no control/access of the ACK sip.
+#314   ????      ITT has not access to ACK sip, thus cannot add timestamp
+
+#315   ????      Due to error 403, the JAIN-SIP will response ACK sip.
+                 ITT has no control/access of the ACK sip.
+
+#316   ????      ITT has not access to ACK sip, thus cannot add timestamp
+
+#317   ????      Dup of Via Header list.
+#318   ????      Dup of Via Header list.
+#319   ????      Use explicit ACK Request Header.
+
+..............
+#320   ????      Dup of #165. No access to ACK sip to remove RouteHeader.
+#321   ????      Dup of #165. Timestamp in ACK after error.
+#322   ????      Dup of #165. No access to ACK sip to remove RouteHeader.
+#323   ????      Dup of #165. Timestamp in ACK after error 403.
+
+..............
+RC9-101
+..............
+#324   Fixed     Testcase 12.12 number of sub-tests.
+
+#325   ????      Testcase 12.12.x Max-Forwards 69 instead of 70. 
+                 The INVITE is has Max-Fowards of 69. It matches INVITE.
+                 ITT has no access to ACK message due to 403 Forbidden.
+
+#326   Fixed     Testcase 4.5 explicit r-presence:0. Must apply globally.
+
+#327   Fixed     Testcase 4.5 needs 2 sub-tests 4.51, 4.5.2.
+
+#328   Fixed     Number of sub-test case in 8.2.x.
+
+#329   ????      Dup of Via Header List Issue. 403 Forbidden message.
+#330   ????      Dup of Via Header List Issue. 403 Forbidden message.
+
+#331   TBD       Request Header in ACK f3.001.00001.p25dr should be f2.....
+
+#332   ????      RouteHeader ITT has no access to ACK message due to 403.
+
+#333   ????      Dup of #325. Max-Forwards 69 instead of 70. 
+                 The INVITE is has Max-Fowards of 69. It matches INVITE.
+                 ITT has no access to ACK message due to 403 Forbidden.
+
+#334   ????      Dup of #165. Timestamp in ACK after error 403. Test 12.19.1
+
+#335   ????      Dup of RouteHeader issue. Test 12.19.1
+#336   ????      Dup of Timestamp issue is ACK sip.
+
+#337   Fixed     Add a testcase for 12.19.3.
+
+..............
+RC9-102
+..............
+#???   Fixed     Apply PTT messages rules vertically and horizontally.
+
+#338   Fixed     Rework the 12.9.1 and 12.9.2.
+#339   Fixed     Remove testcase 12.9.3.
+#340   Fixed     SDP content order of attributes
+
+..............
+RC10-101
+..............
+#341   Fixed     Rework the Pass/Fail criteria and methodology.
+#342   Fixed     Fix duplicate testcase 7.1.x.
+
+#343   ????      Dup of Via Header issue.
+#344   Fixed     Max-Forwards header of CANCEL in 12.18.1-12.18.2
+
+#345   ????      Dup of Via Header issue.
+#346   ????      Dup of Route Hedare issue.
+#347   ????      Dup of timestamp issue.
+#348   ????      Dup of SIP ACK Header issue.
+#349   ????      Dup of Route Hedare issue.
+#350   ????      MaxForwards in SIP ACK. ITT has no access to ACK.
+#351   ????      Dup of timestamp issue.
+
+#352   Fixed     No of sub-test in 12.18.1-2.
+
+#353   ????      Bad IP Layer checksum. Need more info and data.
+#354   ????      MSC wrong sequence of SIP message. 
+                 User needs to sync system clock of RFSSes.
+
+-----------------
+#355   Fixed     4.4.x Remove r-force and r-confirm
+                 
+#356   Fixed     Testcase 9.7.1 involves 2 RFSSes.
+#357   Fixed     Fixed testcase 9.8.1 and 9.8.2.
+
+
+#358   Fixed     The testcase 12.20.x had been reworked to match spec.
+                 Added CANCEL, 200 OK, Request Term, ACK messages.
+                 NOTE: there are two possible outcomes. If the CANCEL
+                 is processed in time, there will be no 200 OK, Req Term...
+                 Otherwise you will seen all messages.
+#359   Fixed     The testcase 12.20.x had been reworked to match spec.
+#360   Fixed     The testcase 12.20.x had been reworked to match spec.
+                 Added a new testcase 12.20.4.
+
+
+#361   ????      Dup of RouteHeader issue.
+#362   ????      Dup of Timestamp issue.
+#363   Noop      The 100 Trying is optional per Spec CACC.
+
+#364   Noop      The last boundary is required per 3.5.6 BACA-A.
+                 --P25 ISSI body boundary--
+                 "The boundary delimiter line following the last body part
+                 is identical to the previous boundary delimiter lines, with 
+                 the addition of "--" after the character string."
+                 EADS parser should terminate after the "--" marker.
+
+#365   TBD       Capture stop cannot be reproduced. Need more info 
+                 and supporting documents to demostrate the problem.
+
+#366   TBD       20.2.1 the first set SIP is associated with REGISTER.
+
+..............
+RC10-102
+From here onward, the duplicate bugs will not be listed.
+..............
+
+#368   Fixed     Decimal value 72. <RTP internal problem>
+#369   Fixed     Remove the Transmit Level field.
+
+#370   Fixed     Terminology fixes in ISSI Block Types.
+#371   Fixed     Order of payload block 0, 1, 2, 3.
+
+#372   Noop      Not a bug. Only the first two PTT Progress message are shown.
+                 The subsequent duplicate PTT Progress messages are not shown.
+                 The PTT Transmit end sequence will provide info of duplicate 
+                 PTT Transmit messages e.g.[3..4..59].
+
+#373   Fixed     PTT Progress message: NetworkID length from 6 to 4 hex.
+#374   Fixed     12.6.x Add missing testcases.
+
+#375   Fixed     Add Ringing on AC condition.
+#376   Fixed     12.16.x Remove r-force and r-confirm.
+
+..............
+RC10-103
+..............
+#381   Fixed     Change warning codes from 1F to 23.
+
+#390   Fixed     Testcase 17.2.x.
+#391   Fixed     12.6.x Remove r-force and r-confirm
+#392   Fixed     12.6.x Remove r-force and r-confirm
+
+----   -----     Activate the "Evaluate Pass/Fail" processing.
+
+#405   Fixed     12.6.x Decrement max forwards.
+#406   Fixed     12.6.x Decrement max forwards.
+#407   Fixed     Remove the initial REGISTER/OK messages.
+#408   Fixed     Remove r-force and r-confirm
+
+#---   -----     TraceAnalyzer - remove Emulated column.
+
+..............
+RC10-104
+..............
+#411   Fixed     Number of subtests for 12.15.x.
+#412   Fixed     Removed SIP Register message for 12.15.x.
+#413   Fixed     12.15.x Remove r-force and r-confirm
+#415   Fixed     12.15.x Replace SIP 403 with SIP 404 message.
+
+
+#421   Fixed     13.2.x Mutiple issues.
+#422   Noop      13.2.x SIP BYE request header.
+#423   Fixed     12.2.x Max forward.
+#424   Fixed     12.2.x Max forward.
+
+..............
+RC10-105
+..............
+#425   Fixed     12.20.x SIP messages sequences multiple 200 OK.
+#426   Fixed     12.20.x SIP messages sequences correction.
+                 Note: may not see Request Terminated message if
+                 transaction already terminated in JAIN-SIP.
+                 <based on timing of executions>
+#427   Fixed     12.22.x Remove Session pogress message from testcase.
+#428   Fixed     12.22.x SIP messages sequences correction.
+
+#429   Fixed     12.10.x Remove two messages from test.
+#432   Fixed     12.10.x Reason code and description in warning.
+#436   Fixed     12.10.x Max forward in ACK.
+
+#439   Fixed     14.3.x PTT heartbeat message.
+#440   Fixed     14.3.x E-bit in description
+#441   Fixed     14.3.x Timestamp 
+#442   Fixed     14.2.x E-bit in description
+#443   Fixed     14.2.x Timestamp 
+#444   ????      14.2.x Not a bug - PTT message sequence number.
+
+#445   Fixed     14.4.x RTP Heartbeat subtest cases.
+#446   Fixed     14.4.x PTT heartbeat message & interval. 
+#447   Fixed     14.4.x E-bit in description
+#448   Fixed     14.4.x Timestamp 
+
+..............
+RC10-106
+..............
+#449   Fixed     14.5.x Change c-pref:0 DC/DC
+#458   Fixed     12.5.x Max-Forwards.
+#459   Fixed     12.5.5 Changes test subcases[5-8] and DC/DC.
+#460   Fixed     12.5.5 Unprotected - explicit c-protected.
+#461   Fixed     12.5.5 Change c-pref:0 DC/DC
+
+#473   ????      12.22.x  SIP ACK Max-Forwards cannot be accessed by ITT.
+#474   ????      12.22.x  SIP ACK Max-Forwards cannot be accessed by ITT.
+
+#478   Fixed     12.7.x.x Number of subtestcases.
+#479   Fixed     12.7.x.x SIP message sequence. 
+#480   Fixed     12.7.x.x SIP message sequence. 
+#481   Fixed     12.3.x.x Number of subtestcases.
+
+#491   Fixed     12.3.1.x Explicit c-duplex:1
+#492   Fixed     12.3.1.x Record-Route format.
+#493   Fixed     12.3.1.x Route format.
+#494   Fixed     12.3.1.x Max-Forwards
+#495   Fixed     12.4.x.x Number of subtestcases.
+#496   Fixed     12.4.x.x Explicit c-duplex:1
+#497   Fixed     12.4.x.x Explicit c-duplex:1
+#498   Fixed     12.4.x.x Explicit c-duplex:1
+#499   Fixed     12.4.x.x Explicit c-duplex:1
+#502   Fixed     12.4.x.x Record-Route format.
+#504   Fixed     12.4.x.x Record-Route format.
+#507   Fixed     12.4.x.x Record-Route format.
+#510   Fixed     12.4.x.x Route format.
+#511   Fixed     12.4.x.x Max-Forwards
+
+..............
+RC10-107
+..............
+#512   Fixed     12.8.x.x Number of subtestcases.
+#513   Fixed     12.8.x.x Use explicit c-duplex.
+
+#514   TBD       12.8.x.x SIP Ref and Test Messages.
+#515   TBD       12.8.x.x SIP Ref and Test Messages.
+#516   Fixed     12.8.x.x SIP Ref and Test Messages headers.
+                 Except the ACK message after the 603 Decline.
+
+#517   Fixed     12.3.x test layout.
+#518   Fixed     12.4.x test layout.
+
+#---   -----     SIP/PTT sequence diagram cleanup.
+                 Remove zoom and rtf supports.
+
+..............
+RC10-108
+..............
+#519   Fixed     12.10.x.x test layout - RFSS roles.
+#520   Fixed     12.12.x.x test layout - RFSS roles.
+#521   Fixed     9.1.x test layout - RFSS roles.
+#522   Fixed     11.1.x test layout - RFSS roles.
+
+#523   Fixed     12.19.x test layout - RFSS roles.
+#524   Fixed     19.1.x test layout - RFSS roles.
+#525   Fixed     12.15.x test layout - RFSS roles.
+                 Remove testcase 12.15.4.
+#526   Fixed     12.15.x test layout - RFSS roles.
+
+
+#527   TBD       20.2.x SIP ref message duplicated. Not a problem.
+                 F1-F5 are setup. F6-F11 are RE-INVITE test messages.
+
+#528   Fixed     9.5.x add a new testcase.
+#529   Fixed     9.5.x test layout - RFSS roles.
+#530   Fixed     18.1.x test layout - RFSS roles.
+#531   Fixed     18.2.x test layout - RFSS roles.
+#532   Fixed     9.9.[1-3] test layout - RFSS roles.
+#533   Fixed     9.9.[4-6] test title.
+#534   Fixed     9.9.[4-6] test layout - RFSS roles.
+
+#535   Fixed     12.6.x testcases - AC/DC.
+#536   Fixed     11.8.x test layout- RFSS roles.
+#537   Fixed     12.18.x test layout- RFSS roles.
+#538   Fixed     12.15.x Warning code for Unknown Called SU.
+#539   Fixed     8.1.x Remove 8.1.3 testcase.
+
+#540   Noop      13.2.x ACK Request headeri: will not fix, use long format.
+#541   Fixed     13.2.x reverse the order of Route header from orig,dest to
+                 dest,orig in formatter. If reverse in SIP request,
+                 the message sequences will screw up in JAIN-SIP.
+
+#542   Fixed     13.2.x set c-duplex:0.
+#543   ?????     12.10.1 Max-Forward, no access to ACK after the 
+                 error (non 200 OK) response.
+
+#545   Fixed     12.5.x[1-8] RouteHeader - reverse to dest,orig.
+#546   Fixed     12.5.x[1-8] set c-duplex:0.
+
+#547   Fixed     12.20.x[1-4] set c-duplex:0.
+
+----   Fixed     Testcase 4.5.2 failed to run due to bad testscript.
+
+#557   Fixed     12.7.x[1-4] SIP message sequences.
+#558   Fixed     12.7.x[1-4] SIP message sequences.
+#559   Fixed     12.7.x[1-4] remove duplicate 487 Request Terminated.
+
+..............
+RC10-109
+..............
+#560   Fixed     12.22.x SIP messages sequence, dup Busy here.
+#561   Fixed     12.22.x SIP messages sequence, dup Busy here.
+
+
+#562   TBD       12.20.x[1-4] SIP message sequence.
+#563   TBD       12.20.x[1-4] SIP message sequence.
+#564   TBD       12.20.x[1-4] SIP message sequence.
+                 Fixed as much as possible, may still experience timing 
+                 effect leading to diff message sequences from run to run.
+
+#565   Fixed     12.7.x[1-4] set c-duplex:0.
+#566   Fixed     12.7.x[1-4] 180 Ringing Record-Route.
+
+
+#577   Fixed     12.8.x[1-4] set c-pref:0 for 2nd set of SIP INVITE 
+                 with higher priority and the 200 OK messages.
+
+#578   Fixed     12.8.x[1-3] set c-duplex:0 in INVITE and 200 OK.
+#579   ????      12.8.x[1-3] duplicate SIP ACK after error 603 Decline.
+
+#580   Fixed     12.6.x[1-3] SIP message sequence, rework test scripts.
+#581   Fixed     12.6.x[1-3] SIP message sequence, rework test scripts.
+
+#582   Fixed     12.23.x test layout- RFSS roles.
+#583   Fixed     12.25.x test layout- RFSS roles.
+#584   Fixed     12.24.x test layout- RFSS roles.
+#585   Fixed     12.26.x test layout- RFSS roles.
+
+
+..............
+RC10-110
+..............
+
+#586   Fixed     12.18.x remove SIP message on 3rd call leg.
+#587   TBD       12.18.3 SIP 481 call leg/transaction doesnot exist message
+                 due to timing issue. Cannot fix.  Repeat "Generate Trace" 
+                 several times.
+
+#588   Fixed     18.1.x add g-agroup attribute.
+#589   TBD       18.1.x remove c-resavil in the 2nd INVITE.
+                 Cannot remove due to explicit c-resavail requirement.
+                 It is optional....
+
+#590   Fixed     10.1.x add g-agroup attribute.
+#591   Fixed     10.1.x direction of SIP INVITE, OK and ACK.
+#592   Fixed     10.1.x SIP BYE URI - using p25dr header.
+#593   Fixed     17.2.x add g-agroup attribute.
+#594   Fixed     17.2.x remove c-presence attribute.
+#595   Fixed     17.2.x SIP message sequence, c-force:1 attribute.
+
+#596   Fixed     17.3.x remove c-presence attribute.
+#597   Fixed     17.3.x SIP message sequence, Pay attention to order of RFSS.
+                 (Use traceOrder to fix the roder RFSSes). 
+
+#598   Fixed     11.1.x RTP Header Payload type from 72 to 100.
+#599   Fixed     11.1.x PTT Transmit Progress traces are correct,
+                 Pay attention to the order of RFSSes in diagram.
+                 (Use traceOrder to fix the order of RFSSes).
+#600   Fixed     20.3.x add g-agroup attribute to 200 OK.
+#601   Fixed     20.3.x add c-groupcalltype:1 in SIP INVITE.
+#602   Fixed     20.3.x add Route Header in SIP re-INVITE.
+
+............
+#603   Fixed     11.2.x change Payload type from 72 to 100.
+#604   Fixed     11.2.x change no of RFSSes from 3 to 2.
+
+#605   Fixed     20.5.x fix direction of 1st SIP INIVTE, 200 OK and ACK.
+#606   Fixed     20.5.x add g-agroup attribute to 200 OK.
+#607   Fixed     20.5.x change priority to 8;a.
+#608   Fixed     20.5.x add Route Header in SIP re-INVITE.
+#609   Fixed     20.5.x set explicit c-resavail:0 on INVITE and 200 OK.
+#610   Fixed     20.5.x set explicit c-groupcalltype:0 on INVITE.
+                 This will apply globally.
+
+#611   Fixed     20.4.x add g-agroup attribute to 200 OK.
+#612   Fixed     20.4.x change priority to 8;a.
+#613   Fixed     20.4.x set explicit c-resavail:0 on INVITE and 200 OK.
+#614   Fixed     20.4.x set explicit c-groupcalltype:0 on INVITE.
+                 This will apply globally.
+............
+#615   Fixed     19.1.x set VBB in PTT Transmit Progress to value (1-3).
+#616   Fixed     19.1.x reformat IMBE Voice block index and frameType.
+#617   Fixed     19.1.x change Payload Header timestamp 160, 320...
+#618   Fixed     19.1.x change format of E1 and Reserved fields.
+#619   ?????     19.1.x Out of order of PTT Transmit Progress in 2nd leg.
+                 This could be caused by out-of-sync time in RFSSes.
+
+............
+#620   Fixed     20.6.x add g-agroup attribute to 200 OK.
+#621   Fixed     20.6.1 SIP message direction of first set INVITE/OK/ACK.
+#622   Fixed     20.6.2 SIP message direction of first set INVITE/OK/ACK.
+#623   Fixed     20.6.x RTP port number of 1st INVITE.
+#624   Fixed     20.6.x RTP port number of 1st 200 OK.
+#625   Fixed     20.6.x set explicit c-resavail:0 on INVITE and 200 OK. ??
+#626   Fixed     20.6.x set explicit c-groupcalltype:0 on INVITE.
+#627   Fixed     20.6.x Fix the direction of 1st INVITE/OK/ACK messages.
+
+............
+#628   Fixed     11.1.x change PTT VBB from 0 to 3.
+#629   Fixed     11.1.x change PTT IBME Frame Type description.
+#630   Fixed     11.1.x change PTT timestamp offset.
+#631   Fixed     11.1.x change format of E1 and Reserved fields.
+
+#632   Fixed     12.21.x change c-duplex from 1 to 0.
+#633   Fixed     12.13.[1-4] change c-duplex from 1 to 0.
+#634   Fixed     12.13.[5-8] change c-duplex from 1 to 0.
+#635   Fixed     12.13.[5-8] explicit c-protected:0.
+#636   Fixed     12.13.[1-4] delete subtest 12.13.4.
+#637   Fixed     12.13.[1-3] test layout.
+#638   Fixed     12.13.[5-8] delete subtest 12.13.8.
+#639   Fixed     12.13.[4-6] test layout.
+----   Fixed     12.14.x test layout similar to 12.15.x.
+
+..............
+RC10-110
+..............
+#640   Fixed     9.9.x[1-3] add g-agroup attribute to 200 OK.
+#641   Fixed     9.9.x[1-3] set explicit c-resavail:0 on INVITE and 200 OK.
+#642   Fixed     9.9.x[1-3] set explicit c-groupcalltype:0 on INVITE.
+#643   Fixed     9.9.x[1-3] set explicit c-protected:1 on INVITE.
+#644   Fixed     9.9.x[1-3] change SIP message to multi-part.
+
+#645   Fixed     9.9.x[4-6] add g-agroup attribute to 200 OK.
+#646   Fixed     9.9.x[4-6] set explicit c-resavail:0 on INVITE and 200 OK.
+#647   Fixed     9.9.x[4-6] set explicit c-groupcalltype:0 on INVITE.
+#648   Fixed     9.9.x[4-6] set explicit c-protected:0 on INVITE.
+#649   Fixed     9.9.x[4-6] set explicit c-protected:0 on 200 OK.
+#650   Fixed     9.9.x[4-6] change SIP message to multi-part.
+
+#651   Fixed     11.5.x PTT message sequences Ref and Test.
+#652   Fixed     11.7.x PTT message sequences Ref.
+#653   Fixed     11.7.x PTT message sequences Test.
+
+----   Fixed     9.1.x  add g-agroup attribute to 200 OK. VV
+                 Remove c-groupcalltype:0 in 200 OK.
+----   Fixed     9.2.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     9.3.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     9.4.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     9.5.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     9.6.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     9.7.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     9.8.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     10.1.x add g-agroup attribute.
+----   Fixed     10.2.x add g-agroup attribute.
+----   Fixed     11.1.x add g-agroup attribute.
+----   Fixed     11.2.x add g-agroup attribute.
+----   Fixed     11.3.x add g-agroup attribute.
+----   Fixed     11.4.x add g-agroup attribute.
+----   Fixed     11.8.x add g-agroup attribute.
+----   Fixed     11.9.x add g-agroup attribute.
+
+----   Fixed     17.4.x  add g-agroup attribute to 200 OK. VV 
+----   Fixed     18.1.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     18.2.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     19.1.x  add g-agroup attribute to 200 OK. VV
+----   Fixed     20.1.x  add g-agroup attribute to 200 OK. VV
+
+++++ need to verify
+
+............
+#654   Noop      20.2.x SIP ref message duplicated. Cannot fix.
+                 F1-F5 are setup. F6-F11 are RE-INVITE test messages.
+                 <This is just a testcase implementation of RFC-3264.>
+                 ReINVITE is sent due to RTP resource is not available
+                 initially.
+
+
+#655   Fixed     20.2.x add g-agroup attribute to 200 OK.
+#656   Fixed     20.2.x set explicit c-groupcalltype:0 on INVITE.
+#657   Fixed     20.2.x set explicit c-resavail:0 on INVITE and 200 OK.
+#658   Fixed     20.2.x change SIP message to multi-part.
+#659   Fixed     20.2.x set explicit c-protected:0 on INVITE and 200 OK.
+............
+#660   Fixed     9.10.x[1-3] number of testcases. remove 9.10.3.
+#661   Fixed     9.10.x[1-3] test layout - RFSS roles.
+#662   Fixed     9.10.x[4-6] number of testcases. remove 9.10.6.
+#663   Fixed     9.10.x[4-6] test layout - RFSS roles.
+
+#664   Fixed     9.1.x add g-agroup attribute to 200 OK.
+#665   Fixed     9.1.x set explicit c-resavail:0 on INVITE and 200 OK.
+#666   Fixed     9.1.x remove explicit c-groupcalltype:0 on 200 OK.
+#667   Fixed     9.1.x SIP message sequences. Broadcast INVITE before 200 OK.
+
+..............
+RC10-111
+..............
+#668   Fixed     18.1.x remove explicit c-groupcalltype:0 on 200 OK.
+
+#669   Fixed     18.1.x SIP message sequences. Colliding call may be
+                 runtime dependent.
+#670   Fixed     9.6.x SIP message sequences. Colliding call may be
+                 runtime dependent.
+#671   Fixed     9.6.x add new testcase.
+#672   Fixed     9.6.x RFSS test roles.
+#673   Fixed     9.6.x add g-agroup attribute to 200 OK.
+#674   Fixed     9.6.x set explicit c-resavail:0 on INVITE and 200 OK.
+#675   Fixed     9.6.x remove explicit c-groupcalltype:0 on 200 OK.
+
+#676   Fixed     9.5.x SIP Refs message sequences. Colliding call may be
+                 runtime dependent.
+#677   Fixed     9.5.x SIP Test message sequences. Colliding call may be
+                 runtime dependent.
+#678   Fixed     9.5.x add g-agroup attribute to 200 OK.
+#679   Fixed     9.5.x set explicit c-resavail:0 on INVITE and 200 OK.
+#680   Fixed     9.5.x remove explicit c-groupcalltype:0 on 200 OK.
+
+#681   Fixed     11.4.x PTT message sequence for mute/unmute.
+#682   Fixed     11.4.x number of sub-testcases.
+#683   Fixed     11.4.x testcase role of RFSSes.
+
+...........
+#684   Fixed     9.5.x Direction of SIP 603 Decline.
+#685   Fixed     9.5.x SIP ACK after 603 Decline.
+#686   Fixed     17.2.x remove r-force and r-confirm in 2nd SIP Register.
+                 see also #595
+#687   Fixed     20.5.x set c-resavail:0 in 2nd SIP 200 OK. (already is).
+
+..............
+RC10-112
+..............
+
+#688   Fixed     9.2.x Remove REGISTER/200 OK messages.
+#691   Fixed     9.3.x Remove REGISTER/200 OK messages.
+
+#694   Noop      9.4.x Cannot remove REGISTER/200 OK messages.
+                 <It is required to establish the pre-condition for Home RFSS>
+
+#697   Fixed     9.7.x Send Cancel OK before Request Terminated.
+
+#698   Noop      9.7.x ITT has no access to 100 Trying message which
+                 is automatically generated by JAIN-SIP
+#701   Noop      9.8.x ITT has no access to 100 Trying message which
+                 is automatically generated by JAIN-SIP
+
+#704   Fixed     10.2.x Change the direction of INVITE, OK, ACK messages.
+#705   Fixed     10.2.x Change URI of BYE to p25dr.
+
+--------------
+#706   Fixed     20.7.x 2nd INVITE request header using p25dr.
+#707   Fixed     20.7.x set c-resavail:0 in 2nd SIP 200 OK.
+
+
+#708   Noop      20.8.x RTP port in 1st INVITE is part of initial setup.
+                 F6-F8 are the actual test messages.
+
+#709   Fixed     20.8.x set c-resavail:0 in 2nd SIP 200 OK.
+#687   Fixed     20.5.x set c-resavail:0 in 2nd SIP 200 OK. (rework).
+#710   Fixed     20.1.x set c-resavail:0 in 2nd SIP 200 OK.
+
+..............
+RC10-113
+..............
+
+#710   Noop      9.10.1 No access to ACK message due to 403 error.
+#713   Fixed     9.10.3 explicit c-protected:0
+#714   Fixed     18.2.1 g-agroup.
+#715   Fixed     15.1.1 added contact header in 200 OK.
+
+#717   Fixed     9.1.1 test procedure description.
+#718   Fixed     9.3.1 test procedure description.
+#719   Fixed     9.4.1 test procedure description.
+#720   Fixed     9.5.1 test procedure description.
+
+----   Fixed     Globally add RFSS role in testcase lists.
+----   Fixed     Globally replaces testcase directory with descrption.
+
+..............
+RC10-114
+..............
+#721   Fixed     16.1.x explicit r-force and r-confirm.
+#722   Fixed     16.4.x explicit r-force and r-confirm.
+#723   Fixed     12.9.x SIP message: remove REGISTER and 200 OK.
+#724   Fixed     12.9.x explicit c-duplex.
+#725   Fixed     12.9.x modify 403 Forbidden message.
+                 Calling SU not registered.
+#726   Fixed     12.8.x Not fixed: c-pref setting under AC/DC, DC/DC.
+#727   Fixed     12.8.x explicit c-duplex. 
+
+..............
+xxxx   Fixed     12.23.x/12.25.x 600 Not Acceptable, c-duplex:0, Allow.
+xxxx   Fixed     12.24.x/12.26.x 600 Not Acceptable, c-duplex:0, Allow.
+xxxx   Fixed     15.2.x add skipRegister option.
+xxxx   No-op     12.7.1.x Dup Request Terminated due to timing/retry.
+
+..............
+RC10-115
+..............
+xxxx   Fixed     Testcases: title and role description.
+xxxx   Fixed     20.8.x HB interval, RTP port=0
+xxxx   Fixed     14.3.x HB interval
+xxxx   Fixed     14.4.x Heartbeat query opposite directions.
+xxxx   Fixed     Heartbeat interval: 10.1.x, 10.2.x, 20.6.x, 20.7.x
+
+
+++++++++++++++++++++++++++++++
+Legend:
+
+Bugs with ??? status are not fixed due to the reasons described.
+
+ContentList explicit attributes are ITT implementation choice.
+
+----------------------------------------------------------------------------------
+<!-- set g-agroup -->
+<groupprofile>
+g-agroup:0B4561A27271
+</groupprofile>
+
+-----------------------------
+<!-- set c_resavail: 0 -->
+<rfssconfig rfssName="rfss_2" id="servedRfss" rfResourcesAvailable="false"/>
+<rfssconfig rfssName="Xrfss_1" rfResourcesAvailable="false"/>
+<rfssconfig rfssName="rfss_2" rfResourcesAvailable="false"/>
+<rfssconfig rfssName="rfss_3" rfResourcesAvailable="false"/>
+----------------------------------------------------------------------------------

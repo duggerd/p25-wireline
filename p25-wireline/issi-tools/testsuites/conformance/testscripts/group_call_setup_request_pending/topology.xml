@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<rfssconfig rfssName="Xrfss_1" isAdvancedRtpResourceManagementSupported="true"/>
+<rfssconfig rfssName="rfss_2" groupCallInviteProcessingTime="2" isAdvancedRtpResourceManagementSupported="true"/>
+
+<suconfig suName="su_11" id="callingSu"/>
+<suconfig suName="su_22" id="callingSu2"/>
+
+
+<!-- A definition for a group configuration. This group has two subscribers. -->
+<sgconfig groupName="group_1" id="calledGroup">
+<subscriber suName="su_11"/>
+<subscriber suName="su_22"/>
+</sgconfig>
+
+</conformance-test-config>

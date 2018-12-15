@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	traceGenerationTime="10"
+>
+
+<rfss-script 
+	id="rfss-script"
+	rfssName="unknownSu:homeRfss"
+	method="doQuery"
+	description="Do a home query for unknownSu. "
+>
+<trigger
+	type="time"
+	value="5"
+/>
+<script>
+def doQuery():
+	global rfss
+	rfss.suHomeQuery("unknownSu","noforce","noconfirm")
+</script>
+</rfss-script>
+
+</test-script>

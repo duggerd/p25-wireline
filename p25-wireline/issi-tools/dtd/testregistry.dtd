@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Test registry summarizes all test cases available for conformance testing. 
+It serves as a categlog of test cases.
+
+@title Test Registry Specification
+@root testregistry
+-->
+
+<!ELEMENT testregistry (testcase*) >
+<!--
+@attr testcase defines the test case
+ -->
+<!ELEMENT testcase (description?) >
+
+<!--
+@attr description is the detailed description of test case
+ -->
+<!ELEMENT description (#PCDATA) >
+
+<!--
+@attr testDirectory is the test case directory 
+@attr testNumber is the test number in the ISSI specification
+@attr topology defines the test topology.xml file to be used
+@attr category is the test case category
+@attr testClass is the test class: Conformance or User Defined Profile
+
+ -->
+<!ATTLIST testcase
+	testDirectory CDATA #REQUIRED
+	testNumber  CDATA   #REQUIRED
+	testTitle   CDATA   #IMPLIED
+	topology    CDATA   #IMPLIED
+	category    CDATA   #IMPLIED
+	testClass   CDATA   #IMPLIED
+	role        CDATA   #IMPLIED
+>
+

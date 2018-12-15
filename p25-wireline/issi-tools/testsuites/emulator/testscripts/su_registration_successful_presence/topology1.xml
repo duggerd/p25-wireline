@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<!-- SU is described by the following -->
+<rfssconfig rfssName="rfss_2"/>
+
+<suconfig id="registeringSu" suName="su_12" initialState="off"/>
+
+</conformance-test-config>

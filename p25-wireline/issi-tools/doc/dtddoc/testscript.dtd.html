@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>Event Driven Test Script Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>testscript.dtd</code></b>: <a href='testscript.dtd.html'>Elements</a> - Entities - <a href='testscript.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='testscript.dtd.html' target='_top'>NO FRAMES</a></p><h1>Event Driven Test Script Specification</h1>
+<p>This is the Definition of the tags and attributes for the elements of
+the test script. The test script defines a set of event triggered tags
+and attributes for event driven scripts that are read by the ISSI
+test framework.
+A test script defines an event triggered set of actions. Event triggers
+are events (such as real-clock time, SIP or PTT message arrivals at
+an emulated RFSS) that trigger a scripting action. Scripting actions
+are specified using xml tags where ever possible so that parameters
+may be checked at the time the script is parsed. This reduces runtime
+errors. Following this design approach, all call setup actions are
+specified using xml tags. In addition we support actions to specify
+fragments of jython code (a Java implementation of Python). These
+fragments of jython code may invoke a set of functions specific to the
+RFSS or SU for which they are specified.</p><br />
+<a name='test-script'></a>
+<br /><table class='elementTitle' summary="test-script"><tr><td class='leftElementTitle'>
+&lt;test-script&gt;</td><td class='rightElementTitle'>
+Root element
+</td></tr></table>
+<p>The top level tag for the test script.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;test-script&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;test-script&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#group-call-setup-scenario'>group-call-setup-scenario</a></td><td>Any number</td></tr>
+<tr><td><a href='#post-condition'>post-condition</a></td><td>Any number</td></tr>
+<tr><td><a href='#rfss-script'>rfss-script</a></td><td>Any number</td></tr>
+<tr><td><a href='#roaming-scenario'>roaming-scenario</a></td><td>Any number</td></tr>
+<tr><td><a href='#su-script'>su-script</a></td><td>Any number</td></tr>
+<tr><td><a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a></td><td>Any number</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;test-script&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;test-script&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#test-script_generatePttTrace'>generatePttTrace</a></td><td>yes, no</td><td>no</td></tr><tr><td><a href='#test-script_generateSipTrace'>generateSipTrace</a></td><td>yes, no</td><td>yes</td></tr><tr><td><a href='#test-script_rtpMessageLog'>rtpMessageLog</a></td><td></td><td>logs/messagelog.ptt</td></tr><tr><td><a href='#test-script_sipMessageLog'>sipMessageLog</a></td><td></td><td>logs/messagelog.sip</td></tr><tr><td><a href='#test-script_testCompletionDelay'>testCompletionDelay</a></td><td></td><td>0</td></tr><tr><td><a href='#test-script_testName'>testName</a></td><td></td><td></td></tr><tr><td><a href='#test-script_traceGenerationTime'>traceGenerationTime</a></td><td></td><td>25</td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>((<a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a> | <a href='#group-call-setup-scenario'>group-call-setup-scenario</a> | <a href='#roaming-scenario'>roaming-scenario</a> | <a href='#su-script'>su-script</a> | <a href='#rfss-script'>rfss-script</a>)*, <a href='#post-condition'>post-condition</a>*)</p><a name='su-to-su-call-setup-scenario'></a>
+<br /><table class='elementTitle' summary="su-to-su-call-setup-scenario"><tr><td class='leftElementTitle'>
+&lt;su-to-su-call-setup-scenario&gt;</td><td class='rightElementTitle'>
+Child of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>The tag for setting up an SU to SU Call.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;su-to-su-call-setup-scenario&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;su-to-su-call-setup-scenario&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#trigger'>trigger</a></td><td>Only one</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;su-to-su-call-setup-scenario&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;su-to-su-call-setup-scenario&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#su-to-su-call-setup-scenario_calledSuName'>calledSuName</a></td><td></td><td></td></tr><tr><td><a href='#su-to-su-call-setup-scenario_callingSuName'>callingSuName</a></td><td></td><td></td></tr><tr><td><a href='#su-to-su-call-setup-scenario_cancelAfter'>cancelAfter</a></td><td></td><td>UNBOUNDED</td></tr><tr><td><a href='#su-to-su-call-setup-scenario_id'>id</a></td><td><i>Match the ID rules.</i></td><td></td></tr><tr><td><a href='#su-to-su-call-setup-scenario_isEmergency'>isEmergency</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#su-to-su-call-setup-scenario_isProtected'>isProtected</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#su-to-su-call-setup-scenario_isTalkSpurtForced'>isTalkSpurtForced</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#su-to-su-call-setup-scenario_isTerminatedByCalledServing'>isTerminatedByCalledServing</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#su-to-su-call-setup-scenario_talkSpurtSentBy'>talkSpurtSentBy</a></td><td></td><td></td></tr><tr><td><a href='#su-to-su-call-setup-scenario_terminateAfter'>terminateAfter</a></td><td></td><td>UNBOUNDED</td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#trigger'>trigger</a>)</p><a name='group-call-setup-scenario'></a>
+<br /><table class='elementTitle' summary="group-call-setup-scenario"><tr><td class='leftElementTitle'>
+&lt;group-call-setup-scenario&gt;</td><td class='rightElementTitle'>
+Child of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>The tag for setting up a group call. This specifies the attributes
+necessary for group call setup and teardown.
+NOTE: Some of these parameters affect the call setup params going
+out with the invite and others affect the INVITE Priority
+header.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;group-call-setup-scenario&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;group-call-setup-scenario&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#trigger'>trigger</a></td><td>Only one</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;group-call-setup-scenario&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;group-call-setup-scenario&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#group-call-setup-scenario_calledGroupName'>calledGroupName</a></td><td></td><td></td></tr><tr><td><a href='#group-call-setup-scenario_callingSuName'>callingSuName</a></td><td></td><td></td></tr><tr><td><a href='#group-call-setup-scenario_cancelAfter'>cancelAfter</a></td><td></td><td>UNBOUNDED</td></tr><tr><td><a href='#group-call-setup-scenario_id'>id</a></td><td><i>Match the ID rules.</i></td><td></td></tr><tr><td><a href='#group-call-setup-scenario_isConfirmed'>isConfirmed</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#group-call-setup-scenario_isEmergency'>isEmergency</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#group-call-setup-scenario_isProtected'>isProtected</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#group-call-setup-scenario_isTalkSpurtForced'>isTalkSpurtForced</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#group-call-setup-scenario_isTalkSpurtSentAfterCallSetup'>isTalkSpurtSentAfterCallSetup</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#group-call-setup-scenario_priority'>priority</a></td><td></td><td>1</td></tr><tr><td><a href='#group-call-setup-scenario_terminateAfter'>terminateAfter</a></td><td></td><td>UNBOUNDED</td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#trigger'>trigger</a>)</p><a name='roaming-scenario'></a>
+<br /><table class='elementTitle' summary="roaming-scenario"><tr><td class='leftElementTitle'>
+&lt;roaming-scenario&gt;</td><td class='rightElementTitle'>
+Child of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>The tag for emulating an SU Roaming action.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;roaming-scenario&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;roaming-scenario&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#trigger'>trigger</a></td><td>Only one</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;roaming-scenario&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;roaming-scenario&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#roaming-scenario_delay'>delay</a></td><td></td><td>0</td></tr><tr><td><a href='#roaming-scenario_destinationRfssName'>destinationRfssName</a></td><td></td><td></td></tr><tr><td><a href='#roaming-scenario_id'>id</a></td><td><i>Match the ID rules.</i></td><td></td></tr><tr><td><a href='#roaming-scenario_suName'>suName</a></td><td></td><td></td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#trigger'>trigger</a>)</p><a name='su-script'></a>
+<br /><table class='elementTitle' summary="su-script"><tr><td class='leftElementTitle'>
+&lt;su-script&gt;</td><td class='rightElementTitle'>
+Child of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>This tag specifies the attributes and code fragment necessary to script
+an SU action. Scripted actions are for actions specific to an SU such
+as turning the SU ON or OFF or sending a talk spurt to the peer of an
+SU to SU call to a group call. The methods that can be invoked from the
+script are described in the following section.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;su-script&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;su-script&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#script'>script</a></td><td>Only one</td></tr>
+<tr><td><a href='#trigger'>trigger</a></td><td>Only one</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;su-script&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;su-script&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#su-script_description'>description</a></td><td></td><td></td></tr><tr><td><a href='#su-script_id'>id</a></td><td><i>Match the ID rules.</i></td><td></td></tr><tr><td><a href='#su-script_method'>method</a></td><td></td><td></td></tr><tr><td><a href='#su-script_suName'>suName</a></td><td></td><td></td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#trigger'>trigger</a>, <a href='#script'>script</a>)</p><a name='rfss-script'></a>
+<br /><table class='elementTitle' summary="rfss-script"><tr><td class='leftElementTitle'>
+&lt;rfss-script&gt;</td><td class='rightElementTitle'>
+Child of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>This tag specifies a code fragment to be executed at an emulated
+RFSS. Scripted actions are specific to that emulated RFSS such as
+dropping or adding RF resources, RTP resources etc. The methods that can
+be invoked from the script are described in the following section.
+The jython code fragment can invoke
+any of the methods of the
+<a href="../../doc/javadoc/gov/nist/p25/issi/rfss/tester/RfssScriptInterface.html">RfssScriptInterface </a>. The Jython global value
+<b>currentRfss</b> refers to the emulated RFSS on which this
+script is executed.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;rfss-script&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;rfss-script&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#script'>script</a></td><td>Only one</td></tr>
+<tr><td><a href='#trigger'>trigger</a></td><td>Only one</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;rfss-script&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;rfss-script&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#rfss-script_description'>description</a></td><td></td><td></td></tr><tr><td><a href='#rfss-script_id'>id</a></td><td><i>Match the ID rules.</i></td><td></td></tr><tr><td><a href='#rfss-script_method'>method</a></td><td></td><td></td></tr><tr><td><a href='#rfss-script_rfssName'>rfssName</a></td><td></td><td></td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#trigger'>trigger</a>, <a href='#script'>script</a>)</p><a name='script'></a>
+<br /><table class='elementTitle' summary="script"><tr><td class='leftElementTitle'>
+&lt;script&gt;</td><td class='rightElementTitle'>
+Child of <a href='#su-script'>su-script</a>, <a href='#rfss-script'>rfss-script</a>
+</td></tr></table>
+<p>Encloses a piece of jython code.</p><a name='trigger'></a>
+<br /><table class='elementTitle' summary="trigger"><tr><td class='leftElementTitle'>
+&lt;trigger/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#su-script'>su-script</a>, <a href='#roaming-scenario'>roaming-scenario</a>, <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>, <a href='#rfss-script'>rfss-script</a>, <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p>The trigger action ( specifies the event condition for the enclosing tag)</p><blockquote>
+<table  summary="&lt;trigger&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;trigger&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#trigger_oneShot'>oneShot</a></td><td>true, false</td><td>true</td></tr><tr><td><a href='#trigger_refId'>refId</a></td><td></td><td></td></tr><tr><td><a href='#trigger_type'>type</a></td><td>time, ptt_message, sip_request, sip_response</td><td></td></tr><tr><td><a href='#trigger_value'>value</a></td><td></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='post-condition'></a>
+<br /><table class='elementTitle' summary="post-condition"><tr><td class='leftElementTitle'>
+&lt;post-condition&gt;</td><td class='rightElementTitle'>
+Child of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>An optional post condition that is evaluated after the test completes</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table  summary="&lt;post-condition&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;post-condition&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#post-condition_assertion'>assertion</a></td><td></td><td></td></tr><tr><td><a href='#post-condition_locationSelector'>locationSelector</a></td><td></td><td></td></tr></table></td></tr></table></blockquote>
+<a name='trigger_type'></a>
+<br /><table class='attributeTitle' summary="type"><tr><td class='leftAttributeTitle'>
+@type</td><td class='rightAttributeTitle'>
+Attribute of <a href='#trigger'>trigger</a>
+</td></tr></table>
+<p> the type of trigger. Can be one of the following types :
+<ul>
+<li> <b> time </b> trigger - fires on time relative to the
+start of test.
+<li><b> ptt_message</b> trigger - fires on arrival of the type
+of PTT message specified.
+<li><b>sip_request</b> trigger - fires on arrival of the type
+of SIP request specified.
+<li><b>sip_response</b> trigger - fires on arrival of the type
+of SIP response specified.
+</ul></p><p><span class='inTextTitle'>Possible values</span>: time, ptt_message, sip_request, sip_response - <span class='inTextTitle'>Required</span></p><a name='trigger_oneShot'></a>
+<br /><table class='attributeTitle' summary="oneShot"><tr><td class='leftAttributeTitle'>
+@oneShot</td><td class='rightAttributeTitle'>
+Attribute of <a href='#trigger'>trigger</a>
+</td></tr></table>
+<p>- true implies that the trigger fires just once.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: true</p><a name='trigger_refId'></a>
+<br /><table class='attributeTitle' summary="refId"><tr><td class='leftAttributeTitle'>
+@refId</td><td class='rightAttributeTitle'>
+Attribute of <a href='#trigger'>trigger</a>
+</td></tr></table>
+<p>- a reference ID to allow us to specify relative time triggers.
+If this is set, then the trigger fires after another named
+event firing. This allows us to specify event dependencies.</p><a name='trigger_value'></a>
+<br /><table class='attributeTitle' summary="value"><tr><td class='leftAttributeTitle'>
+@value</td><td class='rightAttributeTitle'>
+Attribute of <a href='#trigger'>trigger</a>
+</td></tr></table>
+<p>- the trigger value. Its interpretation depends upon the type
+of trigger. For time trigger, value is a time value. For sip_message
+trigger, value specifies the type of message. For a ptt_message
+the value specifies the Ptt message type.</p><p><span class='inTextTitle'>Required</span></p><a name='test-script_testName'></a>
+<br /><table class='attributeTitle' summary="testName"><tr><td class='leftAttributeTitle'>
+@testName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>- the test name</p><a name='test-script_rtpMessageLog'></a>
+<br /><table class='attributeTitle' summary="rtpMessageLog"><tr><td class='leftAttributeTitle'>
+@rtpMessageLog</td><td class='rightAttributeTitle'>
+Attribute of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>the location where to put the logged rtp and ptt messages.</p><p><span class='inTextTitle'>Default value</span>: logs/messagelog.ptt</p><a name='test-script_sipMessageLog'></a>
+<br /><table class='attributeTitle' summary="sipMessageLog"><tr><td class='leftAttributeTitle'>
+@sipMessageLog</td><td class='rightAttributeTitle'>
+Attribute of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>the location where to put the sip messages.</p><p><span class='inTextTitle'>Default value</span>: logs/messagelog.sip</p><a name='test-script_generateSipTrace'></a>
+<br /><table class='attributeTitle' summary="generateSipTrace"><tr><td class='leftAttributeTitle'>
+@generateSipTrace</td><td class='rightAttributeTitle'>
+Attribute of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>whether or not to capture a sip trace.</p><p><span class='inTextTitle'>Possible values</span>: yes, no - <span class='inTextTitle'>Default value</span>: yes</p><a name='test-script_generatePttTrace'></a>
+<br /><table class='attributeTitle' summary="generatePttTrace"><tr><td class='leftAttributeTitle'>
+@generatePttTrace</td><td class='rightAttributeTitle'>
+Attribute of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>whether or not to capture a PTT trace.</p><p><span class='inTextTitle'>Possible values</span>: yes, no - <span class='inTextTitle'>Default value</span>: no</p><a name='test-script_testCompletionDelay'></a>
+<br /><table class='attributeTitle' summary="testCompletionDelay"><tr><td class='leftAttributeTitle'>
+@testCompletionDelay</td><td class='rightAttributeTitle'>
+Attribute of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>time after the final expected sip message is seen
+to when the test is considered to be completed.</p><p><span class='inTextTitle'>Default value</span>: 0</p><a name='test-script_traceGenerationTime'></a>
+<br /><table class='attributeTitle' summary="traceGenerationTime"><tr><td class='leftAttributeTitle'>
+@traceGenerationTime</td><td class='rightAttributeTitle'>
+Attribute of <a href='#test-script'>test-script</a>
+</td></tr></table>
+<p>time to generate the trace for this test.</p><p><span class='inTextTitle'>Default value</span>: 25</p><a name='post-condition_assertion'></a>
+<br /><table class='attributeTitle' summary="assertion"><tr><td class='leftAttributeTitle'>
+@assertion</td><td class='rightAttributeTitle'>
+Attribute of <a href='#post-condition'>post-condition</a>
+</td></tr></table>
+<p> is the name of the function that will be
+invoked that should be returning a boolean value.</p><p><span class='inTextTitle'>Required</span></p><a name='post-condition_locationSelector'></a>
+<br /><table class='attributeTitle' summary="locationSelector"><tr><td class='leftAttributeTitle'>
+@locationSelector</td><td class='rightAttributeTitle'>
+Attribute of <a href='#post-condition'>post-condition</a>
+</td></tr></table>
+<p> If the location predicate returns true then the
+assertion predicate is run.
+return true if the assertion is to be checked at
+the RFSS for which it evaluated to true.</p><p><span class='inTextTitle'>Required</span></p><a name='su-to-su-call-setup-scenario_id'></a>
+<br /><table class='attributeTitle' summary="id"><tr><td class='leftAttributeTitle'>
+@id</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p>an identifier for this stanza (can be referred to in
+scripts ).</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='su-to-su-call-setup-scenario_callingSuName'></a>
+<br /><table class='attributeTitle' summary="callingSuName"><tr><td class='leftAttributeTitle'>
+@callingSuName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p> name of the calling SU. Must be defined in the
+associated topology.xml</p><p><span class='inTextTitle'>Required</span></p><a name='su-to-su-call-setup-scenario_calledSuName'></a>
+<br /><table class='attributeTitle' summary="calledSuName"><tr><td class='leftAttributeTitle'>
+@calledSuName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p> name of the called SU. Must be defined in the
+assoicated topology.xml</p><p><span class='inTextTitle'>Required</span></p><a name='su-to-su-call-setup-scenario_cancelAfter'></a>
+<br /><table class='attributeTitle' summary="cancelAfter"><tr><td class='leftAttributeTitle'>
+@cancelAfter</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p>time after which to cancel the call. Note that cancel may
+not succeed.</p><p><span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='su-to-su-call-setup-scenario_terminateAfter'></a>
+<br /><table class='attributeTitle' summary="terminateAfter"><tr><td class='leftAttributeTitle'>
+@terminateAfter</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p> time after which the call is Terminated ( with a BYE)</p><p><span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='su-to-su-call-setup-scenario_isTerminatedByCalledServing'></a>
+<br /><table class='attributeTitle' summary="isTerminatedByCalledServing"><tr><td class='leftAttributeTitle'>
+@isTerminatedByCalledServing</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p>a flag which indicates whether the called
+party terminates call.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='su-to-su-call-setup-scenario_isEmergency'></a>
+<br /><table class='attributeTitle' summary="isEmergency"><tr><td class='leftAttributeTitle'>
+@isEmergency</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p> whether or not this is an emergency call.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='su-to-su-call-setup-scenario_talkSpurtSentBy'></a>
+<br /><table class='attributeTitle' summary="talkSpurtSentBy"><tr><td class='leftAttributeTitle'>
+@talkSpurtSentBy</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p>which end sends a talk spurt after setup (this is an
+optional attribute ).</p><a name='su-to-su-call-setup-scenario_isTalkSpurtForced'></a>
+<br /><table class='attributeTitle' summary="isTalkSpurtForced"><tr><td class='leftAttributeTitle'>
+@isTalkSpurtForced</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p>whether or not talk spurt is forced.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='su-to-su-call-setup-scenario_isProtected'></a>
+<br /><table class='attributeTitle' summary="isProtected"><tr><td class='leftAttributeTitle'>
+@isProtected</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-to-su-call-setup-scenario'>su-to-su-call-setup-scenario</a>
+</td></tr></table>
+<p>a flag that indicates whether the call setup is protected or not.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='group-call-setup-scenario_id'></a>
+<br /><table class='attributeTitle' summary="id"><tr><td class='leftAttributeTitle'>
+@id</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p>a unique identifier for this stanza
+(can be referred to in scripts ).</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='group-call-setup-scenario_callingSuName'></a>
+<br /><table class='attributeTitle' summary="callingSuName"><tr><td class='leftAttributeTitle'>
+@callingSuName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p> name of the calling SU</p><p><span class='inTextTitle'>Required</span></p><a name='group-call-setup-scenario_calledGroupName'></a>
+<br /><table class='attributeTitle' summary="calledGroupName"><tr><td class='leftAttributeTitle'>
+@calledGroupName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p> name of the called group</p><p><span class='inTextTitle'>Required</span></p><a name='group-call-setup-scenario_priority'></a>
+<br /><table class='attributeTitle' summary="priority"><tr><td class='leftAttributeTitle'>
+@priority</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p> the call priority</p><p><span class='inTextTitle'>Default value</span>: 1</p><a name='group-call-setup-scenario_isEmergency'></a>
+<br /><table class='attributeTitle' summary="isEmergency"><tr><td class='leftAttributeTitle'>
+@isEmergency</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p> "emergency" flag</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='group-call-setup-scenario_isConfirmed'></a>
+<br /><table class='attributeTitle' summary="isConfirmed"><tr><td class='leftAttributeTitle'>
+@isConfirmed</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p> "confirmed group call" flag</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='group-call-setup-scenario_cancelAfter'></a>
+<br /><table class='attributeTitle' summary="cancelAfter"><tr><td class='leftAttributeTitle'>
+@cancelAfter</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p> time after which call is canceled</p><p><span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='group-call-setup-scenario_terminateAfter'></a>
+<br /><table class='attributeTitle' summary="terminateAfter"><tr><td class='leftAttributeTitle'>
+@terminateAfter</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p> time after which the call is Terminated ( with a BYE)</p><p><span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='group-call-setup-scenario_isTalkSpurtSentAfterCallSetup'></a>
+<br /><table class='attributeTitle' summary="isTalkSpurtSentAfterCallSetup"><tr><td class='leftAttributeTitle'>
+@isTalkSpurtSentAfterCallSetup</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p>calling SU send a talk spurt after call setup.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='group-call-setup-scenario_isProtected'></a>
+<br /><table class='attributeTitle' summary="isProtected"><tr><td class='leftAttributeTitle'>
+@isProtected</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p>a flag that indicates whether the call setup is protected or not. This
+controls the c-protected parameter.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='group-call-setup-scenario_isTalkSpurtForced'></a>
+<br /><table class='attributeTitle' summary="isTalkSpurtForced"><tr><td class='leftAttributeTitle'>
+@isTalkSpurtForced</td><td class='rightAttributeTitle'>
+Attribute of <a href='#group-call-setup-scenario'>group-call-setup-scenario</a>
+</td></tr></table>
+<p>a flag that indicates if the talk spurt
+is forced or not.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='roaming-scenario_id'></a>
+<br /><table class='attributeTitle' summary="id"><tr><td class='leftAttributeTitle'>
+@id</td><td class='rightAttributeTitle'>
+Attribute of <a href='#roaming-scenario'>roaming-scenario</a>
+</td></tr></table>
+<p>- a unique identifier for this event triggered action.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='roaming-scenario_suName'></a>
+<br /><table class='attributeTitle' summary="suName"><tr><td class='leftAttributeTitle'>
+@suName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#roaming-scenario'>roaming-scenario</a>
+</td></tr></table>
+<p>- symbolic name of the su that is moving.</p><p><span class='inTextTitle'>Required</span></p><a name='roaming-scenario_destinationRfssName'></a>
+<br /><table class='attributeTitle' summary="destinationRfssName"><tr><td class='leftAttributeTitle'>
+@destinationRfssName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#roaming-scenario'>roaming-scenario</a>
+</td></tr></table>
+<p>- symbolic name of the destination RFSS.</p><p><span class='inTextTitle'>Required</span></p><a name='roaming-scenario_delay'></a>
+<br /><table class='attributeTitle' summary="delay"><tr><td class='leftAttributeTitle'>
+@delay</td><td class='rightAttributeTitle'>
+Attribute of <a href='#roaming-scenario'>roaming-scenario</a>
+</td></tr></table>
+<p>- time taken for the move.</p><p><span class='inTextTitle'>Default value</span>: 0</p><a name='su-script_id'></a>
+<br /><table class='attributeTitle' summary="id"><tr><td class='leftAttributeTitle'>
+@id</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-script'>su-script</a>
+</td></tr></table>
+<p>= the unique id for this SU script.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='su-script_suName'></a>
+<br /><table class='attributeTitle' summary="suName"><tr><td class='leftAttributeTitle'>
+@suName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-script'>su-script</a>
+</td></tr></table>
+<p>= the name of the SU that this script references.
+this must be defined in the associated topology.xml file
+for the test script.</p><p><span class='inTextTitle'>Required</span></p><a name='su-script_description'></a>
+<br /><table class='attributeTitle' summary="description"><tr><td class='leftAttributeTitle'>
+@description</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-script'>su-script</a>
+</td></tr></table>
+<p>= the decription of this scripting action.</p><a name='su-script_method'></a>
+<br /><table class='attributeTitle' summary="method"><tr><td class='leftAttributeTitle'>
+@method</td><td class='rightAttributeTitle'>
+Attribute of <a href='#su-script'>su-script</a>
+</td></tr></table>
+<p>= the jython method to invoke in the enclosed script.</p><p><span class='inTextTitle'>Required</span></p><a name='rfss-script_id'></a>
+<br /><table class='attributeTitle' summary="id"><tr><td class='leftAttributeTitle'>
+@id</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfss-script'>rfss-script</a>
+</td></tr></table>
+<p>= the unique id for this RFSS script.</p><p><span class='inTextTitle'>Possible values</span>: <i>Match the ID rules.</i> - <span class='inTextTitle'>Required</span></p><a name='rfss-script_rfssName'></a>
+<br /><table class='attributeTitle' summary="rfssName"><tr><td class='leftAttributeTitle'>
+@rfssName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfss-script'>rfss-script</a>
+</td></tr></table>
+<p>= the name of the emulated RFSS that this script references.</p><p><span class='inTextTitle'>Required</span></p><a name='rfss-script_description'></a>
+<br /><table class='attributeTitle' summary="description"><tr><td class='leftAttributeTitle'>
+@description</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfss-script'>rfss-script</a>
+</td></tr></table>
+<p>= the decription of this scripting action.</p><a name='rfss-script_method'></a>
+<br /><table class='attributeTitle' summary="method"><tr><td class='leftAttributeTitle'>
+@method</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfss-script'>rfss-script</a>
+</td></tr></table>
+<p>= the jython method to invoke in the enclosed script.</p><p><span class='inTextTitle'>Required</span></p></body></html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script>
+
+<su-to-su-call-setup-scenario
+	id="su-to-su-call"
+	callingSuName="callingSu"
+	calledSuName="calledSu"
+	cancelAfter="3"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</su-to-su-call-setup-scenario>
+
+</test-script>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<rfssconfig rfssName="Xrfss_1" id="registeringRfss"/>
+
+<!-- The home Rfss thinks I am registered initially at Rfss 1 -->
+<suconfig suName="su_32" id="registeringSu"/>
+
+</conformance-test-config>

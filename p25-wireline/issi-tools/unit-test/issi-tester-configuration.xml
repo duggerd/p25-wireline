@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE system-topology SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/issi-tester-config.dtd">
+
+<issi-tester-config>
+	<!-- this specifies where the tester will listen for
+	incoming commands from the test launcher client. You will need
+	one tag for every location from where you run the diets daemon.
+	 -->
+	<diets-daemon
+		ipAddress="127.0.0.1"
+	>
+		<refid 
+			id = "node1"
+		/>
+		<conformance-tester 
+			httpPort = "8080"
+		/>
+	</diets-daemon>
+	
+	
+	<diets-daemon 
+		ipAddress="127.0.0.1"
+	>
+		<refid
+			id = "node2"
+		/>
+		<conformance-tester
+			httpPort = "8080"
+		/>
+		<packet-monitor
+			httpPort = "7070"
+		/>
+	</diets-daemon>
+	
+</issi-tester-config>

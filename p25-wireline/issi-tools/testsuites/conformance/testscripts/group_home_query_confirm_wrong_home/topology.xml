@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<!-- the Rfss from where the home query is issued -->
+<rfssconfig rfssName="rfss_3" id="wrongHome"/>
+<rfssconfig rfssName="Xrfss_1" id="servedRfss"/>
+
+<sgconfig groupName="group_2" id="testGroup">
+<subscriber suName="su_11"/>
+</sgconfig>
+
+</conformance-test-config>

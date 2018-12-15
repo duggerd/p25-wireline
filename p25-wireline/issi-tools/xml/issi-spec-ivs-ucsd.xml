@@ -1,0 +1,34 @@
+<ivs-delays>
+   <ivs-ucsd title="Performance Specifications for SU-to-SU Call Setup Delay(UCSD)" diagram="gfx/diagrams/IVS-UCSD.JPG">
+      <parameter key="Tu1" value="170"/>
+      <parameter key="Tu2" value="10" maximum="50"/>
+      <parameter key="Tu3" value="10" maximum="50"/>
+      <parameter key="Tu4" value="210"/>
+      <parameter key="Tu5" value="170"/>
+      <parameter key="Tu6" value="60" maximum="200"/>
+      <parameter key="Tu7" value="10" maximum="50"/>
+      <parameter key="Tu8" value="10" maximum="50"/>
+      <parameter key="Tu9" value="290"/>
+      <parameter key="Tu10" value="60"/>
+      <parameter key="Tu11" value="10"/>
+      <parameter key="Tu12" value="10"/>
+      <parameter key="Tu13" value="240"/>
+      <parameter key="Tu_ip1" value="30" maximum="100"/>
+      <parameter key="Tu_ip2" value="30" maximum="100"/>
+      <parameter key="Tu_ip3" value="30" maximum="100"/>
+      <parameter key="Tu_ip4" value="30" maximum="100"/>
+      <parameter key="Tu_ip5" value="30" maximum="100"/>
+      <parameter key="Tu_ip6" value="30" maximum="100"/>
+      <parameter key="Tu_ip7" value="30"/>
+      <parameter key="Tu_ip8" value="30"/>
+      <parameter key="Tu_ip9" value="30"/>
+      <parameter key="Tugrant_CallingCAI" value="740" calculated="true"/>
+      <parameter key="Tugrant_CalledCAI" value="860" calculated="true"/>
+      <parameter key="Tugrant_CallingISSI" value="280" maximum="1000" calculated="true"/>
+      <parameter key="Tugrant_CalledISSI" value="450" calculated="true"/>
+   </ivs-ucsd>
+   <ivs-status title="Performanace Recommendations for ISSI Voice Services">
+      <comment>Performanace specifications based on TIA-102.CACB, April 2007. Direct Call.
+ISSI Performance:</comment>
+   </ivs-status>
+</ivs-delays>

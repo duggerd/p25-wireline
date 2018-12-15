@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="conformance-test-config">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="rfssconfig" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType mixed="true">
+            <xs:sequence>
+              <xs:element name="unknown-unit" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="suName"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="rfssName" use="optional"/>
+            <xs:attribute type="xs:int" name="registerConfirmTime" use="optional"/>
+            <xs:attribute type="xs:string" name="querySuCredentialsBeforeRegistration" use="optional"/>
+            <xs:attribute type="xs:string" name="queryGroupCredentialsBeforeRegistration" use="optional"/>
+            <xs:attribute type="xs:string" name="id" use="optional"/>
+            <xs:attribute type="xs:string" name="isInterestedInLosingAudio" use="optional"/>
+            <xs:attribute type="xs:int" name="servedGroupLeaseTime" use="optional"/>
+            <xs:attribute type="xs:int" name="groupCallInviteProcessingTime" use="optional"/>
+            <xs:attribute type="xs:int" name="maxRtpPorts" use="optional"/>
+            <xs:attribute type="xs:string" name="rfResourcesAvailable" use="optional"/>
+            <xs:attribute type="xs:int" name="groupRegistrationExpiresTime" use="optional"/>
+            <xs:attribute type="xs:string" name="isAdvancedRtpResourceManagementSupported" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="suconfig" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType mixed="true">
+            <xs:sequence>
+              <xs:element name="forbidden" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="rfssName" use="optional"/>
+                      <xs:attribute type="xs:string" name="operation" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="userprofile" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="unitToUnitCallPermission" use="optional"/>
+                      <xs:attribute type="xs:int" name="unitToUnitCallPriority" use="optional"/>
+                      <xs:attribute type="xs:string" name="radioInhibit" use="optional"/>
+                      <xs:attribute type="xs:string" name="isFullDuplex" use="optional"/>
+                      <xs:attribute type="xs:string" name="availCheckSupported" use="optional"/>
+                      <xs:attribute type="xs:string" name="unitToUnitCallSetupPreference" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="suName" use="optional"/>
+            <xs:attribute type="xs:string" name="id" use="optional"/>
+            <xs:attribute type="xs:string" name="initialState" use="optional"/>
+            <xs:attribute type="xs:int" name="servingRfssReferencesMeFor" use="optional"/>
+            <xs:attribute type="xs:int" name="inviteProcessingDelay" use="optional"/>
+            <xs:attribute type="xs:string" name="checkSuPresenceOnRegister" use="optional"/>
+            <xs:attribute type="xs:string" name="checkCallPermission" use="optional"/>
+            <xs:attribute type="xs:string" name="skipRegisterRegister" use="optional"/>
+            <xs:attribute type="xs:string" name="isAvailable" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sgconfig" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="subscriber" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="suName" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="forbidden" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="operation" use="optional"/>
+                      <xs:attribute type="xs:string" name="rfssName" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:string" name="groupprofile" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="groupName" use="optional"/>
+            <xs:attribute type="xs:string" name="id" use="optional"/>
+            <xs:attribute type="xs:string" name="protectionDisposition" use="optional"/>
+            <xs:attribute type="xs:int" name="homeRfssKnowsAboutMeFor" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="traceOrder"/>
+      <xs:attribute type="xs:short" name="THEARTBEAT"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

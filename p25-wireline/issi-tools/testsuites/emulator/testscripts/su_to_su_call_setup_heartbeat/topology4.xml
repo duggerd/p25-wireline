@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config THEARTBEAT="5000"
+	traceOrder="rfss_3,rfss_4,rfss_2,Xrfss_1">
+
+<!-- test layout by roles -->
+<suconfig suName="su_43" id="callingSu">
+<userprofile unitToUnitCallPermission="ReceiveAndInitiate"/>
+</suconfig>
+<suconfig suName="su_21" id="calledSu">
+<userprofile unitToUnitCallPermission="ReceiveAndInitiate"/>
+</suconfig>
+
+</conformance-test-config>

@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<suconfig
+	suName="su_211"
+	id="unknownSu"
+	homeRfssKnowsAboutMeFor="0"
+	initialState="on"
+/>
+
+</conformance-test-config>

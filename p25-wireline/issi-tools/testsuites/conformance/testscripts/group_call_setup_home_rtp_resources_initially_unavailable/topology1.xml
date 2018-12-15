@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config THEARTBEAT="5000" traceOrder="rfss_2,Xrfss_1">
+
+<!-- The Following describe the RFSSs in the system.  -->
+<rfssconfig rfssName="Xrfss_1" id="homeRfss" 
+	rfResourcesAvailable="true"	
+	maxRtpPorts="0" 
+	isAdvancedRtpResourceManagementSupported="true"/>
+<rfssconfig rfssName="rfss_2" rfResourcesAvailable="false"/>
+
+<suconfig suName="su_22" id="callingSu"/>
+
+<!-- A definition for a group configuration. This group has one subscribers. -->
+<sgconfig groupName="group_1" id="calledGroup">
+<subscriber suName="su_22"/>
+<subscriber suName="su_11"/>
+<!-- set g-agroup -->
+<groupprofile>
+g-agroup:0B4561A27271
+</groupprofile>
+</sgconfig>
+
+</conformance-test-config>

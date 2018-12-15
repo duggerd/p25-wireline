@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<installation version="1.0">
+  <info>
+    <appname>ISSI-TOOLS</appname>
+    <appversion>1.0rc6</appversion>
+    <authors>
+      <author name="ISSI Test Tools - Conformance, Performance, and Packet Monitor Development Team" email="" />
+      <author name="The development is sponsored by NIST Office of Law Enforcement Standards (NIST OLES)" email="" />
+      <author name="The Department of Homeland Security sponsored the production of this material" email="" />
+      <author name="under an Interagency Agreement with the Institute for Telecommunication Sciences." email="" />
+    </authors>
+    <url>https://p25-wireline.dev.java.net</url>
+
+    <javaversion>1.6</javaversion>
+  </info>
+
+  <guiprefs width="1200" height="420" resizable="yes" />
+  <locale>
+    <langpack iso3="eng" />
+  </locale>
+
+  <variables>
+    <variable name="DesktopShortcutCheckboxEnabled" value="false" /> 
+  </variables>
+
+  <resources>
+    <!-- res id="TargetPanel.dir" src="tools2/targetdir.txt" / -->
+    <res id="LicencePanel.licence" src="LICENSES/LICENSE.txt" />
+    <res id="shortcutSpec.xml" src="tools2/windows-izpack-shortcut.xml" />
+    <res id="processPanelSpec.xml" src="tools2/ProcessPanelSpec.xml" />
+    <res id="Installer.image.0" src="gfx/tester-logo.jpg" />
+    <res id="Installer.image.1" src="gfx/tester-logo.jpg" />
+    <res id="Installer.image.2" src="gfx/tester-logo.jpg" />
+    <res id="Installer.image.3" src="gfx/tester-logo.jpg" />
+  </resources>
+
+  <panels>
+    <panel classname="HelloPanel" />
+    <panel classname="LicencePanel" />
+    <panel classname="TargetPanel" /> 
+    <panel classname="PacksPanel" />
+    <panel classname="InstallPanel" />
+    <panel classname="ShortcutPanel" />
+    <panel classname="FinishPanel" />
+    <panel classname="ProcessPanel" />
+  </panels>
+
+  <packs>
+    <pack name="Base" required="yes">
+      <description>ISSI-TESTER Base</description>
+      <file src=".classpath" targetdir="$INSTALL_PATH" />
+      <file src="diets.jar" targetdir="$INSTALL_PATH" />
+      <file src="log4j.properties" targetdir="$INSTALL_PATH" />
+      <file src="releasenote.txt" targetdir="$INSTALL_PATH" />
+      <file src="dtd" targetdir="$INSTALL_PATH" />
+      <file src="lib" targetdir="$INSTALL_PATH" />
+      <file src="bin" targetdir="$INSTALL_PATH" />
+      <file src="icon" targetdir="$INSTALL_PATH" />
+      <file src="issi-data" targetdir="$INSTALL_PATH" />
+      <file src="logs" targetdir="$INSTALL_PATH" />
+      <file src="output" targetdir="$INSTALL_PATH" />
+      <file src="startup" targetdir="$INSTALL_PATH" />
+      <file src="xml" targetdir="$INSTALL_PATH" />
+      <file src="gfx" targetdir="$INSTALL_PATH" />
+      <file src="voice" targetdir="$INSTALL_PATH" />
+      <file src="testsuites" targetdir="$INSTALL_PATH" />
+      <file src="testerconfig" targetdir="$INSTALL_PATH" />
+      <file src="webpage" targetdir="$INSTALL_PATH" />
+      <file src="LICENSES" targetdir="$INSTALL_PATH" />
+    </pack>
+    <pack name="Documentation" required="yes">
+      <description>Documentation</description>
+      <file src="README.html" targetdir="$INSTALL_PATH" />
+      <file src="doc" targetdir="$INSTALL_PATH" />
+    </pack>
+  </packs>
+
+  <native type="izpack" name="ShellLink.dll" />
+  <native type="jpcap" name="libjpcap.so"> 
+    <os family="unix"  name="linux" arch="i386" />
+  </native>
+  <native name="Jpcap.dll" type="jpcap">
+    <os family="windows" />
+  </native>
+
+</installation>
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+This defines the global configuration of the distributed test system.
+The distributed test system consists of one or more daemons which are
+started at specified IP addresses and which listen for commands 
+sent to it through specified HTTP Ports. A daemon can consist
+of a tester service  and a packet monitoring service. These are 
+indepenedent services. 
+
+@title ISSI Tester Configuration Specification 
+@root issi-tester-configuration
+-->
+
+<!-- The root of the tester configuration -->
+<!ELEMENT issi-tester-configuration (diets-daemon+) >
+
+<!-- 
+Specifies a diets daemon which manages a conformance testing 
+service and a packet monitoring service and runs at a specified IP 
+address. 
+-->
+<!ELEMENT diets-daemon (refid+) >
+
+
+<!-- 
+Specifies a reference ID for the daemon. A single daemon can have
+several reference IDs. RFSSs are mappings from the system topology 
+to map an Rfss to a daemon instance. WARNING Edit with care.
+This is a link. If you change this link you may break a dependency.
+-->
+<!ELEMENT refid EMPTY>
+
+
+
+
+<!-- 
+@attr id a symbolic name assigned to the daemon. The default ID is the ip 
+address of the node. This id can be referenced in the systemtopology.xml
+file for the test suite.
+-->
+<!ATTLIST refid
+	id CDATA #REQUIRED
+> 
+
+<!--
+@attr name is the daemon name. 
+@attr httpPort is the port where the conformance testing service may be
+contacted. This defaults to 8763. If this port conficts on your machine,
+then you may override this property using this attribute but make sure that
+the DIETS daemon on the target machine is running at the appropriate
+address.
+
+@attr isConformanceTester a flag that indicates whether conformance testing
+	services are enabled for this daemon
+
+@attr isPacketMonitor a flag that indicates whether or not packet monitoring
+	services are enabled for this daemon.
+-->
+
+<!ATTLIST diets-daemon
+	name     ID     #REQUIRED
+	httpPort CDATA  #IMPLIED
+	isConformanceTester (true|false) "true"
+	isPacketMonitor (true|false) "false" 
+>
+
+

@@ -1,0 +1,34 @@
+<ivs-delays>
+   <ivs-gcsd title="Group Call Setup Delay (ms)" diagram="gfx/diagrams/IVS-GCSD.JPG">
+      <parameter key="Tg_ip1" value="30" maximum="100"/>
+      <parameter key="Tg_ip2" value="30" maximum="100"/>
+      <parameter key="Tg_ip3" value="30" maximum="100"/>
+      <parameter key="Tg_ip4" value="30" maximum="100"/>
+      <parameter key="Tg_ip5" value="30" maximum="100"/>
+      <parameter key="Tg_ip6" value="30" maximum="100"/>
+      <parameter key="Tg_ip7" value="30"/>
+   </ivs-gcsd>
+   <ivs-gmtd title="Group Call Message Transfer Delay (ms)" diagram="gfx/diagrams/IVS-GMTD.JPG">
+      <parameter key="Tg_ipad1" value="30" maximum="100"/>
+      <parameter key="Tg_ipad2" value="30" maximum="100"/>
+   </ivs-gmtd>
+   <ivs-ucsd title="SU-to-SU Call Setup Delay (ms)" diagram="gfx/diagrams/IVS-UCSD.JPG">
+      <parameter key="Tu_ip1" value="30" maximum="100"/>
+      <parameter key="Tu_ip2" value="30" maximum="100"/>
+      <parameter key="Tu_ip3" value="30" maximum="100"/>
+      <parameter key="Tu_ip4" value="30" maximum="100"/>
+      <parameter key="Tu_ip5" value="30" maximum="100"/>
+      <parameter key="Tu_ip6" value="30" maximum="100"/>
+      <parameter key="Tu_ip7" value="30"/>
+      <parameter key="Tu_ip8" value="30"/>
+      <parameter key="Tu_ip9" value="30"/>
+   </ivs-ucsd>
+   <ivs-umtd title="SU-to-SU Message Transfer Delay (ms)" diagram="gfx/diagrams/IVS-UMTD.JPG">
+      <parameter key="Tu_ipad1" value="30"/>
+      <parameter key="Tu_ipad2" value="30"/>
+      <parameter key="Tu_ipad3" value="30"/>
+      <parameter key="Tu_ipad4" value="30"/>
+      <parameter key="Tu_ipad5" value="30"/>
+      <parameter key="Tu_ipad6" value="30"/>
+   </ivs-umtd>
+</ivs-delays>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config traceOrder="rfss_3,Xrfss_1,rfss_2,rfss_4">
+
+<rfssconfig rfssName="rfss_4" rfResourcesAvailable="false"/>
+<!-- configure rfss so that the SU is not known at that RFSS -->
+<rfssconfig rfssName="rfss_2">
+<unknown-unit suName="su_24"/>
+</rfssconfig>
+
+
+<!-- test layout by roles -->
+<suconfig suName="su_13" id="callingSu">
+<userprofile unitToUnitCallPermission="ReceiveAndInitiate" isFullDuplex="false"/>
+</suconfig>
+<suconfig suName="su_24" id="calledSu" skipRegisterRegister="true"
+	homeRfssKnowsAboutMeFor="0" suState="on">
+<userprofile unitToUnitCallPermission="ReceiveAndInitiate" isFullDuplex="false"/>
+</suconfig>
+
+</conformance-test-config>

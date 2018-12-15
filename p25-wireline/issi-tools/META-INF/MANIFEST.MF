@@ -1,0 +1,4 @@
+Manifest-Version: 1.2
+Main-Class: gov.nist.p25.issi.startup.ProcessLauncher
+Created-By: 1.6.0_02 (Sun Microsystems Inc.)
+

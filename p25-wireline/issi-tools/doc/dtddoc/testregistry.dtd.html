@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>Test Registry Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>testregistry.dtd</code></b>: <a href='testregistry.dtd.html'>Elements</a> - Entities - <a href='testregistry.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='testregistry.dtd.html' target='_top'>NO FRAMES</a></p><h1>Test Registry Specification</h1>
+<a name='testregistry'></a>
+<br /><table class='elementTitle' summary="testregistry"><tr><td class='leftElementTitle'>
+&lt;testregistry&gt;</td><td class='rightElementTitle'>
+Root element
+</td></tr></table>
+<p>Test registry summarizes all test cases available for conformance testing.
+It serves as a categlog of test cases.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;testregistry&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;testregistry&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#testcase'>testcase</a></td><td>Any number</td></tr>
+</tbody></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#testcase'>testcase</a>*)</p><a name='testcase'></a>
+<br /><table class='elementTitle' summary="testcase"><tr><td class='leftElementTitle'>
+&lt;testcase&gt;</td><td class='rightElementTitle'>
+Child of <a href='#testregistry'>testregistry</a>
+</td></tr></table>
+<p>Sorry, no documentation.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;testcase&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;testcase&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#description'>description</a></td><td>One or none</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;testcase&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;testcase&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#testcase_category'>category</a></td><td></td><td></td></tr><tr><td><a href='#testcase_testClass'>testClass</a></td><td></td><td></td></tr><tr><td><a href='#testcase_testDirectory'>testDirectory</a></td><td></td><td></td></tr><tr><td><a href='#testcase_testNumber'>testNumber</a></td><td></td><td></td></tr><tr><td><a href='#testcase_topology'>topology</a></td><td></td><td></td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#description'>description</a>?)</p><a name='description'></a>
+<br /><table class='elementTitle' summary="description"><tr><td class='leftElementTitle'>
+&lt;description&gt;</td><td class='rightElementTitle'>
+Child of <a href='#testcase'>testcase</a>
+</td></tr></table>
+<p>Sorry, no documentation.</p><a name='testcase_testDirectory'></a>
+<br /><table class='attributeTitle' summary="testDirectory"><tr><td class='leftAttributeTitle'>
+@testDirectory</td><td class='rightAttributeTitle'>
+Attribute of <a href='#testcase'>testcase</a>
+</td></tr></table>
+<p>is the test case directory</p><p><span class='inTextTitle'>Required</span></p><a name='testcase_testNumber'></a>
+<br /><table class='attributeTitle' summary="testNumber"><tr><td class='leftAttributeTitle'>
+@testNumber</td><td class='rightAttributeTitle'>
+Attribute of <a href='#testcase'>testcase</a>
+</td></tr></table>
+<p>is the test number in the ISSI specification</p><p><span class='inTextTitle'>Required</span></p><a name='testcase_topology'></a>
+<br /><table class='attributeTitle' summary="topology"><tr><td class='leftAttributeTitle'>
+@topology</td><td class='rightAttributeTitle'>
+Attribute of <a href='#testcase'>testcase</a>
+</td></tr></table>
+<p>defines the test topology.xml file to be used</p><a name='testcase_category'></a>
+<br /><table class='attributeTitle' summary="category"><tr><td class='leftAttributeTitle'>
+@category</td><td class='rightAttributeTitle'>
+Attribute of <a href='#testcase'>testcase</a>
+</td></tr></table>
+<p>is the test case category</p><a name='testcase_testClass'></a>
+<br /><table class='attributeTitle' summary="testClass"><tr><td class='leftAttributeTitle'>
+@testClass</td><td class='rightAttributeTitle'>
+Attribute of <a href='#testcase'>testcase</a>
+</td></tr></table>
+<p>is the test class: Conformance or User Defined Profile</p></body></html>

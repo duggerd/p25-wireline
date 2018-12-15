@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> <head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>Test Registry Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>testregistry.dtd</code></b>: <a href='testregistry.dtd.html'>Elements</a> - Entities - <a href='testregistry.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='testregistry.dtd.org.html' target='_top'>NO FRAMES</a></p><pre id='dtd_source'><span class="dtd_processing_instruction">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span>
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">Test registry summarizes all test cases available for conformance testing. </span>
+<span class="dtd_comment">It serves as a categlog of test cases.</span>
+
+<span class="dtd_dtddoc_tag">@title</span><span class="dtd_comment"> Test Registry Specification</span>
+<span class="dtd_dtddoc_tag">@root</span><span class="dtd_comment"> testregistry</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">testregistry</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">testcase</span><span class="dtd_plain">*) </span><span class="dtd_tag_symbols">&gt;</span>
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_dtddoc_tag">@attr testcase</span><span class="dtd_comment"> defines the test case</span>
+<span class="dtd_comment"> --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">testcase</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">description</span><span class="dtd_plain">?) </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_dtddoc_tag">@attr description</span><span class="dtd_comment"> is the detailed description of test case</span>
+<span class="dtd_comment"> --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">description</span><span class="dtd_plain"> (</span><span class="dtd_keyword">#PCDATA</span><span class="dtd_plain">) </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_dtddoc_tag">@attr testDirectory</span><span class="dtd_comment"> is the test case directory </span>
+<span class="dtd_dtddoc_tag">@attr testNumber</span><span class="dtd_comment"> is the test number in the ISSI specification</span>
+<span class="dtd_dtddoc_tag">@attr topology</span><span class="dtd_comment"> defines the test topology.xml file to be used</span>
+<span class="dtd_dtddoc_tag">@attr category</span><span class="dtd_comment"> is the test case category</span>
+<span class="dtd_dtddoc_tag">@attr testClass</span><span class="dtd_comment"> is the test class: Conformance or User Defined Profile</span>
+
+<span class="dtd_comment"> --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">testcase</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">testDirectory</span><span class="dtd_plain"> </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">testNumber</span><span class="dtd_plain">  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">topology</span><span class="dtd_plain">    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">category</span><span class="dtd_plain">    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">testClass</span><span class="dtd_plain">   </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+</pre>
+</body></html>

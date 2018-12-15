@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config>
+
+<!-- Make the home interested in losing audio - otherwise he will send a 
+mute. This makes the home forward losing audio.  -->
+
+<rfssconfig rfssName="rfss_2" id="groupHome" isInterestedInLosingAudio="true"/>
+
+<suconfig suName="su_11" id="calledSu"/>
+<suconfig suName="su_22" id="callingSu"/>
+<suconfig suName="su_222" id="higherPrioritySu"/>
+
+<sgconfig groupName="group_2" id="calledGroup">
+<subscriber suName="su_11"/>
+<subscriber suName="su_22"/>
+<subscriber suName="su_222"/>
+<!-- set g-agroup -->
+<groupprofile>
+g-agroup:0B4561A27271
+</groupprofile>
+</sgconfig>
+
+</conformance-test-config>

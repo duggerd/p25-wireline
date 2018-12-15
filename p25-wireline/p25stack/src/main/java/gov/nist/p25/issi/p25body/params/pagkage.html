@@ -1,0 +1,41 @@
+
+<body>
+
+<h2>Registration Parameters
+
+These are defined in Section 3.8.3 of the ISSI Messages and Proceedures document.
+<ul>
+<li>	Force Register
+This parameter is used by the Home RFSS in the Home Registration Query procedure.
+ The “Force” qualifier indicates that the Serving RFSS has to re-register the mobility object 
+ if it still has interest.  See Section ?5 for further details.
+ <li>Confirm Register This parameter is used by the Home RFSS in the 
+ Home Registration Query procedure. The “Confirm” qualifier requests that the 
+ serving RFSS confirm its interest for the mobility object.  See Section ?5 for further details.
+ </ul>
+
+<h2>CallParameters
+These are defined in Section 3.8.4 of the ISSI Messages and Proceedures Document.
+These attributes are used in conjunction with an SDP announcement.
+ All these parameters are optional.
+<ul>
+<li>
+Initial  Transmitte ; c-initrans or c-i	; Indicates the SU that first transmit in a unit to unit call	0: calling SU
+1: called SU
+<li>
+RF Resource Availability; c-resavail or c-r ; Indicates if the RF resources are available or not in confirmed group calls or SU-to-SU calls	0: no RF resource (default)
+1: RF resource
+<li> Preference	; c-pref or c-prf ; Indicates that the Called Serving RFSS has to perform an availability check with the called SU	0: no availability check 
+1: availability check (default)
+<li>
+Duplex Mode; 	c-duplex or c-d;	Indicates the mode of the call: half-duplex or full-duplex.	0: half duplex  (default)
+1: full duplex
+<li>
+In Call Roaming; 	c-incallroaming	or c-icr	; Indicates the roaming of the Calling or the Called SU in a SU-to-SU call 	0: No roaming (default)
+1: An SU is roaming
+<li>
+Group Call Type;	c-groupcalltype	or c-gct ;	Indicates whether the call is a confirmed or an unconfirmed group call	0: unconfirmed (default)
+1: confirmed
+</ul>
+
+</body>

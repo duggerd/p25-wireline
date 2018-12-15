@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	traceGenerationTime="7"
+>
+
+<rfss-script
+	id="rfss-script"
+	method="doQuery"
+	rfssName="queryRfss"
+	description="Issue a group serving query "
+>
+<trigger
+	type="time"
+	value="3"
+/>
+<script>
+def doQuery():
+	rfss.queryGroup("targetGroup")
+</script>
+</rfss-script>
+
+</test-script>

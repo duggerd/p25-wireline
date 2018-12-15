@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>gov.nist.p25</groupId>
+  <artifactId>p25stack</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <name>p25stack</name>
+  <url>http://www.pscr.gov</url>
+
+  <properties>
+     <p25stack.home>${basedir}</p25stack.home>
+     <p25stack.lib>${p25stack.home}/lib</p25stack.lib>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>jain-sip-api</groupId>
+      <artifactId>jain-sip-api</artifactId>
+      <version>1.2</version>
+      <scope>system</scope>
+      <systemPath>${p25stack.lib}/jain-sip-api-1.2.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>jain-sip-ri</groupId>
+      <artifactId>jain-sip-ri</artifactId>
+      <version>1.2</version>
+      <scope>system</scope>
+      <systemPath>${p25stack.lib}/jain-sip-ri-1.2.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>nist-sdp</groupId>
+      <artifactId>nist-sdp</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${p25stack.lib}/nist-sdp-1.0.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.13</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <!-- scope>test</scope -->
+    </dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>compile</defaultGoal>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <id>javadoc-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE system-topology SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/systemtopology.dtd">
+<system-topology> 
+<wacn-config wacnName="wacn_1" wacnId="1"/>
+<wacn-config wacnName="wacn_2" wacnId="2"/>
+<systemconfig systemName="system_2" systemId="2" wacnName="wacn_2"/>
+<systemconfig systemName="system_1" systemId="1" wacnName="wacn_1"/>
+<rfssconfig rfssName="rfss_5" rfssId="f5" systemName="system_1" port="5060" emulated="true" ipAddress="132.163.65.209" />
+<rfssconfig rfssName="rfss_4" rfssId="f4" systemName="system_1" port="5060" emulated="true" ipAddress="132.163.65.208" />
+<rfssconfig rfssName="rfss_3" rfssId="f3" systemName="system_1" port="5060" emulated="true" ipAddress="132.163.65.207" />
+<rfssconfig rfssName="rfss_2" rfssId="f2" systemName="system_1" port="5060" emulated="true" ipAddress="132.163.65.206" />
+<rfssconfig rfssName="Xrfss_1" rfssId="f1" systemName="system_2" port="5060" emulated="true" ipAddress="132.163.65.190" />
+</system-topology>

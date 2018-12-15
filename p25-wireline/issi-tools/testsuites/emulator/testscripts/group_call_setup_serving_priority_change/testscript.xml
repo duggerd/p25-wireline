@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	traceGenerationTime="15"
+>
+
+<group-call-setup-scenario
+	id="group-call-setup-scenario-1"
+	callingSuName="callingSu"
+	calledGroupName="calledGroup"
+	priority="8"
+	isConfirmed="false"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</group-call-setup-scenario>
+
+<rfss-script	
+	id="rfss-script"
+	rfssName="servedRfss"
+	method="doChangeGroupPriority"
+	description="Re Invite from group serving at a higher priority of 8; emergency=true "
+>
+<trigger
+	type="time"
+	value="10"
+/>
+<script>
+def doChangeGroupPriority():
+	global rfss 
+	rfss.changeGroupCallPriority("calledGroup",8,"emergency")	
+</script>
+</rfss-script>
+
+</test-script>

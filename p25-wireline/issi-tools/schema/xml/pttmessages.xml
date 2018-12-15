@@ -1,0 +1,1613 @@
+<pttmessages>
+
+<ptt-packet
+ packetNumber="10"
+ receptionTime="2430311875489"
+ receivingRfssId="03.002.abcde.p25dr"
+ sendingRfssId="02.003.bcdef.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="3"
+ myIpAddress="10.8.121.8"
+ myRtpRecvPort="1162"
+ remoteIpAddress="10.8.121.9"
+ remoteRtpRecvPort="1356"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="0"
+ timeStamp="0"
+ SSRC="2"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="Heartbeat"
+ serviceOptions="4"
+ transmissionSequenceNumber="0"
+ losingAudio="false"
+ interval="10"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="11"
+ receptionTime="2430311878878"
+ receivingRfssId="03.002.abcde.p25dr"
+ sendingRfssId="02.003.bcdef.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="3"
+ myIpAddress="10.8.121.8"
+ myRtpRecvPort="1162"
+ remoteIpAddress="10.8.121.9"
+ remoteRtpRecvPort="1356"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="1"
+ timeStamp="480"
+ SSRC="2"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit End"
+ serviceOptions="4"
+ transmissionSequenceNumber="2"
+ losingAudio="false"
+ interval="0"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="12"
+ receptionTime="2430311884175"
+ receivingRfssId="03.002.abcde.p25dr"
+ sendingRfssId="02.003.bcdef.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="3"
+ myIpAddress="10.8.121.8"
+ myRtpRecvPort="1162"
+ remoteIpAddress="10.8.121.9"
+ remoteRtpRecvPort="1356"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="5"
+ timeStamp="2400"
+ SSRC="2"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="2"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Request"
+ serviceOptions="4"
+ transmissionSequenceNumber="4"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="773615"
+ systemId="3"
+ unitId="1006"
+ transmitPriority="Normal"
+ transmitPriorityLevel="4"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="13"
+ receptionTime="2430311884412"
+ receivingRfssId="03.002.abcde.p25dr"
+ sendingRfssId="02.003.bcdef.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="3"
+ myIpAddress="10.8.121.8"
+ myRtpRecvPort="1162"
+ remoteIpAddress="10.8.121.9"
+ remoteRtpRecvPort="1356"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="6"
+ timeStamp="2880"
+ SSRC="2"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="3"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="ISSI Header Information"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<issi-header-word
+ messageIndicator="00 00 00 00 00 00 00 00 00 "
+ algId="128"
+ keyId="0"
+ manufacturerID= "0"
+ groupID="563"
+ networkID="0"
+ superFrameCounter="0"
+ vbb="3"
+ reserved="0"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Progress"
+ serviceOptions="0"
+ transmissionSequenceNumber="4"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="773615"
+ systemId="3"
+ unitId="1006"
+ transmitPriority="Normal"
+ transmitPriorityLevel="0"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="14"
+ receptionTime="2430311884477"
+ receivingRfssId="03.002.abcde.p25dr"
+ sendingRfssId="02.003.bcdef.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="3"
+ myIpAddress="10.8.121.8"
+ myRtpRecvPort="1162"
+ remoteIpAddress="10.8.121.9"
+ remoteRtpRecvPort="1356"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="7"
+ timeStamp="3360"
+ SSRC="2"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="5"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="14"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="14"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="14"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Progress"
+ serviceOptions="0"
+ transmissionSequenceNumber="4"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="773615"
+ systemId="3"
+ unitId="1006"
+ transmitPriority="Normal"
+ transmitPriorityLevel="0"
+/>
+
+<imbe-voice
+ frameType="194"
+ voiceFrame="7b fb 7d f2 7b 3d 9e 44 "
+ ET="0"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+/>
+
+<imbe-voice
+ frameType="195"
+ voiceFrame="7b fb 7d f2 7b 3d 9e 45 "
+ ET="0"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+/>
+
+<imbe-voice
+ frameType="196"
+ voiceFrame="7b fb 7d f2 7b 3d 9e 44 "
+ ET="0"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="15"
+ receptionTime="2430311885483"
+ receivingRfssId="03.002.abcde.p25dr"
+ sendingRfssId="02.003.bcdef.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="3"
+ myIpAddress="10.8.121.8"
+ myRtpRecvPort="1162"
+ remoteIpAddress="10.8.121.9"
+ remoteRtpRecvPort="1356"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="24"
+ timeStamp="11520"
+ SSRC="2"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="Heartbeat"
+ serviceOptions="4"
+ transmissionSequenceNumber="0"
+ losingAudio="false"
+ interval="10"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="16"
+ receptionTime="2430311885492"
+ receivingRfssId="03.002.abcde.p25dr"
+ sendingRfssId="02.003.bcdef.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="3"
+ myIpAddress="10.8.121.8"
+ myRtpRecvPort="1162"
+ remoteIpAddress="10.8.121.9"
+ remoteRtpRecvPort="1356"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="25"
+ timeStamp="12000"
+ SSRC="2"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="5"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="17"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Progress"
+ serviceOptions="0"
+ transmissionSequenceNumber="4"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="773615"
+ systemId="3"
+ unitId="1006"
+ transmitPriority="Normal"
+ transmitPriorityLevel="0"
+/>
+
+<imbe-voice
+ frameType="113"
+ voiceFrame="00 2e f6 80 0e a5 28 29 "
+ ET="1"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="ac b8 a4 00 "
+/>
+
+<imbe-voice
+ frameType="114"
+ voiceFrame="ab b4 92 80 1e 9b 82 be "
+ ET="3"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="1"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="9b dc 75 00 "
+/>
+
+<imbe-voice
+ frameType="115"
+ voiceFrame="fa 89 38 00 31 13 69 bb "
+ ET="0"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="1"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="00 00 00 "
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="17"
+ receptionTime="2430311887544"
+ receivingRfssId="03.002.abcde.p25dr"
+ sendingRfssId="02.003.bcdef.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="3"
+ myIpAddress="10.8.121.8"
+ myRtpRecvPort="1162"
+ remoteIpAddress="10.8.121.9"
+ remoteRtpRecvPort="1356"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="59"
+ timeStamp="28320"
+ SSRC="2"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit End"
+ serviceOptions="4"
+ transmissionSequenceNumber="4"
+ losingAudio="false"
+ interval="0"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="18"
+ receptionTime="2430311895499"
+ receivingRfssId="03.002.abcde.p25dr"
+ sendingRfssId="02.003.bcdef.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="3"
+ myIpAddress="10.8.121.8"
+ myRtpRecvPort="1162"
+ remoteIpAddress="10.8.121.9"
+ remoteRtpRecvPort="1356"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="63"
+ timeStamp="30240"
+ SSRC="2"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="Heartbeat"
+ serviceOptions="4"
+ transmissionSequenceNumber="0"
+ losingAudio="false"
+ interval="10"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="19"
+ receptionTime="2430311875488"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="0"
+ timeStamp="0"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="Heartbeat Query"
+ serviceOptions="4"
+ transmissionSequenceNumber="0"
+ losingAudio="false"
+ interval="10"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="110"
+ receptionTime="2430311875490"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="1"
+ timeStamp="480"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="2"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Start"
+ serviceOptions="4"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="703710"
+ systemId="2"
+ unitId="1003"
+ transmitPriority="Normal"
+ transmitPriorityLevel="4"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="111"
+ receptionTime="2430311875508"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="2"
+ timeStamp="960"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="5"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Progress"
+ serviceOptions="0"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="703710"
+ systemId="2"
+ unitId="1003"
+ transmitPriority="Normal"
+ transmitPriorityLevel="0"
+/>
+
+<imbe-voice
+ frameType="110"
+ voiceFrame="80 80 40 f0 00 00 00 0c "
+ ET="0"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="00 00 00 00 "
+/>
+
+<imbe-voice
+ frameType="111"
+ voiceFrame="7f 7f bf f3 ff ff ff fd "
+ ET="0"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="00 00 00 00 "
+/>
+
+<imbe-voice
+ frameType="112"
+ voiceFrame="ca c4 68 0f f9 30 53 dc "
+ ET="7"
+ ER="2"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="80 00 00 00 "
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="112"
+ receptionTime="2430311875865"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="8"
+ timeStamp="3840"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="2"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Start"
+ serviceOptions="4"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="703710"
+ systemId="2"
+ unitId="1003"
+ transmitPriority="Normal"
+ transmitPriorityLevel="4"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="113"
+ receptionTime="2430311875868"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="9"
+ timeStamp="4320"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="5"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Progress"
+ serviceOptions="0"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="703710"
+ systemId="2"
+ unitId="1003"
+ transmitPriority="Normal"
+ transmitPriorityLevel="0"
+/>
+
+<imbe-voice
+ frameType="110"
+ voiceFrame="87 c0 0c 80 04 47 fb 36 "
+ ET="0"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="00 00 00 00 "
+/>
+
+<imbe-voice
+ frameType="111"
+ voiceFrame="28 5f ee 00 04 ce 06 0b "
+ ET="1"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="00 00 00 00 "
+/>
+
+<imbe-voice
+ frameType="112"
+ voiceFrame="f0 61 fd 00 0d 4d 2b 80 "
+ ET="1"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="80 00 00 00 "
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="114"
+ receptionTime="2430311876241"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="16"
+ timeStamp="7680"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="2"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Start"
+ serviceOptions="4"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="703710"
+ systemId="2"
+ unitId="1003"
+ transmitPriority="Normal"
+ transmitPriorityLevel="4"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="115"
+ receptionTime="2430311876288"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="17"
+ timeStamp="8160"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="5"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="17"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Progress"
+ serviceOptions="0"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="703710"
+ systemId="2"
+ unitId="1003"
+ transmitPriority="Normal"
+ transmitPriorityLevel="0"
+/>
+
+<imbe-voice
+ frameType="113"
+ voiceFrame="74 18 71 80 0d 30 70 9b "
+ ET="1"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="ac b8 a4 00 "
+/>
+
+<imbe-voice
+ frameType="114"
+ voiceFrame="17 ba f2 80 0a cd 52 20 "
+ ET="3"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="1"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="9b dc 75 00 "
+/>
+
+<imbe-voice
+ frameType="115"
+ voiceFrame="d1 f3 45 00 0b 9e 0d bd "
+ ET="0"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="1"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="00 00 00 "
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="116"
+ receptionTime="2430311876615"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="23"
+ timeStamp="11040"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="2"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Start"
+ serviceOptions="4"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="703710"
+ systemId="2"
+ unitId="1003"
+ transmitPriority="Normal"
+ transmitPriorityLevel="4"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="117"
+ receptionTime="2430311876648"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="24"
+ timeStamp="11520"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="5"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="PTT Control Word Block Type"
+ timeStampOffset="0"
+ blockLength="8"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="18"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="IMBE Voice Block Type"
+ timeStampOffset="0"
+ blockLength="17"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Progress"
+ serviceOptions="0"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+<ptt-control-word
+ wacnId="703710"
+ systemId="2"
+ unitId="1003"
+ transmitPriority="Normal"
+ transmitPriorityLevel="0"
+/>
+
+<imbe-voice
+ frameType="113"
+ voiceFrame="80 83 9a 80 06 6e 7d 05 "
+ ET="1"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="0"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="ac b8 a4 00 "
+/>
+
+<imbe-voice
+ frameType="114"
+ voiceFrame="af f6 ef 80 02 b7 02 8c "
+ ET="1"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="1"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="9b dc 75 00 "
+/>
+
+<imbe-voice
+ frameType="115"
+ voiceFrame="a4 45 db 80 02 83 c4 29 "
+ ET="0"
+ ER="0"
+ muteFrame="0"
+ lostFrame="0"
+ E4="1"
+ E1="0"
+ SF="0"
+ reserved="0"
+ additionalFrameData="00 00 00 "
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="118"
+ receptionTime="2430311878874"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="61"
+ timeStamp="29280"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit End"
+ serviceOptions="4"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="119"
+ receptionTime="2430311884188"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="65"
+ timeStamp="31200"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit Grant"
+ serviceOptions="4"
+ transmissionSequenceNumber="4"
+ losingAudio="false"
+ interval="0"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="120"
+ receptionTime="2430311885489"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="66"
+ timeStamp="31680"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="Heartbeat"
+ serviceOptions="4"
+ transmissionSequenceNumber="0"
+ losingAudio="false"
+ interval="10"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="121"
+ receptionTime="2430311887548"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="67"
+ timeStamp="32160"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="1"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="PTT Transmit End"
+ serviceOptions="4"
+ transmissionSequenceNumber="3"
+ losingAudio="false"
+ interval="0"
+/>
+</p25-payload>
+</ptt-packet>
+<ptt-packet
+ packetNumber="122"
+ receptionTime="2430311895505"
+ receivingRfssId="02.003.bcdef.p25dr"
+ sendingRfssId="03.002.abcde.p25dr"
+ isSender="false"
+>
+<ptt-session
+ rfssId="2"
+ myIpAddress="10.8.121.9"
+ myRtpRecvPort="1356"
+ remoteIpAddress="10.8.121.8"
+ remoteRtpRecvPort="1162"
+/>
+<rtp-header
+ version="2"
+ padding="0"
+ headerExtension="0"
+ csrcCount="0"
+ marker="0"
+ payloadType="72"
+ sequenceNumber="71"
+ timeStamp="34080"
+ SSRC="1"
+/>
+<p25-payload>
+<control-octet
+ signalBit="0"
+ compactBit="0"
+ blockHeaderCount="1"
+/>
+<block-header
+ payloadType="P25 profile specific type"
+ blockType="Packet Block Type"
+ timeStampOffset="0"
+ blockLength="4"
+/>
+<issi-packet-type
+ muteStatus="false"
+ packetType="Heartbeat"
+ serviceOptions="4"
+ transmissionSequenceNumber="0"
+ losingAudio="false"
+ interval="10"
+/>
+</p25-payload>
+</ptt-packet></pttmessages>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE system-topology SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/issi-tester-config.dtd">
+<issi-tester-config>
+  <diets-daemon
+	ipAddress="127.0.0.1"
+	httpPort="8763"
+	name="daemon1"
+	isConformanceTester="false"
+	isPacketMonitor="true"
+  >
+  <refid id="rfss_5.daemon" />
+  <refid id="rfss_4.daemon" />
+  <refid id="rfss_2.daemon" />
+  <refid id="rfss_3.daemon" />
+  <refid id="rfss_1.daemon" />
+</diets-daemon>
+</issi-tester-config>

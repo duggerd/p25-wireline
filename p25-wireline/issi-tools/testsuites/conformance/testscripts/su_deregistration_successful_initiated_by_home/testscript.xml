@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	traceGenerationTime="10"
+>
+
+<roaming-scenario
+	id="roamingScenario"
+	suName="mySu"
+	destinationRfssName="targetRfss"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</roaming-scenario>
+	
+</test-script>

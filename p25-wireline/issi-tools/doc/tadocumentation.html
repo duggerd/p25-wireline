@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><TITLE>Trace Analyzer - User Documentation</TITLE></HEAD>
+<BODY>
+<H2>ITT - Trace and Performance Analyzer</H2>
+<H3>Introduction</H3>
+<P>
+The Trace Analyzer is a tool used to analzye the SIP and PTT signalling traces captured
+from the RFSSes using the sniffer software such as WireShark or JPCAP library.
+</P>
+<BR>
+<BR>
+<H3>User Interface Layout</H3>
+<P>
+The user interface area is divided into the top (PCAP File) and bottom (Test Traces)
+panels. The bottom panel is further subdivided into left and right panels with context 
+information.
+</P>
+<BR>
+<P>
+The Top- PCAP File panel consists of the name of PCAP file and a list of RFSSes which
+are auto-detected when a pcap file is defined.
+</P>
+<BR>
+<P>
+The Bottom- Test Traces panel consists of test traces (SIP and PTT) of each test runs on
+the left panel and the corresponding message details on the right panel. The Test Traces are generated when the "Analyze" option is requested after a PCAP file is opened.
+</P>
+<BR>
+<BR>
+<H3>ScreenShot</H3>
+<BR>
+<IMG src="taperfscreen.jpg" />
+<BR>
+<BR>
+<BR>
+<H3>Trace Analysis</H3>
+<P>
+Assuming the messages between RFSSes are captured into a PCAP file, the trace analysis procedures are as follows:
+</P>
+<BR>
+<BR>
+<H3>Open File</H3>
+<P>
+By opening a specific PCAP file, the RFSSes participated in the signalling process can be identified; the IP address, port, and domain name can also be deciphered. At this time, the user can assign the name of RFSSes to be used in the trace diagram. By enabling the RFSSes of interest, the messages between enabled RFSSes will be analyzed.
+</P>
+<BR>
+<BR>
+<H3>Analyze Trace</H3>
+<P>
+After the PCAP file is opened, the SIP and PTT messages can be processed by selecting the Analyze option. Only the enabled RFSSes are analyzed and displayed in the Test Traces panel.
+</P>
+<BR>
+<BR>
+<H3>Evaluate Trace</H3>
+<P>
+If interested, the IVS Group Call Setup performance paramters can be requested by selecting the "Evaluate" option. The timing parameters correspond to those displayed in the diagram.
+</P>
+<BR>
+<IMG src="taperformance.jpg" />
+<BR>
+<BR>
+<IMG src="tadiagram.jpg" />
+<BR>
+<BR>
+<BR>
+<H3>Configuration Settings</H3>
+<P>
+The Configuration pulldown menu allows user to specify various settings which will affect 
+the details of information being displayed in the Test Traces panel.
+</P>
+<BR>
+<BR>
+<H3>Performance Analysis</H3>
+<P>
+The Performance Analysis can also be performed on test data captured in the PCAP files.
+The delays calculation can be averaged across multiple data files collected under same 
+test conditions. A minimum of ten ensembles is recommended by specification.
+</P>
+<BR>
+<BR>
+<H3>Calculate Delays</H3>
+The Calculate Delays option can be applied to one of six calculations:
+<UL>
+<LI>IVS Group Call Setup Delay - Confirmed Group Call</LI>
+<LI>IVS Group Call Setup Delay - Unconfirmed Group Call</LI>
+<LI>IVS Group Call Message Transfer Delay</LI>
+<LI>IVS SU-to-SU Call Setup Delay - Direct Call</LI>
+<LI>IVS SU-to-SU Call Setup Delay - Availability Check</LI>
+<LI>IVS SU-to-SU Call Message Transfer Delay</LI>
+</UL>
+<BR>
+When an option is selected, a file selection dialog will be displayed.
+<BR>
+<IMG src="tacalculation.jpg" />
+<BR>
+<H3>Setup Delays</H3>
+The Setup Delays option allows user to define some of IP delays which are used
+in the calculations but not readily available in the test data. Typically these
+type of IP delays are unique to test configuration and measured using the ping
+command.
+<BR> 
+<IMG src="tasetupdelay.jpg" />
+<BR>
+<H3>Specifications</H3>
+The Specifications option provides user with the call delay values per ISSI specifications. A sample specification for the Group Call Setup Delays are shown.
+<BR> 
+<IMG src="taperfspec.jpg" />
+<BR>
+<BR>
+<H3>Help</H3>
+<P>
+As a convenience, a shortcut to WireShark and JpcapDumper are also provided. These tools 
+can also be used to analyze the PCAP file from various perspectives.
+</P>
+<BR>
+<BR>
+<H3>Log Files</H3>
+<P>
+The Trace Analyzer maintains a log file (traceanalyzer.txt) under the installed directory /logs.
+The motivated users are encouraged to consult the log file in the event of technical difficulties.
+<BR>
+<BR>
+<H5>Last update 05/23/2009</H5>
+</BODY>
+</HTML>

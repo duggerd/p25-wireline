@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script>
+
+<!-- At time 0 SuId 12 calls SuId 34.
+This is the initial condition in Page 308 of the ISSI spec.  -->
+
+
+<!-- at time 10 seconds, the suId 12 roams to rfssId 1. It takes
+3 seconds for the roaming to occur -->
+<roaming-scenario
+	id="roaming-scenario-1"
+	suName = "roamingSu"
+	destinationRfssName = "targetRfss"
+	delay="3"
+>
+<trigger
+	type="time"
+	value = "10"
+/>
+</roaming-scenario>
+
+</test-script>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ivs-delays">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ivs-gcsd">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="parameter" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="key" use="optional"/>
+                      <xs:attribute type="xs:int" name="value" use="optional"/>
+                      <xs:attribute type="xs:int" name="maximum" use="optional"/>
+                      <xs:attribute type="xs:int" name="count" use="optional"/>
+                      <xs:attribute type="xs:boolean" name="calculated" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="title"/>
+            <xs:attribute type="xs:string" name="diagram"/>
+            <xs:attribute type="xs:string" name="active"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ivs-gmtd">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="parameter" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="key" use="optional"/>
+                      <xs:attribute type="xs:int" name="value" use="optional"/>
+                      <xs:attribute type="xs:int" name="maximum" use="optional"/>
+                      <xs:attribute type="xs:int" name="count" use="optional"/>
+                      <xs:attribute type="xs:boolean" name="calculated" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="title"/>
+            <xs:attribute type="xs:string" name="diagram"/>
+            <xs:attribute type="xs:string" name="active"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ivs-ucsd">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="parameter" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="key" use="optional"/>
+                      <xs:attribute type="xs:int" name="value" use="optional"/>
+                      <xs:attribute type="xs:int" name="maximum" use="optional"/>
+                      <xs:attribute type="xs:int" name="count" use="optional"/>
+                      <xs:attribute type="xs:boolean" name="calculated" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="title"/>
+            <xs:attribute type="xs:string" name="diagram"/>
+            <xs:attribute type="xs:string" name="active"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ivs-umtd">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="parameter" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="key" use="optional"/>
+                      <xs:attribute type="xs:int" name="value" use="optional"/>
+                      <xs:attribute type="xs:int" name="maximum" use="optional"/>
+                      <xs:attribute type="xs:int" name="count" use="optional"/>
+                      <xs:attribute type="xs:boolean" name="calculated" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="title"/>
+            <xs:attribute type="xs:string" name="diagram"/>
+            <xs:attribute type="xs:string" name="active"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ivs-input">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="datafile" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="name" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="title"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ivs-status">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="comment"/>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="title"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

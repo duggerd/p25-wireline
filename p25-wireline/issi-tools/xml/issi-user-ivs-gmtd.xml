@@ -1,0 +1,10 @@
+<ivs-delays>
+   <ivs-gmtd title="Measurements Default for Group Call Message Transfer Delay(GMTD)" diagram="gfx/diagrams/IVS-GMTD.JPG">
+      <parameter key="Tg_ad1" value="200" maximum="600"/>
+      <parameter key="Tg_ad2" value="10" maximum="50"/>
+      <parameter key="Tg_ad3" value="170"/>
+   </ivs-gmtd>
+   <ivs-status title="Measurements Default for ISSI Voice Services">
+      <comment>Measurements Default values from specifications.</comment>
+   </ivs-status>
+</ivs-delays>

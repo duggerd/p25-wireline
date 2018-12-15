@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config traceOrder="rfss_4,rfss_3,Xrfss_1,rfss_2">
+
+<rfssconfig rfssName="rfss_2" rfResourcesAvailable="false"/>
+
+<!-- test layout by roles -->
+<suconfig suName="su_34" id="callingSu">
+<userprofile unitToUnitCallPermission="ReceiveAndInitiate" 
+	unitToUnitCallSetupPreference="AvailabilityCheck" isFullDuplex="false"/>
+</suconfig>
+
+<suconfig suName="su_12" id="calledSu" inviteProcessingDelay="7">
+<userprofile unitToUnitCallPermission="ReceiveAndInitiate" 
+	availCheckSupported="AvailabilityCheck" isFullDuplex="false"/>
+</suconfig>
+
+</conformance-test-config>

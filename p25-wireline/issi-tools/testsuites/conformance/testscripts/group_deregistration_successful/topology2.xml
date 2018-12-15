@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!DOCTYPE conformance-test-config SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/topologyconfig.dtd">
+<conformance-test-config
+>
+<!-- change su_22 to su_11 -->
+<suconfig
+	suName="su_11"
+	id="deregisteringSu"
+/>
+
+<sgconfig
+	groupName="group_2"
+>
+<subscriber
+	suName="su_11"
+/>
+<!-- 06/29/2009 #137 set g-agroup -->
+<groupprofile>
+g-agroup:0B4561A27271
+</groupprofile>
+</sgconfig>
+
+</conformance-test-config>
+

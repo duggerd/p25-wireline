@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	testCompletionDelay="10"
+>
+
+<group-call-setup-scenario
+	id="group-call-setup-scenario-1"
+	callingSuName="callingSuA"
+	calledGroupName="calledGroup"
+	isConfirmed="false"
+	priority="4"
+>
+<trigger
+	type="time"
+	value="8"
+/>
+</group-call-setup-scenario>
+
+<su-script
+	id="suscript2"
+	suName="callingSuA"
+	method="doSendTalkSpurt"
+	description="Send a talk spurt to the group. "
+>
+<trigger
+	type="time"
+	value="12"
+/>
+<script>
+def doSendTalkSpurt():
+	global su
+	su.setTransmitPriority("NORMAL",4)
+	su.sendTalkSpurt("calledGroup")
+</script>
+</su-script>
+
+<su-script
+	id="suscript3"
+	suName="calledSuB"
+	method="doSendTalkSpurt"
+	description="Send a talk spurt to the group at a higher priority."
+>
+<trigger
+	type="ptt_message"
+	value="PTT_PROGRESS"
+	oneShot="true"
+/>
+<script>
+def doSendTalkSpurt():
+	global su
+	su.setTransmitPriority("NORMAL",8)
+	su.sendTalkSpurt("calledGroup",5)
+</script>
+</su-script>
+
+</test-script>

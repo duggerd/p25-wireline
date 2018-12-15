@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	testCompletionDelay="10"
+>
+
+<group-call-setup-scenario
+	id="group-call-setup-scenario-1"
+	callingSuName="callingSu"
+	calledGroupName="calledGroup"
+	isConfirmed="false"
+	priority="4"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</group-call-setup-scenario>
+
+<su-script
+	id="suscript3"
+	suName="callingSu"
+	method="doSendTalkSpurt"
+	description="Start a talk long (3 minute) spurt to the group a second later send a higher priority talk spurt from this Rfss. "
+>
+<trigger
+	type="time"
+	value="8"
+/>
+<script>
+def doSendTalkSpurt():
+	global su
+	su.setTransmitPriority("NORMAL",4)
+	su.sendTalkSpurt("calledGroup")
+</script>
+</su-script>
+
+<!-- Send a higher priority talk spurt from the same group home. 
+this script references a previously defined one. -->
+<su-script
+	id="suscript4"
+	suName="higherPrioritySu"
+	method="doSendTalkSpurt"
+	description="Send a short higher priority talk spurt to the group from the served Rfss. "
+>
+<trigger
+	type="time"
+	refId="suscript3"
+	value="1"
+/>
+<script>
+def doSendTalkSpurt():
+	global su
+	su.setTransmitPriority("NORMAL",8)
+	#send only 5 blocks so we send an end and the other
+	# stream has a chance to unmute
+	su.sendTalkSpurt("calledGroup",5)
+</script>
+</su-script>
+
+</test-script>

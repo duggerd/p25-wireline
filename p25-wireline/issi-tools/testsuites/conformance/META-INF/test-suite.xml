@@ -1,0 +1,7 @@
+<testsuite>
+<name>ISSI Conformance Test Suite </name>
+<type>ISSI_CONFORMANCE_TEST</type>
+<systemtopology>systemtopology.xml</systemtopology>
+<testscripts>testscripts</testscripts>
+<testregistry>testscripts/testregistry.xml</testregistry>
+</testsite>

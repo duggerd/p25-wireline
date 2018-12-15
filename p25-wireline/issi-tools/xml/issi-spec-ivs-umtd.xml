@@ -1,0 +1,26 @@
+<ivs-delays>
+   <ivs-umtd title="Performance Specifications for SU-to-SU Call Message Transfer Delay(UMTD)" diagram="gfx/diagrams/IVS-UMTD.JPG">
+      <parameter key="Tu_ad1" value="200"/>
+      <parameter key="Tu_ad2" value="10"/>
+      <parameter key="Tu_ad3" value="10"/>
+      <parameter key="Tu_ad4" value="170"/>
+      <parameter key="Tu_ad5" value="200"/>
+      <parameter key="Tu_ad6" value="10"/>
+      <parameter key="Tu_ad7" value="10"/>
+      <parameter key="Tu_ad8" value="170"/>
+      <parameter key="Tu_ipad1" value="30"/>
+      <parameter key="Tu_ipad2" value="30"/>
+      <parameter key="Tu_ipad3" value="30"/>
+      <parameter key="Tu_ipad4" value="30"/>
+      <parameter key="Tu_ipad5" value="30"/>
+      <parameter key="Tu_ipad6" value="30"/>
+      <parameter key="Tu_AudioDelay1_CAI" value="480" calculated="true"/>
+      <parameter key="Tu_AudioDelay2_CAI" value="480" calculated="true"/>
+      <parameter key="Tu_AudioDelay1_ISSI" value="110" calculated="true"/>
+      <parameter key="Tu_AudioDelay2_ISSI" value="110" calculated="true"/>
+   </ivs-umtd>
+   <ivs-status title="Performanace Recommendations for ISSI Voice Services">
+      <comment>Performanace specifications based on TIA-102.CACB, April 2007.
+ISSI Performance:</comment>
+   </ivs-status>
+</ivs-delays>

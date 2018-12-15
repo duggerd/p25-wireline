@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="allmessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="message" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="from" use="optional"/>
+                <xs:attribute type="xs:string" name="fromRfssId" use="optional"/>
+                <xs:attribute type="xs:string" name="to" use="optional"/>
+                <xs:attribute type="xs:string" name="toRfssId" use="optional"/>
+                <xs:attribute type="xs:int" name="packetNumber" use="optional"/>
+                <xs:attribute type="xs:long" name="time" use="optional"/>
+                <xs:attribute type="xs:string" name="isSender" use="optional"/>
+                <xs:attribute type="xs:string" name="transactionId" use="optional"/>
+                <xs:attribute type="xs:string" name="callId" use="optional"/>
+                <xs:attribute type="xs:string" name="firstLine" use="optional"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ptt-packet" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ptt-session">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:int" name="rfssId" use="optional"/>
+                      <xs:attribute type="xs:string" name="myIpAddress" use="optional"/>
+                      <xs:attribute type="xs:int" name="myRtpRecvPort" use="optional"/>
+                      <xs:attribute type="xs:string" name="remoteIpAddress" use="optional"/>
+                      <xs:attribute type="xs:int" name="remoteRtpRecvPort" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="rtp-header">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:int" name="version" use="optional"/>
+                      <xs:attribute type="xs:int" name="padding" use="optional"/>
+                      <xs:attribute type="xs:int" name="headerExtension" use="optional"/>
+                      <xs:attribute type="xs:int" name="csrcCount" use="optional"/>
+                      <xs:attribute type="xs:int" name="marker" use="optional"/>
+                      <xs:attribute type="xs:int" name="payloadType" use="optional"/>
+                      <xs:attribute type="xs:int" name="sequenceNumber" use="optional"/>
+                      <xs:attribute type="xs:int" name="timeStamp" use="optional"/>
+                      <xs:attribute type="xs:int" name="SSRC" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="p25-payload">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="control-octet">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:int" name="signalBit" use="optional"/>
+                            <xs:attribute type="xs:int" name="compactBit" use="optional"/>
+                            <xs:attribute type="xs:int" name="blockHeaderCount" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="block-header" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="payloadType" use="optional"/>
+                            <xs:attribute type="xs:string" name="blockType" use="optional"/>
+                            <xs:attribute type="xs:int" name="timeStampOffset" use="optional"/>
+                            <xs:attribute type="xs:int" name="blockLength" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="issi-header-word" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="messageIndicator"/>
+                            <xs:attribute type="xs:int" name="algId"/>
+                            <xs:attribute type="xs:int" name="keyId"/>
+                            <xs:attribute type="xs:int" name="manufacturerID"/>
+                            <xs:attribute type="xs:int" name="groupID"/>
+                            <xs:attribute type="xs:int" name="networkID"/>
+                            <xs:attribute type="xs:int" name="superFrameCounter"/>
+                            <xs:attribute type="xs:int" name="vbb"/>
+                            <xs:attribute type="xs:int" name="reserved"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="issi-packet-type">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="muteStatus" use="optional"/>
+                            <xs:attribute type="xs:string" name="packetType" use="optional"/>
+                            <xs:attribute type="xs:int" name="serviceOptions" use="optional"/>
+                            <xs:attribute type="xs:int" name="transmissionSequenceNumber" use="optional"/>
+                            <xs:attribute type="xs:string" name="losingAudio" use="optional"/>
+                            <xs:attribute type="xs:int" name="interval" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ptt-control-word" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:int" name="wacnId" use="optional"/>
+                            <xs:attribute type="xs:int" name="systemId" use="optional"/>
+                            <xs:attribute type="xs:int" name="unitId" use="optional"/>
+                            <xs:attribute type="xs:string" name="transmitPriority" use="optional"/>
+                            <xs:attribute type="xs:int" name="transmitPriorityLevel" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="imbe-voice" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:int" name="frameType" use="optional"/>
+                            <xs:attribute type="xs:string" name="voiceFrame" use="optional"/>
+                            <xs:attribute type="xs:int" name="ET" use="optional"/>
+                            <xs:attribute type="xs:int" name="ER" use="optional"/>
+                            <xs:attribute type="xs:int" name="muteFrame" use="optional"/>
+                            <xs:attribute type="xs:int" name="lostFrame" use="optional"/>
+                            <xs:attribute type="xs:int" name="E4" use="optional"/>
+                            <xs:attribute type="xs:int" name="E1" use="optional"/>
+                            <xs:attribute type="xs:int" name="SF" use="optional"/>
+                            <xs:attribute type="xs:int" name="reserved" use="optional"/>
+                            <xs:attribute type="xs:string" name="additionalFrameData" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:int" name="packetNumber" use="optional"/>
+            <xs:attribute type="xs:long" name="receptionTime" use="optional"/>
+            <xs:attribute type="xs:string" name="receivingRfssId" use="optional"/>
+            <xs:attribute type="xs:string" name="sendingRfssId" use="optional"/>
+            <xs:attribute type="xs:string" name="isSender" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

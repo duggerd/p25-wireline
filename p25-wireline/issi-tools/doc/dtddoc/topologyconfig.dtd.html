@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>Topology Configuration Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>topologyconfig.dtd</code></b>: <a href='topologyconfig.dtd.html'>Elements</a> - Entities - <a href='topologyconfig.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='topologyconfig.dtd.html' target='_top'>NO FRAMES</a></p><h1>Topology Configuration Specification</h1>
+<a name='conformance-test-config'></a>
+<br /><table class='elementTitle' summary="conformance-test-config"><tr><td class='leftElementTitle'>
+&lt;conformance-test-config&gt;</td><td class='rightElementTitle'>
+Root element
+</td></tr></table>
+<p>This document allows you to specialize the configuration of
+the emulated RFSSs involved in a test.
+The ISSI emulation consists of multiple RFSSs, SU's and groups that are defined in the associated
+systemtopology.xml file for a test suite and inherited by the globaltopology.xml file for that test suite.
+The globaltopolgy.xml file is where you set SU and group associations. Here is where you define
+things like Group membership and other test specific behabiors. In this file you will specify user and group profiles as well as timers, registration
+and other such information. This is a specialization of the attributes of these emulated entities that are defined
+in the corresponding global-topology.xml file. The contents of the xml document are interpreted in the context of an
+associated globaltopology.xml. The rfss names and group names here are tied to the rfss and group names that
+are defined in globlatopology.xml.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;conformance-test-config&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;conformance-test-config&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#rfssconfig'>rfssconfig</a></td><td>Any number</td></tr>
+<tr><td><a href='#sgconfig'>sgconfig</a></td><td>Any number</td></tr>
+<tr><td><a href='#suconfig'>suconfig</a></td><td>Any number</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;conformance-test-config&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;conformance-test-config&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#conformance-test-config_THEARTBEAT'>THEARTBEAT</a></td><td></td><td>10000</td></tr><tr><td><a href='#conformance-test-config_traceOrder'>traceOrder</a></td><td></td><td></td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#rfssconfig'>rfssconfig</a>*, <a href='#suconfig'>suconfig</a>*, <a href='#sgconfig'>sgconfig</a>*)</p><a name='conformance-test-config_THEARTBEAT'></a>
+<br /><table class='attributeTitle' summary="THEARTBEAT"><tr><td class='leftAttributeTitle'>
+@THEARTBEAT</td><td class='rightAttributeTitle'>
+Attribute of <a href='#conformance-test-config'>conformance-test-config</a>
+</td></tr></table>
+<p>Timer values that you can set up ( override defaults) for this test.</p><p><span class='inTextTitle'>Default value</span>: 10000</p><a name='conformance-test-config_traceOrder'></a>
+<br /><table class='attributeTitle' summary="traceOrder"><tr><td class='leftAttributeTitle'>
+@traceOrder</td><td class='rightAttributeTitle'>
+Attribute of <a href='#conformance-test-config'>conformance-test-config</a>
+</td></tr></table>
+<p>Comma separated list of rfss names for ordering the vertical lines of the sequence diagram
+to make it more readable. If this attribute is left out, then the trace is ordered in the order
+of sent messages (i.e. if RFSS_A sends a message before RFSS_B then it appears before RFSS_B
+in the sequence diagram ).</p><a name='rfssconfig'></a>
+<br /><table class='elementTitle' summary="rfssconfig"><tr><td class='leftElementTitle'>
+&lt;rfssconfig&gt;</td><td class='rightElementTitle'>
+Child of <a href='#conformance-test-config'>conformance-test-config</a>
+</td></tr></table>
+<p>This defines the configuration of an RFSS.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;rfssconfig&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;rfssconfig&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#unknown-unit'>unknown-unit</a></td><td>Any number</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;rfssconfig&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;rfssconfig&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#rfssconfig_groupCallInviteProcessingTime'>groupCallInviteProcessingTime</a></td><td></td><td>0</td></tr><tr><td><a href='#rfssconfig_groupRegistrationExpiresTime'>groupRegistrationExpiresTime</a></td><td></td><td>UNBOUNDED</td></tr><tr><td><a href='#rfssconfig_id'>id</a></td><td></td><td></td></tr><tr><td><a href='#rfssconfig_isAdvancedRtpResourceManagementSupported'>isAdvancedRtpResourceManagementSupported</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#rfssconfig_isCallingSuInitrans'>isCallingSuInitrans</a></td><td>true, false</td><td>true</td></tr><tr><td><a href='#rfssconfig_isInterestedInLosingAudio'>isInterestedInLosingAudio</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#rfssconfig_maxRtpPorts'>maxRtpPorts</a></td><td></td><td>UNBOUNDED</td></tr><tr><td><a href='#rfssconfig_queryGroupCredentialsBeforeRegistration'>queryGroupCredentialsBeforeRegistration</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#rfssconfig_querySuCredentialsBeforeRegistration'>querySuCredentialsBeforeRegistration</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#rfssconfig_registerConfirmTime'>registerConfirmTime</a></td><td></td><td>0</td></tr><tr><td><a href='#rfssconfig_rfResourcesAvailable'>rfResourcesAvailable</a></td><td>true, false</td><td>true</td></tr><tr><td><a href='#rfssconfig_rfssName'>rfssName</a></td><td></td><td></td></tr><tr><td><a href='#rfssconfig_servedGroupLeaseTime'>servedGroupLeaseTime</a></td><td></td><td>UNBOUNDED</td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#unknown-unit'>unknown-unit</a>*)</p><a name='unknown-unit'></a>
+<br /><table class='elementTitle' summary="unknown-unit"><tr><td class='leftElementTitle'>
+&lt;unknown-unit/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>An unknown unit is a unit that the RFSS does not know about.
+No nested tags for this one. An RFSS that sees PTT request from
+an unknown Unit will reject the PTT Request.</p><blockquote>
+<table  summary="&lt;unknown-unit&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;unknown-unit&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#unknown-unit_suName'>suName</a></td><td></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='suconfig'></a>
+<br /><table class='elementTitle' summary="suconfig"><tr><td class='leftElementTitle'>
+&lt;suconfig&gt;</td><td class='rightElementTitle'>
+Child of <a href='#conformance-test-config'>conformance-test-config</a>
+</td></tr></table>
+<p>Defines an SU. An SU has an associated User Profile which the Home RFSS keeps. The nested forbidden tag is a list of RFSSs that the Home RFSS
+will not allow to register an SU from for the given SUID.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;suconfig&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;suconfig&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#forbidden'>forbidden</a></td><td>Any number</td></tr>
+<tr><td><a href='#userprofile'>userprofile</a></td><td>One or none</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;suconfig&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;suconfig&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#suconfig_checkSuPresenceOnRegister'>checkSuPresenceOnRegister</a></td><td>true, false</td><td>true</td></tr><tr><td><a href='#suconfig_homeRfssKnowsAboutMeFor'>homeRfssKnowsAboutMeFor</a></td><td>0, UNBOUNDED</td><td>UNBOUNDED</td></tr><tr><td><a href='#suconfig_homeRfssRegistersMeFor'>homeRfssRegistersMeFor</a></td><td>0, UNBOUNDED</td><td>UNBOUNDED</td></tr><tr><td><a href='#suconfig_id'>id</a></td><td></td><td></td></tr><tr><td><a href='#suconfig_initialState'>initialState</a></td><td>on, off</td><td>off</td></tr><tr><td><a href='#suconfig_inviteProcessingDelay'>inviteProcessingDelay</a></td><td></td><td>0</td></tr><tr><td><a href='#suconfig_isAvailable'>isAvailable</a></td><td>true, false</td><td>true</td></tr><tr><td><a href='#suconfig_protectionDisposition'>protectionDisposition</a></td><td>forward_protected, clear_protected, reject_protected, reject_unprotected</td><td>forward_protected</td></tr><tr><td><a href='#suconfig_registerOnForce'>registerOnForce</a></td><td>true, false</td><td>true</td></tr><tr><td><a href='#suconfig_servingRfssReferencesMeFor'>servingRfssReferencesMeFor</a></td><td>0, UNBOUNDED</td><td>UNBOUNDED</td></tr><tr><td><a href='#suconfig_suName'>suName</a></td><td></td><td></td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#userprofile'>userprofile</a>?, <a href='#forbidden'>forbidden</a>*)</p><a name='sgconfig'></a>
+<br /><table class='elementTitle' summary="sgconfig"><tr><td class='leftElementTitle'>
+&lt;sgconfig&gt;</td><td class='rightElementTitle'>
+Child of <a href='#conformance-test-config'>conformance-test-config</a>
+</td></tr></table>
+<p>A group configuration tag. A group is statically configured
+with one or more subscribers. Each subscriber is an SU. A group has a group
+profile that is stored at the group home.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table summary="&lt;sgconfig&gt;'s children">
+<thead>
+<tr><th class='title' colspan='2'>&lt;sgconfig&gt;'s children</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+<tr><th class='subtitle'>Name</th><th class='subtitle'>Cardinality</th></tr>
+<tr><th colspan='2' height='1' class='ruler'></th></tr>
+</thead>
+<tbody><tr><td><a href='#forbidden'>forbidden</a></td><td>Any number</td></tr>
+<tr><td><a href='#groupprofile'>groupprofile</a></td><td>One or none</td></tr>
+<tr><td><a href='#subscriber'>subscriber</a></td><td>At least one</td></tr>
+</tbody></table></td><td class='construct'><table  summary="&lt;sgconfig&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;sgconfig&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#sgconfig_groupName'>groupName</a></td><td></td><td></td></tr><tr><td><a href='#sgconfig_homeRfssKnowsAboutMeFor'>homeRfssKnowsAboutMeFor</a></td><td></td><td>UNBOUNDED</td></tr><tr><td><a href='#sgconfig_id'>id</a></td><td></td><td></td></tr><tr><td><a href='#sgconfig_protectionDisposition'>protectionDisposition</a></td><td>forward_protected, clear_protected, reject_protected, reject_unprotected</td><td>forward_protected</td></tr></table></td></tr></table></blockquote>
+<span class='inTextTitle'>Element's model:</span><p class='model'>(<a href='#subscriber'>subscriber</a>+, <a href='#groupprofile'>groupprofile</a>?, <a href='#forbidden'>forbidden</a>*)</p><a name='subscriber'></a>
+<br /><table class='elementTitle' summary="subscriber"><tr><td class='leftElementTitle'>
+&lt;subscriber/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#sgconfig'>sgconfig</a>
+</td></tr></table>
+<p>Defines a Subscriber. A subscriber to a group is an SU.</p><blockquote>
+<table  summary="&lt;subscriber&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;subscriber&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#subscriber_suName'>suName</a></td><td></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='unknown-unit_suName'></a>
+<br /><table class='attributeTitle' summary="suName"><tr><td class='leftAttributeTitle'>
+@suName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#unknown-unit'>unknown-unit</a>
+</td></tr></table>
+<p>The unknown SU symbolic name. Must be specified in the associated globaltopology.xml</p><p><span class='inTextTitle'>Required</span></p><a name='forbidden'></a>
+<br /><table class='elementTitle' summary="forbidden"><tr><td class='leftElementTitle'>
+&lt;forbidden/&gt;</td><td class='rightElementTitle'>
+Child of <a href='#sgconfig'>sgconfig</a>, <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>The tag that defines an RFSS that a given RFSS will not accept registrations from.</p><blockquote>
+<table  summary="&lt;forbidden&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;forbidden&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#forbidden_operation'>operation</a></td><td>REGISTER, REGISTER-QUERY, ALL</td><td>ALL</td></tr><tr><td><a href='#forbidden_rfssName'>rfssName</a></td><td></td><td></td></tr></table></blockquote>
+<p class='emptyTagNote'>This element is always empty.</p><a name='forbidden_operation'></a>
+<br /><table class='attributeTitle' summary="operation"><tr><td class='leftAttributeTitle'>
+@operation</td><td class='rightAttributeTitle'>
+Attribute of <a href='#forbidden'>forbidden</a>
+</td></tr></table>
+<p>This is a local policy for the home RFSS for the given SU.
+It defines what REGISTER operations are allowable from a given RFSS.
+This addresses tests which generate FORBIDDEN responses from an RFSS. This attribute
+allows you to specify a local policy on registration.</p><p><span class='inTextTitle'>Possible values</span>: REGISTER, REGISTER-QUERY, ALL - <span class='inTextTitle'>Default value</span>: ALL</p><a name='forbidden_rfssName'></a>
+<br /><table class='attributeTitle' summary="rfssName"><tr><td class='leftAttributeTitle'>
+@rfssName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#forbidden'>forbidden</a>
+</td></tr></table>
+<p>the rfssName (inherited from globaltopology.xml).</p><p><span class='inTextTitle'>Required</span></p><a name='rfssconfig_id'></a>
+<br /><table class='attributeTitle' summary="id"><tr><td class='leftAttributeTitle'>
+@id</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>Element identifier.</p><a name='rfssconfig_rfssName'></a>
+<br /><table class='attributeTitle' summary="rfssName"><tr><td class='leftAttributeTitle'>
+@rfssName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> - The symbolic name which we use to refer to the RFSS in the test system.
+This must reference an RFSS in the global topology file.</p><p><span class='inTextTitle'>Required</span></p><a name='rfssconfig_groupRegistrationExpiresTime'></a>
+<br /><table class='attributeTitle' summary="groupRegistrationExpiresTime"><tr><td class='leftAttributeTitle'>
+@groupRegistrationExpiresTime</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>- the time for which the home
+SU remembers its groups (default is infinity ).</p><p><span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='rfssconfig_servedGroupLeaseTime'></a>
+<br /><table class='attributeTitle' summary="servedGroupLeaseTime"><tr><td class='leftAttributeTitle'>
+@servedGroupLeaseTime</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> - the time for which we keep registration of a
+served Group member (default is infinity or
+until the group has no served SU in our range).</p><p><span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='rfssconfig_groupCallInviteProcessingTime'></a>
+<br /><table class='attributeTitle' summary="groupCallInviteProcessingTime"><tr><td class='leftAttributeTitle'>
+@groupCallInviteProcessingTime</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>- the time that the RFSS takes to
+respond to a group call INVITE in seconds.</p><p><span class='inTextTitle'>Default value</span>: 0</p><a name='rfssconfig_rfResourcesAvailable'></a>
+<br /><table class='attributeTitle' summary="rfResourcesAvailable"><tr><td class='leftAttributeTitle'>
+@rfResourcesAvailable</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>- true if RF resources are available at the rfss.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: true</p><a name='rfssconfig_maxRtpPorts'></a>
+<br /><table class='attributeTitle' summary="maxRtpPorts"><tr><td class='leftAttributeTitle'>
+@maxRtpPorts</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>- the max number of available RTP ports
+( to emulate limited RTP resources ) .</p><p><span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='rfssconfig_querySuCredentialsBeforeRegistration'></a>
+<br /><table class='attributeTitle' summary="querySuCredentialsBeforeRegistration"><tr><td class='leftAttributeTitle'>
+@querySuCredentialsBeforeRegistration</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> if true, query before registration
+when an unregistered SU tries to register itself</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='rfssconfig_queryGroupCredentialsBeforeRegistration'></a>
+<br /><table class='attributeTitle' summary="queryGroupCredentialsBeforeRegistration"><tr><td class='leftAttributeTitle'>
+@queryGroupCredentialsBeforeRegistration</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>if true, then before sending a
+register to a group, query the group credentials first.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='rfssconfig_registerConfirmTime'></a>
+<br /><table class='attributeTitle' summary="registerConfirmTime"><tr><td class='leftAttributeTitle'>
+@registerConfirmTime</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> - time that it takes to confirm an SU
+during Register CONFIRM processing. If non zero, a session
+progress 183 is sent out while the registration is being confrimed.</p><p><span class='inTextTitle'>Default value</span>: 0</p><a name='rfssconfig_isAdvancedRtpResourceManagementSupported'></a>
+<br /><table class='attributeTitle' summary="isAdvancedRtpResourceManagementSupported"><tr><td class='leftAttributeTitle'>
+@isAdvancedRtpResourceManagementSupported</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p> - a flag that indicates
+whether the RFSS supports advanced resource management.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='rfssconfig_isInterestedInLosingAudio'></a>
+<br /><table class='attributeTitle' summary="isInterestedInLosingAudio"><tr><td class='leftAttributeTitle'>
+@isInterestedInLosingAudio</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>- a flag that indicates whether the RFSS
+is interested in losing audio.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='rfssconfig_isCallingSuInitrans'></a>
+<br /><table class='attributeTitle' summary="isCallingSuInitrans"><tr><td class='leftAttributeTitle'>
+@isCallingSuInitrans</td><td class='rightAttributeTitle'>
+Attribute of <a href='#rfssconfig'>rfssconfig</a>
+</td></tr></table>
+<p>- a flag that controls the setting of c-initrans for
+su to su calls. This is used by the called home RFSS</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: true</p><a name='suconfig_suName'></a>
+<br /><table class='attributeTitle' summary="suName"><tr><td class='leftAttributeTitle'>
+@suName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>its name</p><p><span class='inTextTitle'>Required</span></p><a name='suconfig_id'></a>
+<br /><table class='attributeTitle' summary="id"><tr><td class='leftAttributeTitle'>
+@id</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>a symbolic id which can be used in the testscript.xml to refer to this SU.</p><a name='suconfig_initialState'></a>
+<br /><table class='attributeTitle' summary="initialState"><tr><td class='leftAttributeTitle'>
+@initialState</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>on or off</p><p><span class='inTextTitle'>Possible values</span>: on, off - <span class='inTextTitle'>Default value</span>: off</p><a name='suconfig_homeRfssKnowsAboutMeFor'></a>
+<br /><table class='attributeTitle' summary="homeRfssKnowsAboutMeFor"><tr><td class='leftAttributeTitle'>
+@homeRfssKnowsAboutMeFor</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>time for which home recognizes this SU</p><p><span class='inTextTitle'>Possible values</span>: 0, UNBOUNDED - <span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='suconfig_homeRfssRegistersMeFor'></a>
+<br /><table class='attributeTitle' summary="homeRfssRegistersMeFor"><tr><td class='leftAttributeTitle'>
+@homeRfssRegistersMeFor</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p> time for which home keeps registration records
+Right now only 0 and UNBOUNDED are supported.</p><p><span class='inTextTitle'>Possible values</span>: 0, UNBOUNDED - <span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='suconfig_servingRfssReferencesMeFor'></a>
+<br /><table class='attributeTitle' summary="servingRfssReferencesMeFor"><tr><td class='leftAttributeTitle'>
+@servingRfssReferencesMeFor</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p> Simulates how long the serving RFSS keeps a record of this SU in its mobility table.</p><p><span class='inTextTitle'>Possible values</span>: 0, UNBOUNDED - <span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='suconfig_inviteProcessingDelay'></a>
+<br /><table class='attributeTitle' summary="inviteProcessingDelay"><tr><td class='leftAttributeTitle'>
+@inviteProcessingDelay</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>time to process INVITE If RF resources not available by this time, the SU sends a BUSY.</p><p><span class='inTextTitle'>Default value</span>: 0</p><a name='suconfig_registerOnForce'></a>
+<br /><table class='attributeTitle' summary="registerOnForce"><tr><td class='leftAttributeTitle'>
+@registerOnForce</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p> Re-register automatically when force register is presented for this su.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: true</p><a name='suconfig_isAvailable'></a>
+<br /><table class='attributeTitle' summary="isAvailable"><tr><td class='leftAttributeTitle'>
+@isAvailable</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>determines whether this SU is available to take incoming
+SU to SU calls.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: true</p><a name='suconfig_checkSuPresenceOnRegister'></a>
+<br /><table class='attributeTitle' summary="checkSuPresenceOnRegister"><tr><td class='leftAttributeTitle'>
+@checkSuPresenceOnRegister</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>- a flag that indicates r-presence parameter
+should be added on register-register.</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: true</p><a name='suconfig_protectionDisposition'></a>
+<br /><table class='attributeTitle' summary="protectionDisposition"><tr><td class='leftAttributeTitle'>
+@protectionDisposition</td><td class='rightAttributeTitle'>
+Attribute of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>Indicates what to do with the c-protected flag
+at the called home in a Unit to unit call.</p><p><span class='inTextTitle'>Possible values</span>: forward_protected, clear_protected, reject_protected, reject_unprotected - <span class='inTextTitle'>Default value</span>: forward_protected</p><a name='sgconfig_id'></a>
+<br /><table class='attributeTitle' summary="id"><tr><td class='leftAttributeTitle'>
+@id</td><td class='rightAttributeTitle'>
+Attribute of <a href='#sgconfig'>sgconfig</a>
+</td></tr></table>
+<p>- A link which is referenced in the testscript.xml file.</p><a name='sgconfig_groupName'></a>
+<br /><table class='attributeTitle' summary="groupName"><tr><td class='leftAttributeTitle'>
+@groupName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#sgconfig'>sgconfig</a>
+</td></tr></table>
+<p>- The symbolic name of the group. Refers to a group name defined in globalconfig.xml</p><p><span class='inTextTitle'>Required</span></p><a name='sgconfig_homeRfssKnowsAboutMeFor'></a>
+<br /><table class='attributeTitle' summary="homeRfssKnowsAboutMeFor"><tr><td class='leftAttributeTitle'>
+@homeRfssKnowsAboutMeFor</td><td class='rightAttributeTitle'>
+Attribute of <a href='#sgconfig'>sgconfig</a>
+</td></tr></table>
+<p>the time for which the home RFSS keeps a record
+of this group (defaults to "unbounded").</p><p><span class='inTextTitle'>Default value</span>: UNBOUNDED</p><a name='sgconfig_protectionDisposition'></a>
+<br /><table class='attributeTitle' summary="protectionDisposition"><tr><td class='leftAttributeTitle'>
+@protectionDisposition</td><td class='rightAttributeTitle'>
+Attribute of <a href='#sgconfig'>sgconfig</a>
+</td></tr></table>
+<p>-
+a flag that indicates whether the home RFSS forwards the
+c-protected flag in the INVITE body or rejects it.
+This flag indicates whether encrypted streams are supported or not.</p><p><span class='inTextTitle'>Possible values</span>: forward_protected, clear_protected, reject_protected, reject_unprotected - <span class='inTextTitle'>Default value</span>: forward_protected</p><a name='subscriber_suName'></a>
+<br /><table class='attributeTitle' summary="suName"><tr><td class='leftAttributeTitle'>
+@suName</td><td class='rightAttributeTitle'>
+Attribute of <a href='#subscriber'>subscriber</a>
+</td></tr></table>
+<p>- the SU Name of the subscriber. Must be defined in the associated globaltopology.xml file</p><p><span class='inTextTitle'>Required</span></p><a name='userprofile'></a>
+<br /><table class='elementTitle' summary="userprofile"><tr><td class='leftElementTitle'>
+&lt;userprofile&gt;</td><td class='rightElementTitle'>
+Child of <a href='#suconfig'>suconfig</a>
+</td></tr></table>
+<p>A user profile may be specified as in Table 23 of the 102 BACA spec or it may be specified in
+xml attribute form. If specified in PCDATA form, then it overrides the xml attribute
+setting.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table  summary="&lt;userprofile&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;userprofile&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#userprofile_accessPermission'>accessPermission</a></td><td>None, Full, Emergency</td><td>Full</td></tr><tr><td><a href='#userprofile_availCheckSupported'>availCheckSupported</a></td><td>AvailabilityCheck, DirectCall, AvailabilityCheckAndDirectCall</td><td>AvailabilityCheckAndDirectCall</td></tr><tr><td><a href='#userprofile_groupCallPermission'>groupCallPermission</a></td><td>None, NonEmergency, Emergency, EmergencyAndNonEmergency</td><td>EmergencyAndNonEmergency</td></tr><tr><td><a href='#userprofile_interconnectCallPriority'>interconnectCallPriority</a></td><td></td><td></td></tr><tr><td><a href='#userprofile_interconnectPermission'>interconnectPermission</a></td><td>0, 1, 2, 3</td><td>0</td></tr><tr><td><a href='#userprofile_interconnectSecurity'>interconnectSecurity</a></td><td>1, 2, 3</td><td>1</td></tr><tr><td><a href='#userprofile_isFullDuplex'>isFullDuplex</a></td><td>true, false</td><td>true</td></tr><tr><td><a href='#userprofile_isSecureCapable'>isSecureCapable</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#userprofile_unitToUnitCallPermission'>unitToUnitCallPermission</a></td><td>None, Receive, Initiate, ReceiveAndInitiate</td><td>None</td></tr><tr><td><a href='#userprofile_unitToUnitCallPriority'>unitToUnitCallPriority</a></td><td>1, 2, 3, 4, 5, 6, 7, 8, 9, 10</td><td>1</td></tr><tr><td><a href='#userprofile_unitToUnitCallSetupPreference'>unitToUnitCallSetupPreference</a></td><td>AvailabilityCheck, DirectCall</td><td>AvailabilityCheck</td></tr></table></td></tr></table></blockquote>
+<a name='userprofile_availCheckSupported'></a>
+<br /><table class='attributeTitle' summary="availCheckSupported"><tr><td class='leftAttributeTitle'>
+@availCheckSupported</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>Whether or not availability check is supported (same as u-availcheck )</p><p><span class='inTextTitle'>Possible values</span>: AvailabilityCheck, DirectCall, AvailabilityCheckAndDirectCall - <span class='inTextTitle'>Default value</span>: AvailabilityCheckAndDirectCall</p><a name='userprofile_isFullDuplex'></a>
+<br /><table class='attributeTitle' summary="isFullDuplex"><tr><td class='leftAttributeTitle'>
+@isFullDuplex</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>whether or not the unit is full duplex. Note that it is the same as u-dup</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: true</p><a name='userprofile_accessPermission'></a>
+<br /><table class='attributeTitle' summary="accessPermission"><tr><td class='leftAttributeTitle'>
+@accessPermission</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>System access permission ( same as u-access)</p><p><span class='inTextTitle'>Possible values</span>: None, Full, Emergency - <span class='inTextTitle'>Default value</span>: Full</p><a name='userprofile_isSecureCapable'></a>
+<br /><table class='attributeTitle' summary="isSecureCapable"><tr><td class='leftAttributeTitle'>
+@isSecureCapable</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>Secure capable attribute ( same as u-sec )</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='userprofile_groupCallPermission'></a>
+<br /><table class='attributeTitle' summary="groupCallPermission"><tr><td class='leftAttributeTitle'>
+@groupCallPermission</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>the group call permission (u-gcall)</p><p><span class='inTextTitle'>Possible values</span>: None, NonEmergency, Emergency, EmergencyAndNonEmergency - <span class='inTextTitle'>Default value</span>: EmergencyAndNonEmergency</p><a name='userprofile_unitToUnitCallPermission'></a>
+<br /><table class='attributeTitle' summary="unitToUnitCallPermission"><tr><td class='leftAttributeTitle'>
+@unitToUnitCallPermission</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>the unit to unit call permission (u-ucall)</p><p><span class='inTextTitle'>Possible values</span>: None, Receive, Initiate, ReceiveAndInitiate - <span class='inTextTitle'>Default value</span>: None</p><a name='userprofile_unitToUnitCallPriority'></a>
+<br /><table class='attributeTitle' summary="unitToUnitCallPriority"><tr><td class='leftAttributeTitle'>
+@unitToUnitCallPriority</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>The priority for unit to unit calls (u-upri)</p><p><span class='inTextTitle'>Possible values</span>: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 - <span class='inTextTitle'>Default value</span>: 1</p><a name='userprofile_interconnectPermission'></a>
+<br /><table class='attributeTitle' summary="interconnectPermission"><tr><td class='leftAttributeTitle'>
+@interconnectPermission</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>The interconnect permission. (u-iccall)</p><p><span class='inTextTitle'>Possible values</span>: 0, 1, 2, 3 - <span class='inTextTitle'>Default value</span>: 0</p><a name='userprofile_interconnectSecurity'></a>
+<br /><table class='attributeTitle' summary="interconnectSecurity"><tr><td class='leftAttributeTitle'>
+@interconnectSecurity</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>The interconnect security parameter ( u-icsec )</p><p><span class='inTextTitle'>Possible values</span>: 1, 2, 3 - <span class='inTextTitle'>Default value</span>: 1</p><a name='userprofile_interconnectCallPriority'></a>
+<br /><table class='attributeTitle' summary="interconnectCallPriority"><tr><td class='leftAttributeTitle'>
+@interconnectCallPriority</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>the interconnect call priority ( u-icpri) in the range 1 to 10.</p><a name='userprofile_unitToUnitCallSetupPreference'></a>
+<br /><table class='attributeTitle' summary="unitToUnitCallSetupPreference"><tr><td class='leftAttributeTitle'>
+@unitToUnitCallSetupPreference</td><td class='rightAttributeTitle'>
+Attribute of <a href='#userprofile'>userprofile</a>
+</td></tr></table>
+<p>The call setup preference (u-prefsetup)</p><p><span class='inTextTitle'>Possible values</span>: AvailabilityCheck, DirectCall - <span class='inTextTitle'>Default value</span>: AvailabilityCheck</p><a name='groupprofile'></a>
+<br /><table class='elementTitle' summary="groupprofile"><tr><td class='leftElementTitle'>
+&lt;groupprofile&gt;</td><td class='rightElementTitle'>
+Child of <a href='#sgconfig'>sgconfig</a>
+</td></tr></table>
+<p>The group profile for this group.</p><blockquote><table summary='element info'><tr>
+<td class='construct'><table  summary="&lt;groupprofile&gt;'s attributes"><tr>
+<th class='title' colspan='3'>&lt;groupprofile&gt;'s attributes</th>
+</tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr>
+<th class='subtitle'>Name</th><th class='subtitle'>Values</th><th class='subtitle'>Default</th></tr>
+<tr><th colspan='3' height='1' class='ruler'></th></tr>
+<tr><td><a href='#groupprofile_accessPermission'>accessPermission</a></td><td>EmergencyOnly, NonEmergencyAllowed</td><td>NonEmergencyAllowed</td></tr><tr><td><a href='#groupprofile_announcementGroup'>announcementGroup</a></td><td></td><td></td></tr><tr><td><a href='#groupprofile_confirmedGroupCallSetupTime'>confirmedGroupCallSetupTime</a></td><td></td><td></td></tr><tr><td><a href='#groupprofile_emergencyCapable'>emergencyCapable</a></td><td>EmergencyCallsAllowed, EmergencyCallsNotAllowed</td><td>EmergencyCallsAllowed</td></tr><tr><td><a href='#groupprofile_emergencyPreemption'>emergencyPreemption</a></td><td>NonRuthless, Ruthless</td><td>NonRuthless</td></tr><tr><td><a href='#groupprofile_groupPriority'>groupPriority</a></td><td>1, 2, 3, 4, 5, 6, 7, 8, 9, 10</td><td>1</td></tr><tr><td><a href='#groupprofile_groupSecurityLevel'>groupSecurityLevel</a></td><td>ClearOnly, SecureOnly, ClearAndSecure</td><td>ClearAndSecure</td></tr><tr><td><a href='#groupprofile_interconnectFlag'>interconnectFlag</a></td><td>true, false</td><td>false</td></tr><tr><td><a href='#groupprofile_interconnectSecurity'>interconnectSecurity</a></td><td>Clear, Secure</td><td>Clear</td></tr><tr><td><a href='#groupprofile_interruptMode'>interruptMode</a></td><td>NeverAllowed, PriorityInterruptAllowed, AlwaysAllowd</td><td>NeverAllowed</td></tr><tr><td><a href='#groupprofile_rfHangTime'>rfHangTime</a></td><td></td><td></td></tr></table></td></tr></table></blockquote>
+<a name='groupprofile_accessPermission'></a>
+<br /><table class='attributeTitle' summary="accessPermission"><tr><td class='leftAttributeTitle'>
+@accessPermission</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines whether or not the group is allowed to make non-emergency calls. (g-access)</p><p><span class='inTextTitle'>Possible values</span>: EmergencyOnly, NonEmergencyAllowed - <span class='inTextTitle'>Default value</span>: NonEmergencyAllowed</p><a name='groupprofile_announcementGroup'></a>
+<br /><table class='attributeTitle' summary="announcementGroup"><tr><td class='leftAttributeTitle'>
+@announcementGroup</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines the announcement group for the group. (g-agroup)</p><a name='groupprofile_groupPriority'></a>
+<br /><table class='attributeTitle' summary="groupPriority"><tr><td class='leftAttributeTitle'>
+@groupPriority</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines the priority of the group. (g-pri)</p><p><span class='inTextTitle'>Possible values</span>: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 - <span class='inTextTitle'>Default value</span>: 1</p><a name='groupprofile_emergencyCapable'></a>
+<br /><table class='attributeTitle' summary="emergencyCapable"><tr><td class='leftAttributeTitle'>
+@emergencyCapable</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines whether or not emergency calls MAY be made on the group. (g-ecap)</p><p><span class='inTextTitle'>Possible values</span>: EmergencyCallsAllowed, EmergencyCallsNotAllowed - <span class='inTextTitle'>Default value</span>: EmergencyCallsAllowed</p><a name='groupprofile_emergencyPreemption'></a>
+<br /><table class='attributeTitle' summary="emergencyPreemption"><tr><td class='leftAttributeTitle'>
+@emergencyPreemption</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines whether ruthless or non-ruthless pre-emption is used for emergency calls. (g-eprempt)</p><p><span class='inTextTitle'>Possible values</span>: NonRuthless, Ruthless - <span class='inTextTitle'>Default value</span>: NonRuthless</p><a name='groupprofile_rfHangTime'></a>
+<br /><table class='attributeTitle' summary="rfHangTime"><tr><td class='leftAttributeTitle'>
+@rfHangTime</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines the hang-timer for the group. (g-rfhangt)</p><a name='groupprofile_confirmedGroupCallSetupTime'></a>
+<br /><table class='attributeTitle' summary="confirmedGroupCallSetupTime"><tr><td class='leftAttributeTitle'>
+@confirmedGroupCallSetupTime</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines the confirmed call setup timer for the group. (g-ccsetupt)</p><a name='groupprofile_interruptMode'></a>
+<br /><table class='attributeTitle' summary="interruptMode"><tr><td class='leftAttributeTitle'>
+@interruptMode</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines under what conditions talk-group members MAY interrupt each other during a call (g-intmode)</p><p><span class='inTextTitle'>Possible values</span>: NeverAllowed, PriorityInterruptAllowed, AlwaysAllowd - <span class='inTextTitle'>Default value</span>: NeverAllowed</p><a name='groupprofile_groupSecurityLevel'></a>
+<br /><table class='attributeTitle' summary="groupSecurityLevel"><tr><td class='leftAttributeTitle'>
+@groupSecurityLevel</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines the allowable security levels of the call (g-sec)</p><p><span class='inTextTitle'>Possible values</span>: ClearOnly, SecureOnly, ClearAndSecure - <span class='inTextTitle'>Default value</span>: ClearAndSecure</p><a name='groupprofile_interconnectFlag'></a>
+<br /><table class='attributeTitle' summary="interconnectFlag"><tr><td class='leftAttributeTitle'>
+@interconnectFlag</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines whether or not the group MAY have PSTN sourced calls (g-ic)</p><p><span class='inTextTitle'>Possible values</span>: true, false - <span class='inTextTitle'>Default value</span>: false</p><a name='groupprofile_interconnectSecurity'></a>
+<br /><table class='attributeTitle' summary="interconnectSecurity"><tr><td class='leftAttributeTitle'>
+@interconnectSecurity</td><td class='rightAttributeTitle'>
+Attribute of <a href='#groupprofile'>groupprofile</a>
+</td></tr></table>
+<p>Defines the required security level at the beginning of an interconnect call. (g-icsecstart)</p><p><span class='inTextTitle'>Possible values</span>: Clear, Secure - <span class='inTextTitle'>Default value</span>: Clear</p></body></html>

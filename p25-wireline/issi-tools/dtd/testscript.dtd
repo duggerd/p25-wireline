@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+This is the Definition of the tags and attributes for the elements of
+the test script. The test script defines a set of event triggered tags
+and attributes for event driven scripts that are read by the ISSI 
+test framework. 
+A test script defines an event triggered set of actions. Event triggers
+are events (such as real-clock time, SIP or PTT message arrivals at
+an emulated RFSS) that trigger a scripting action. Scripting actions
+are specified using xml tags where ever possible so that parameters
+may be checked at the time the script is parsed. This reduces runtime
+errors. Following this design approach, all call setup actions are
+specified using xml tags. In addition we support actions to specify
+fragments of jython code (a Java implementation of Python). These
+fragments of jython code may invoke a set of functions specific to the
+RFSS or SU for which they are specified.  
+
+
+@title Event Driven Test Script Specification
+@root test-script
+-->
+
+<!--
+The top level tag for the test script.
+-->
+<!ELEMENT test-script (( su-to-su-call-setup-scenario | 
+			group-call-setup-scenario | 
+			roaming-scenario | 
+			su-script | 
+			rfss-script )* , post-condition*)  >
+
+
+<!--
+The tag for setting up an SU to SU Call. 
+-->
+<!ELEMENT su-to-su-call-setup-scenario  (trigger)>
+
+
+<!-- 
+The tag for setting up a group call. This specifies the attributes 
+necessary for group call setup and teardown.
+NOTE: Some of these parameters affect the call setup params going
+out with the invite and others affect the INVITE Priority
+header. 
+-->
+<!ELEMENT group-call-setup-scenario (trigger) >
+
+<!--
+The tag for emulating an SU Roaming action.
+-->
+<!ELEMENT roaming-scenario (trigger) >
+
+<!--
+This tag specifies the attributes and code fragment necessary to script
+an SU action. Scripted actions are for actions specific to an SU such
+as turning the SU ON or OFF or sending a talk spurt to the peer of an
+SU to SU call to a group call. The methods that can be invoked from the
+script are described in the following section.--> 
+
+<!ELEMENT su-script (trigger, script)  >
+
+<!--
+This tag specifies a code fragment to be executed at an emulated
+RFSS. Scripted actions are specific to that emulated RFSS such as
+dropping or adding RF resources, RTP resources etc. The methods that can
+be invoked from the script are described in the following section. 
+The jython code fragment can invoke
+any of the methods of the 
+<a href="../../doc/javadoc/gov/nist/p25/issi/rfss/tester/RfssScriptInterface.html">RfssScriptInterface </a>. The Jython global value
+<b>currentRfss</b> refers to the emulated RFSS on which this 
+script is executed.
+
+-->
+
+<!ELEMENT rfss-script (trigger, script) >
+
+
+<!-- Encloses a piece of jython code. 
+ -->
+<!ELEMENT script (#PCDATA)>
+
+<!-- The trigger action ( specifies the event condition for the enclosing tag)
+-->
+
+<!ELEMENT trigger EMPTY>
+
+<!-- An optional post condition that is evaluated after the test completes -->
+<!ELEMENT post-condition (#PCDATA)>
+
+<!-- 
+
+@attr type  the type of trigger. Can be one of the following types :
+   <ul>
+	<li> <b> time </b> trigger - fires on time relative to the 
+       start of test.
+	<li><b> ptt_message</b> trigger - fires on arrival of the type 
+	of PTT message specified.
+	<li><b>sip_request</b> trigger - fires on arrival of the type
+	of SIP request specified.
+	<li><b>sip_response</b> trigger - fires on arrival of the type
+	of SIP response specified.
+   </ul>
+
+@attr refId - a reference ID to allow us to specify relative time triggers.
+	If this is set, then the trigger fires after another named
+	event firing. This allows us to specify event dependencies.
+	
+
+@attr oneShot - true implies that the trigger fires just once.
+
+@attr value - the trigger value. Its interpretation depends upon the type
+	of trigger. For time trigger, value is a time value. For sip_message
+	trigger, value specifies the type of message. For a ptt_message
+	the value specifies the Ptt message type.
+
+-->
+<!ATTLIST trigger
+	type  (time|msectime|ptt_message|sip_request|sip_response) #REQUIRED
+	oneShot (true|false) "true"
+	refId CDATA #IMPLIED
+	value CDATA #REQUIRED
+>
+
+<!--
+@attr  testName - the test name 
+@attr  rtpMessageLog the location where to put the logged rtp and ptt messages.
+@attr  sipMessageLog the location where to put the sip messages.
+@attr  generateSipTrace whether or not to capture a sip trace.
+@attr  generatePttTrace whether or not to capture a PTT trace.
+@attr  testCompletionDelay time after the final expected sip message is seen
+	to when the test is considered to be completed.
+@attr traceGenerationTime time to generate the trace for this test.
+
+-->
+
+<!ATTLIST test-script
+	testName CDATA #IMPLIED
+	rtpMessageLog CDATA "logs/messagelog.ptt"
+	sipMessageLog CDATA "logs/messagelog.sip" 
+	generateSipTrace (yes|no) "yes" 
+	generatePttTrace (yes|no) "no"
+	testCompletionDelay CDATA "0"
+	traceGenerationTime CDATA "25"
+	
+>
+<!-- 
+
+@attr locationSelector  If the location predicate returns true then the
+	     assertion predicate is run. 
+          return true if the assertion is to be checked at 
+          the RFSS for which it evaluated to true.
+
+@attr assertion  is the name of the function that will be 
+                     invoked that should be returning a boolean value.
+-->
+
+<!ATTLIST post-condition 
+	    assertion CDATA #REQUIRED
+	    locationSelector  CDATA #REQUIRED
+>
+
+
+<!-- 
+
+@attr id an identifier for this stanza (can be referred to in 
+			scripts ).
+
+@attr callingSuName  name of the calling SU. Must be defined in the
+	associated topology.xml
+
+@attr calledSuName  name of the called SU. Must be defined in the
+	assoicated topology.xml
+
+@attr isEmergency  whether or not this is an emergency call.
+
+@attr terminateAfter   time after which the call is Terminated ( with a BYE)
+
+@attr isTerminatedByCalledServing a flag which indicates whether the called
+	party terminates call. 
+
+@attr cancelAfter time after which to cancel the call. Note that cancel may
+	not succeed.
+
+@attr talkSpurtSentBy which end sends a talk spurt after setup  (this is an
+		optional attribute ).
+
+@attr isTalkSpurtForced whether or not talk spurt is forced.
+
+@attr isProtected a flag that indicates whether the call setup is protected or not. 
+
+-->
+<!ATTLIST su-to-su-call-setup-scenario
+	id 		  ID 		#REQUIRED
+	callingSuName 	  CDATA 	#REQUIRED
+	calledSuName  	  CDATA 	#REQUIRED
+	cancelAfter       CDATA "UNBOUNDED"
+	terminateAfter    CDATA "UNBOUNDED"
+	isTerminatedByCalledServing (true|false) "false"
+	isEmergency       (true|false) "false" 
+	talkSpurtSentBy   CDATA  #IMPLIED
+	isTalkSpurtForced (true|false) "false" 
+	isProtected       (true|false) "false"
+>
+
+<!-- 
+
+@attr id a unique identifier for this stanza 
+			 (can be referred to in scripts ).
+
+@attr callingSuName   name of the calling SU
+
+@attr calledGroupName  name of the called group
+
+@attr priority 	the call priority 
+
+@attr isEmergency  "emergency" flag
+
+@attr isConfirmed  "confirmed group call" flag
+
+@attr cancelAfter  time after which call is canceled
+
+@attr terminateAfter  time after which the call is Terminated ( with a BYE)
+
+@attr isTalkSpurtSentAfterCallSetup calling SU send a talk spurt after call setup.
+
+@attr isTalkSpurtForced a flag that indicates if the talk spurt 
+		is forced or not.
+		
+@attr isProtected a flag that indicates whether the call setup is protected or not. This 
+	controls the c-protected parameter.
+
+-->
+<!ATTLIST group-call-setup-scenario
+	id		ID 	#REQUIRED
+	callingSuName 	CDATA 	#REQUIRED
+	calledGroupName CDATA 	#REQUIRED
+	priority 	CDATA 	"1"
+	isEmergency     (true|false) "false"
+	isConfirmed     (true|false) "false"
+	cancelAfter     CDATA "UNBOUNDED"
+	terminateAfter  CDATA "UNBOUNDED"
+	isTalkSpurtSentAfterCallSetup  (true|false)  "false"
+	isProtected   (true|false) "false"
+	isTalkSpurtForced (true|false) "false"
+>
+
+<!-- 
+@attr id - a unique identifier for this event triggered action.
+
+@attr suName - symbolic name of the su that is moving.
+
+@attr destinationRfssName - symbolic name of the destination RFSS.
+
+@attr delay - time taken for the move.
+
+-->
+<!ATTLIST roaming-scenario
+	id ID #REQUIRED
+	suName CDATA #REQUIRED
+	destinationRfssName CDATA #REQUIRED
+	delay CDATA "0"
+	
+>
+
+<!-- 
+
+@attr id - the unique id for this su script.
+@attr suName - must specify an su that is defined in the associated
+	topology.xml file.
+
+@attr id = the unique id for this SU script.
+
+@attr suName = the name of the SU that this script references.
+	this must be defined in the associated topology.xml file 
+	for the test script.
+
+@attr description = the decription of this scripting action.
+
+@attr method = the jython method to invoke in the enclosed script.
+
+-->
+	
+<!ATTLIST su-script
+	id			 ID    #REQUIRED
+	suName			 CDATA #REQUIRED
+	description              CDATA #IMPLIED
+	method			 CDATA #REQUIRED
+>
+
+<!-- 
+
+
+@attr id = the unique id for this RFSS script.
+@attr rfssName = the name of the emulated RFSS that this script references.
+@attr description = the decription of this scripting action.
+@attr method = the jython method to invoke in the enclosed script.
+
+-->
+<!ATTLIST rfss-script
+	id			ID    #REQUIRED
+	rfssName		CDATA #REQUIRED
+	description             CDATA #IMPLIED
+	method			CDATA #REQUIRED
+>

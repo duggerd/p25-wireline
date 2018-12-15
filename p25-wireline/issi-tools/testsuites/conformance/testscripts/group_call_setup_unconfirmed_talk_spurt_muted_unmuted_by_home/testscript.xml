@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	testCompletionDelay="10"
+>
+
+<group-call-setup-scenario
+	id="group-call-setup-scenario-1"
+	callingSuName="callingSuA"
+	calledGroupName="calledGroup"
+	isConfirmed="false"
+	priority="4"
+>
+<trigger
+	type="time"
+	value="6"
+/>
+</group-call-setup-scenario>
+
+<su-script
+	id="suscript2"
+	suName="callingSuA"
+	method="doSendTalkSpurt"
+	description="Send a talk spurt to the group. "
+>
+<trigger
+	type="time"
+	value="10"
+/>
+<script>
+def doSendTalkSpurt():
+	global su
+	su.setTransmitPriority("NORMAL",4)
+	su.sendTalkSpurt("calledGroup")
+</script>
+</su-script>
+
+<rfss-script
+	id="rfss-script"
+	rfssName="calledGroup:groupHome"
+	method="doMuteFromGroupHome"
+	description="Send a mute from group home."
+>
+<trigger
+	type="time"
+	value="11"
+/>
+<script>
+def doMuteFromGroupHome():
+	global rfss
+	rfss.muteFromGroupHome("calledGroup","groupServing")
+	rfss.unmuteFromGroupHome("calledGroup","groupServing", 1500)
+</script>
+</rfss-script>
+
+</test-script>

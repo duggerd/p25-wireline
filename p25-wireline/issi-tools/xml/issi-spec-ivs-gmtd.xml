@@ -1,0 +1,15 @@
+<ivs-delays>
+   <ivs-gmtd title="Performance Specifications for Group Call Message Transfer Delay(GMTD)" diagram="gfx/diagrams/IVS-GMTD.JPG">
+      <parameter key="Tg_ad1" value="200" maximum="600"/>
+      <parameter key="Tg_ad2" value="10" maximum="50"/>
+      <parameter key="Tg_ad3" value="170"/>
+      <parameter key="Tg_ipad1" value="30" maximum="100"/>
+      <parameter key="Tg_ipad2" value="30" maximum="100"/>
+      <parameter key="Tg_AudioDelay_CAI" value="440" calculated="true"/>
+      <parameter key="Tg_AudioDelay_ISSI" value="70" calculated="true"/>
+   </ivs-gmtd>
+   <ivs-status title="Performanace Recommendations for ISSI Voice Services">
+      <comment>Performanace specifications based on TIA-102.CACB, April 2007.
+ISSI Performance:</comment>
+   </ivs-status>
+</ivs-delays>

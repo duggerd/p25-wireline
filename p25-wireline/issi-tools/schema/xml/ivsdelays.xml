@@ -1,0 +1,50 @@
+<ivs-delays>
+<ivs-gcsd title="Group Call Setup Delay (ms)" diagram="gfx/diagrams/IVS-GCSD.JPG" active="false">
+  <parameter key="Tg_ip1" value="30" maximum="100" />
+  <parameter key="Tg_ip2" value="30" maximum="100" />
+  <parameter key="Tg_ip3" value="30" maximum="100" />
+  <parameter key="Tg_ip4" value="30" maximum="100" />
+  <parameter key="Tg_ip5" value="30" maximum="100" />
+  <parameter key="Tg_ip6" value="30" maximum="100" />
+  <parameter key="Tg_ip7" value="30" />
+  <parameter key="Tg_ip8" value="45670" maximum="45670" count="45670" calculated="true" />
+</ivs-gcsd>
+
+<ivs-gmtd title="Group Call Message Transfer Delay (ms)" diagram="gfx/diagrams/IVS-GMTD.JPG" active="false">
+  <parameter key="Tg_ipad1" value="30" maximum="100" />
+  <parameter key="Tg_ipad2" value="30" maximum="100" />
+  <parameter key="Tg_ipad3" value="45670" maximum="45670" count="45670" calculated="true" />
+</ivs-gmtd>
+
+<ivs-ucsd title="SU-to-SU Call Setup Delay (ms)" diagram="gfx/diagrams/IVS-UCSD.JPG" active="false">
+  <parameter key="Tu_ip1" value="30" maximum="100" />
+  <parameter key="Tu_ip2" value="30" maximum="100" />
+  <parameter key="Tu_ip3" value="30" maximum="100" />
+  <parameter key="Tu_ip4" value="30" maximum="100" />
+  <parameter key="Tu_ip5" value="30" maximum="100" />
+  <parameter key="Tu_ip6" value="30" maximum="100" />
+  <parameter key="Tu_ip7" value="30" />
+  <parameter key="Tu_ip8" value="30" />
+  <parameter key="Tu_ip9" value="30" />
+  <parameter key="Tu_ip10" value="45670" maximum="45670" count="45670"  calculated="true" />
+</ivs-ucsd>
+
+<ivs-umtd title="SU-to-SU Message Transfer Delay (ms)" diagram="gfx/diagrams/IVS-UMTD.JPG" active="false">
+  <parameter key="Tu_ipad1" value="30" />
+  <parameter key="Tu_ipad2" value="30" />
+  <parameter key="Tu_ipad3" value="30" />
+  <parameter key="Tu_ipad4" value="30" />
+  <parameter key="Tu_ipad5" value="30" />
+  <parameter key="Tu_ipad6" value="30" />
+  <parameter key="Tu_ipad1" value="45670" maximum="45670" count="45670" calculated="true" />
+</ivs-umtd>
+
+<ivs-input title="List of input pcap data files">
+  <datafile name="c;/issi-data/test1.pcap" />
+  <datafile name="c;/issi-data/test2.pcap" />
+  <datafile name="c;/issi-data/test3.pcap" />
+</ivs-input>
+<ivs-status title="Test status areas">
+  <comment>test-status-comment</comment>
+</ivs-status>
+</ivs-delays>

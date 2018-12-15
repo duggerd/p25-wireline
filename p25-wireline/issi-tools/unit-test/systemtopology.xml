@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<!DOCTYPE system-topology SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/systemtopology.dtd">
+<system-topology>
+<wacn-config
+ wacnName = "wacn_1"
+ wacnId = "1"
+/>
+
+<wacn-config
+ wacnName = "wacn_2"
+ wacnId = "2"
+/>
+
+
+<systemconfig
+ systemName = "system_2"
+ systemId = "002"
+ wacnName = "wacn_1"
+/>
+
+<systemconfig
+ systemName = "system_3"
+ systemId = "003"
+ wacnName = "wacn_2"
+/>
+	<!-- These are the settings for the IUT -->
+
+<!--  Replace attributes below with something like this.
+ ipAddress ="10.8.121.8" 
+ port = "5060" 
+ emulated = "false" 
+-->
+
+<rfssconfig
+	rfssName= "rfss_1"
+	rfssId = "1"
+	systemName = "system_2"
+	ipAddress ="@node1"
+	port = "4050" 
+	emulated="true"
+	color = "RED"
+/>
+
+<!-- replace any 127.0.0.1 addresses with real addresses.
+replace ports with 5060 and edit the issi-tester-configuration.xml 
+file. Each RFSS that is emulated must have a corresponding
+emulator node.  -->
+
+<rfssconfig
+	rfssName = "rfss_2"
+	systemName = "system_3"
+	ipAddress ="@node2"
+	port = "4060"
+	rfssId="1"
+	emulated = "true"
+	color="GREEN"
+/>
+
+<rfssconfig
+	rfssName="rfss_3"	
+	systemName = "system_3"
+	ipAddress = "@node2"
+	port = "4070"
+	rfssId = "2"
+	emulated = "true"
+	color="GREEN"
+/>
+<rfssconfig
+	rfssName="rfss_4"	
+	systemName = "system_3"
+	rfssId = "4"
+	ipAddress = "@node2"
+	port = "4080"
+	emulated = "true"
+	color="GREEN"
+/>
+<rfssconfig
+	rfssName="rfss_5"	
+	rfssId = "5"
+	systemName = "system_3"
+	ipAddress = "@node2"
+	port = "4090"
+	emulated = "true"
+	color="GREEN"
+/>
+
+</system-topology>

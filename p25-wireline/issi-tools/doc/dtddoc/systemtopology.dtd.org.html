@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> <head>
+<meta http-equiv='CONTENT-TYPE' content='text/html; charset=ISO-8859-1' />
+<link rel='StyleSheet' href='DTDDocStyle.css' type='text/css' media='screen' />
+<title>System Topology Specification</title>
+</head><body>
+<p class='DTDSource'><b><code>systemtopology.dtd</code></b>: <a href='systemtopology.dtd.html'>Elements</a> - Entities - <a href='systemtopology.dtd.org.html'>Source</a> | <a href='intro.html'>Intro</a> - <a href='elementsIndex.html'>Index</a><br /><a href='index.html' target='_top'>FRAMES</a>&nbsp;/&nbsp;<a href='systemtopology.dtd.org.html' target='_top'>NO FRAMES</a></p><pre id='dtd_source'><span class="dtd_processing_instruction">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span>
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">Defines the system topology for the emulator. The system topology is where you define System and WACN IDs as well as</span>
+<span class="dtd_comment">the IP addresses and the ports where the emulated and actual components run. You define your RFSS IDs ( as defined in </span>
+<span class="dtd_comment">102 BACA ) here. This xml document is relevant to both the DIETS tester and the DIETS packet monitor.</span>
+
+<span class="dtd_dtddoc_tag">@title</span><span class="dtd_comment"> System Topology Specification</span>
+<span class="dtd_dtddoc_tag">@root</span><span class="dtd_comment"> system-topology</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">system-topology</span><span class="dtd_plain"> (</span><span class="dtd_attribute_name">wacn-config</span><span class="dtd_plain">+, </span><span class="dtd_attribute_name">systemconfig</span><span class="dtd_plain">+,</span><span class="dtd_attribute_name">rfssconfig</span><span class="dtd_plain">+)</span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- Defines an RFSS configuration. --&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">rfssconfig</span><span class="dtd_plain">  </span><span class="dtd_keyword">EMPTY</span><span class="dtd_plain"> </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!-- </span>
+<span class="dtd_comment">A tag that defines a WACN. You can have multiple of these tags and assign RFSSs to different systems. </span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">wacn-config</span><span class="dtd_plain">   </span><span class="dtd_keyword">EMPTY</span><span class="dtd_plain"> </span><span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--</span>
+<span class="dtd_comment">A tag that defines a system configuration.</span>
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ELEMENT</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">systemconfig</span><span class="dtd_plain">  </span><span class="dtd_keyword">EMPTY</span><span class="dtd_plain"> </span><span class="dtd_tag_symbols">&gt;</span>
+<span class="dtd_comment">&lt;!-- </span>
+
+<span class="dtd_dtddoc_tag">@attr rfssName</span><span class="dtd_comment">  - The symbolic name which we use to </span>
+<span class="dtd_comment">        refer to the RFSS in the test system.</span>
+<span class="dtd_dtddoc_tag">@attr systemName</span><span class="dtd_comment"> - The system name to which this RFSS belongs</span>
+
+<span class="dtd_dtddoc_tag">@attr rfssId</span><span class="dtd_comment">      - is the rfss Id for the rfss.</span>
+
+<span class="dtd_dtddoc_tag">@attr ipAddress</span><span class="dtd_comment">   - is the Ip address where the Rfss will run. </span>
+<span class="dtd_comment">    This is a required parameter if the RFSS is not emulated.</span>
+<span class="dtd_comment">    If the Rfss is emulated, a tag corresponding to thie RFSS must appear</span>
+<span class="dtd_comment">        in issi-tester-configuration.xml.</span>
+<span class="dtd_comment">    For example a tag &lt;refId  id=&quot;rfss_1.daemon&quot; /&gt; </span>
+<span class="dtd_comment">        in issi-tester-configuration.xml implies that </span>
+<span class="dtd_comment">        emulated Rfss with name rfss_1 </span>
+<span class="dtd_comment">    will run on the DIETS daemon.</span>
+<span class="dtd_comment">    </span>
+
+<span class="dtd_dtddoc_tag">@attr port</span><span class="dtd_comment">      - is the sip signaling port where the rfss </span>
+<span class="dtd_comment">        will accept incoming sip messages. This is a required</span>
+<span class="dtd_comment">        parameter.</span>
+
+<span class="dtd_comment">        </span>
+<span class="dtd_dtddoc_tag">@attr emulated</span><span class="dtd_comment">    - a true/false flag </span>
+<span class="dtd_comment">            that indicates whether the Rfss </span>
+<span class="dtd_comment">            is emulated or real.</span>
+<span class="dtd_comment">            </span>
+<span class="dtd_dtddoc_tag">@attr color</span><span class="dtd_comment"> - the color to use to fill the box on the graphical panel.</span>
+
+<span class="dtd_comment">--&gt;</span>
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">rfssconfig</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">rfssName</span><span class="dtd_plain">                </span><span class="dtd_keyword">ID</span><span class="dtd_plain">      </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">rfssId</span><span class="dtd_plain">                  </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">ipAddress</span><span class="dtd_plain">               </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#IMPLIED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">port</span><span class="dtd_plain">                    </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain">   </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">emulated</span><span class="dtd_plain">                (</span><span class="dtd_attribute_name">true</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">false</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;true&quot;</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">systemName</span><span class="dtd_plain">              </span><span class="dtd_keyword">IDREF</span><span class="dtd_plain">   </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">color</span><span class="dtd_plain">           (</span><span class="dtd_attribute_name">BLACK</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">BLUE</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">MAGENTA</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">GREEN</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">RED</span><span class="dtd_plain">|</span><span class="dtd_attribute_name">CYAN</span><span class="dtd_plain">) </span><span class="dtd_attribute_value">&quot;BLACK&quot;</span><span class="dtd_plain"> </span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--  </span>
+<span class="dtd_dtddoc_tag">@attr wacnName</span><span class="dtd_comment"> the unique symbolic name to assign to this Wacn.</span>
+<span class="dtd_dtddoc_tag">@attr wacnId</span><span class="dtd_comment">  the numeric WACN ID to assign to the WACN.</span>
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">wacn-config</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">wacnName</span><span class="dtd_plain"> </span><span class="dtd_keyword">ID</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">wacnId</span><span class="dtd_plain">   </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+
+<span class="dtd_comment">&lt;!--   </span>
+
+<span class="dtd_dtddoc_tag">@attr systemName</span><span class="dtd_comment"> is the unique symbolic name.</span>
+<span class="dtd_dtddoc_tag">@attr systemId</span><span class="dtd_comment"> is the numerical ID assigned for the system as defined in 102 BACA.</span>
+<span class="dtd_dtddoc_tag">@attr wacnName</span><span class="dtd_comment"> is the name of the WACN for this system.</span>
+
+<span class="dtd_comment">--&gt;</span>
+
+<span class="dtd_tag_symbols">&lt;!</span><span class="dtd_tag_name">ATTLIST</span><span class="dtd_plain"> </span><span class="dtd_attribute_name">systemconfig</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">systemName</span><span class="dtd_plain"> </span><span class="dtd_keyword">ID</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">systemId</span><span class="dtd_plain">   </span><span class="dtd_keyword">CDATA</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span><span class="dtd_plain"> </span>
+<span class="dtd_plain">    </span><span class="dtd_attribute_name">wacnName</span><span class="dtd_plain">   </span><span class="dtd_keyword">IDREF</span><span class="dtd_plain"> </span><span class="dtd_keyword">#REQUIRED</span>
+<span class="dtd_tag_symbols">&gt;</span>
+</pre>
+</body></html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!DOCTYPE test-script SYSTEM "http://www-x.antd.nist.gov:8080/p25/issi-emulator/dtd/testscript.dtd">
+<test-script
+	generatePttTrace="yes"
+	testCompletionDelay="10"
+	traceGenerationTime="20"
+>
+<!-- change terminateAFter 10 to -1 -->
+<!--  This defines the scenario -->
+<su-to-su-call-setup-scenario
+	id="su-to-su-call-0"
+	callingSuName="callingSu"
+	calledSuName="calledSu"
+	talkSpurtSentBy="callingSu"
+	isTalkSpurtForced="true"
+	terminateAfter="-1"
+>
+<trigger
+	type="time"
+	value="5"
+/>
+</su-to-su-call-setup-scenario>
+
+</test-script>

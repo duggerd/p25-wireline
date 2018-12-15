@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Defines the system topology for the emulator. The system topology is where you define System and WACN IDs as well as
+the IP addresses and the ports where the emulated and actual components run. You define your RFSS IDs ( as defined in 
+102 BACA ) here. This xml document is relevant to both the DIETS tester and the DIETS packet monitor.
+
+@title System Topology Specification
+@root system-topology
+-->
+
+<!ELEMENT system-topology (wacn-config+, systemconfig+,rfssconfig+)>
+
+<!-- Defines an RFSS configuration. -->
+<!ELEMENT rfssconfig  EMPTY >
+
+<!-- 
+A tag that defines a WACN. You can have multiple of these tags and assign RFSSs to different systems. 
+-->
+<!ELEMENT wacn-config   EMPTY >
+
+<!--
+A tag that defines a system configuration.
+-->
+<!ELEMENT systemconfig  EMPTY >
+<!-- 
+
+@attr rfssName  - The symbolic name which we use to 
+		refer to the RFSS in the test system.
+@attr systemName - The system name to which this RFSS belongs
+
+@attr rfssId      - is the rfss Id for the rfss.
+
+@attr ipAddress   - is the Ip address where the Rfss will run. 
+	This is a required parameter if the RFSS is not emulated.
+	If the Rfss is emulated, a tag corresponding to thie RFSS must appear
+        in issi-tester-configuration.xml.
+	For example a tag <refId  id="rfss_1.daemon" /> 
+        in issi-tester-configuration.xml implies that 
+        emulated Rfss with name rfss_1 
+	will run on the DIETS daemon.
+	
+@attr address   - is the address where the Rfss located. 
+
+@attr port      - is the sip signaling port where the rfss 
+		will accept incoming sip messages. This is a required
+		parameter.
+
+		
+@attr emulated    - a true/false flag 
+			that indicates whether the Rfss 
+			is emulated or real.
+			
+@attr color - the color to use to fill the box on the graphical panel.
+
+-->
+<!ATTLIST rfssconfig 
+	rfssName		        ID      #REQUIRED
+	rfssId			        CDATA	#REQUIRED
+	ipAddress		        CDATA	#IMPLIED
+	port		            CDATA	#REQUIRED
+	emulated	            (true|false) "true"
+	systemName		        IDREF	#REQUIRED
+	color			(BLACK|BLUE|MAGENTA|GREEN|RED|CYAN) "BLACK" 
+	address		        	CDATA	#IMPLIED
+>
+
+<!--  
+@attr wacnName the unique symbolic name to assign to this Wacn.
+@attr wacnId  the numeric WACN ID to assign to the WACN.
+-->
+
+<!ATTLIST wacn-config
+	wacnName ID #REQUIRED
+	wacnId	 CDATA #REQUIRED
+>
+
+<!--   
+
+@attr systemName is the unique symbolic name.
+@attr systemId is the numerical ID assigned for the system as defined in 102 BACA.
+@attr wacnName is the name of the WACN for this system.
+
+-->
+
+<!ATTLIST systemconfig 
+	systemName ID #REQUIRED 
+	systemId   CDATA #REQUIRED 
+	wacnName   IDREF #REQUIRED
+>
